@@ -16,7 +16,7 @@ jobs:
       - name: Upload to Yandex Object Storage
         uses: yc-actions/yc-obj-storage-upload@v2
         with:
-          YC_SA_JSON_CREDENTIALS: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           bucket: naturerelease.com
           root: .
           include: "**"
