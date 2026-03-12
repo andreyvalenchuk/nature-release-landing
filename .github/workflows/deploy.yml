@@ -1,0 +1,25 @@
+name: Deploy to Yandex Object Storage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload to Yandex Object Storage
+        uses: yc-actions/yc-obj-storage-upload@v2
+        with:
+          yc-sa-json-credentials: ${{ secrets.yc-sa-json-credentials }}
+          bucket: naturerelease.com
+          root: .
+          include: "**"
+          exclude: |
+            .git/**
+            .github/**
