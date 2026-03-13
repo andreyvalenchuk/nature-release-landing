@@ -1,4 +1,6 @@
 module.exports.handler = async function (event) {
+  console.log('EVENT:', JSON.stringify(event));
+
   const CORS = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
