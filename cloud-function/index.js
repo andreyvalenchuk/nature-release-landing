@@ -46,14 +46,15 @@ module.exports.handler = async function (event) {
     }),
   });
 
-  const data = await response.json();
+  const rawText = await response.text();
 
   if (!response.ok) {
-    console.error('MailerLite error:', data);
+    console.error('MailerLite error status:', response.status);
+    console.error('MailerLite error body:', rawText);
     return {
-      statusCode: response.status,
+      statusCode: 502,
       headers: CORS,
-      body: JSON.stringify({ error: 'MailerLite error', detail: data }),
+      body: JSON.stringify({ error: 'MailerLite error', status: response.status }),
     };
   }
 
