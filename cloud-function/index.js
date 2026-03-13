@@ -47,6 +47,8 @@ module.exports.handler = async function (event) {
   });
 
   const rawText = await response.text();
+  console.log('MailerLite status:', response.status);
+  console.log('MailerLite body:', rawText);
 
   if (!response.ok) {
     console.error('MailerLite error status:', response.status);
