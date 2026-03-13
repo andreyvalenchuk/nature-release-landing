@@ -112,6 +112,26 @@
     }
     .header__nav a:hover { color: var(--white); }
 
+    .header__lang {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+    .header__lang:hover {
+      border-color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.06);
+    }
+    .header__lang img { display: block; width: 18px; height: 18px; opacity: 0.7; }
+    .header__lang:hover img { opacity: 1; }
+
     /* ── HERO ──────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
@@ -1252,9 +1272,10 @@
         <li><a href="#pains">Pains</a></li>
         <li><a href="#concept">Concept</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#join">Join</a></li>
       </ul>
-      <a href="#join" class="btn btn-white btn-sm header__cta-desktop" data-posthog="header_cta">Join waitlist</a>
+      <button class="header__lang" id="langToggle" aria-label="Change language">
+        <img src="assets/icons/languages.svg" alt="Language" width="18" height="18">
+      </button>
       <button class="header__hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1267,7 +1288,6 @@
       <a href="#pains" class="mobile-nav__link">Pains</a>
       <a href="#concept" class="mobile-nav__link">Concept</a>
       <a href="#faq" class="mobile-nav__link">FAQ</a>
-      <a href="#join" class="mobile-nav__link">Join</a>
     </nav>
     <a href="#join" class="btn btn-white btn-md mobile-nav__cta" data-posthog="mobile_nav_cta">Join waitlist</a>
   </div>
