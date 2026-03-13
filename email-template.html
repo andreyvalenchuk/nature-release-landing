@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Nature Release — You're on the list</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!--[if mso]>
+  <noscript>
+    <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #101010;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .email-bg {
+      background-color: #101010;
+      padding: 48px 16px 64px;
+    }
+    .email-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .email-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #2f2f2f;
+    }
+    .email-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+    }
+    .email-logo span {
+      color: #b286fd;
+    }
+
+    /* Hero block */
+    .email-hero {
+      margin-bottom: 40px;
+    }
+    .email-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .email-hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .email-hero h1 em {
+      font-style: italic;
+      color: #b286fd;
+    }
+    .email-hero p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: #888;
+      max-width: 520px;
+    }
+
+    /* Divider */
+    .email-divider {
+      height: 1px;
+      background: #2f2f2f;
+      margin: 36px 0;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b286fd;
+      margin-bottom: 20px;
+    }
+
+    /* Guide block */
+    .guide-block {
+      background: #181818;
+      border: 1px solid #2f2f2f;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+    }
+    .guide-block h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .guide-block .guide-subtitle {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .guide-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .guide-list li {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #cccccc;
+      padding: 10px 0;
+      border-bottom: 1px solid #2f2f2f;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .guide-list li:last-child { border-bottom: none; }
+    .guide-list li .bullet {
+      color: #b286fd;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .btn-guide {
+      display: inline-block;
+      background: #b286fd;
+      color: #101010;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-align: center;
+    }
+
+    /* Social block */
+    .social-block {
+      margin-bottom: 36px;
+    }
+    .social-block p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .social-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .social-item .social-icon {
+      color: #b286fd;
+      font-weight: 600;
+      flex-shrink: 0;
+      width: 20px;
+    }
+    .social-item .social-name {
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .social-item .social-desc {
+      color: #888;
+    }
+    .social-link-all {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #b286fd;
+      text-decoration: none;
+      border-bottom: 1px solid #b286fd33;
+      padding-bottom: 1px;
+    }
+
+    /* Why block */
+    .why-block {
+      background: #181818;
+      border: 1px solid #2f2f2f;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+    }
+    .why-block p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #888;
+    }
+    .why-block p strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .why-block p em {
+      color: #b286fd;
+      font-style: italic;
+    }
+
+    /* Closing */
+    .closing {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #888;
+      margin-bottom: 28px;
+    }
+    .closing strong {
+      color: #ffffff;
+    }
+
+    /* Signature */
+    .signature {
+      padding-top: 28px;
+      border-top: 1px solid #2f2f2f;
+    }
+    .signature p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #888;
+    }
+    .signature .sig-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 12px;
+      letter-spacing: 0.01em;
+    }
+    .signature .sig-ps {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+    }
+
+    /* Footer */
+    .email-footer {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid #2f2f2f;
+      text-align: center;
+    }
+    .email-footer p {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .email-footer a {
+      color: #555;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .email-hero h1 { font-size: 26px; }
+      .guide-block, .why-block { padding: 20px; }
+      .social-links { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-bg">
+  <div class="email-wrap">
+
+    <!-- Header -->
+    <div class="email-header">
+      <div class="email-logo">Nature <span>Release</span></div>
+    </div>
+
+    <!-- Hero -->
+    <div class="email-hero">
+      <div class="email-tag">Confirmation</div>
+      <h1>You're on the list.<br><em>Here's what's next.</em></h1>
+      <p>
+        Привет, <strong style="color:#ffffff;">[Name]</strong> — you're officially on the Nature Release waitlist. Welcome.
+      </p>
+    </div>
+
+    <div class="email-divider"></div>
+
+    <!-- Intro copy -->
+    <p style="font-size:16px; line-height:1.7; color:#888; margin-bottom:36px;">
+      We're building a system that helps you understand why you feel the way you feel — and what to do about it.<br><br>
+      No magic. No generic advice. Just your data, your patterns, <strong style="color:#fff;">your biology.</strong>
+    </p>
+
+    <!-- Guide block -->
+    <div class="section-label">First thing</div>
+    <div class="guide-block">
+      <h2>"Why You Wake Up Tired<br>(And How to Fix It)"</h2>
+      <div class="guide-subtitle">A short guide based on real research</div>
+      <ul class="guide-list">
+        <li>
+          <span class="bullet">→</span>
+          The one thing most people get wrong about sleep <span style="color:#888;">(hint: it's not hours)</span>
+        </li>
+        <li>
+          <span class="bullet">→</span>
+          Why <strong>18°C</strong> matters more than your mattress
+        </li>
+        <li>
+          <span class="bullet">→</span>
+          The <strong>90-minute rule</strong> that changes everything
+        </li>
+      </ul>
+      <a href="#" class="btn-guide">Download the guide →</a>
+    </div>
+
+    <div class="email-divider"></div>
+
+    <!-- Social -->
+    <div class="section-label">Go deeper</div>
+    <div class="social-block">
+      <p>We share engineering notes on how the human body actually works — no fluff, just mechanisms.</p>
+      <div class="social-links">
+        <div class="social-item">
+          <span class="social-icon">✦</span>
+          <div>
+            <span class="social-name">Telegram</span>
+            <span class="social-desc"> — daily insights, quick threads, raw thinking</span>
+          </div>
+        </div>
+        <div class="social-item">
+          <span class="social-icon">✦</span>
+          <div>
+            <span class="social-name">X (Twitter)</span>
+            <span class="social-desc"> — shorter notes, links to studies, previews</span>
+          </div>
+        </div>
+        <div class="social-item">
+          <span class="social-icon">✦</span>
+          <div>
+            <span class="social-name">Instagram</span>
+            <span class="social-desc"> — visual breakdowns, science stories</span>
+          </div>
+        </div>
+        <div class="social-item">
+          <span class="social-icon">✦</span>
+          <div>
+            <span class="social-name">Pinterest</span>
+            <span class="social-desc"> — not your usual mood boards. We collect frameworks, maps, mental models</span>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="social-link-all">All links in one place →</a>
+    </div>
+
+    <div class="email-divider"></div>
+
+    <!-- Why we exist -->
+    <div class="section-label">Why we do this</div>
+    <div class="why-block">
+      <p>
+        Most health products sell you a <em>fantasy.</em><br>
+        We sell you a <strong>mirror.</strong><br><br>
+        Your body already knows how to work. It just needs the right inputs at the right time. NR helps you find those inputs — and turn them into habits that actually last.
+      </p>
+    </div>
+
+    <!-- Closing -->
+    <p class="closing">
+      We're still building. If you have questions, feedback, or just want to say hi — <strong>reply to this email.</strong> We read everything.
+    </p>
+    <p class="closing" style="margin-top:-16px;">See you inside.</p>
+
+    <!-- Signature -->
+    <div class="signature">
+      <p class="sig-name">— The Nature Release team</p>
+      <p class="sig-ps">
+        P.S. If you know someone who'd benefit from that sleep guide, feel free to forward this. The more people understand their bodies, the better.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <p>
+        You're receiving this because you signed up at naturelease.app<br>
+        <a href="#">Unsubscribe</a> · <a href="#">View in browser</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
