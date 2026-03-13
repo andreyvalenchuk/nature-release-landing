@@ -1848,7 +1848,9 @@
     });
 
     // ── Form submit ────────────────────────────────────
-    document.getElementById('joinForm').addEventListener('submit', e => {
+    const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYmQ5ODhhOGU5M2I0Mjk4MjU3ZDM3YmE1Nzg1ZTAwOGM0OWYzNGQzMzNkOTZlMzkxNjBmZTQzMWQzMmM5YWQ5NmFhODAzODQ1MjE3MDU5MDkiLCJpYXQiOjE3NzMzOTk2MTMuNDYxODA5LCJuYmYiOjE3NzMzOTk2MTMuNDYxODE0LCJleHAiOjQ5MjkwNzMyMTMuNDUxNDU5LCJzdWIiOiIyMjA2MTA5Iiwic2NvcGVzIjpbXX0.O4mH6W4xf7b0Y7zz3l8GKt0eBlctWOlmBk_-OYr4qzPJUCjjGWN5vJwN2PBXMfBmv4CvFQx4pq1RFWmbe01fOgnnsfcvVKfhohXIEh9MJM5Kz1zXWZYAb0wn7wXyToiC57QsAv-Or4-ZGwmVZI0xVjetp3cj8VU58GxcXmJfKHIJACssbyjNt9oDtMibXkwbva_TVT_dnsY7jn_-f7NTDLa9fYRuWUqnTFQqAfLxsAjJlB5nvB6Y-qpFJZZYh9awhOUQ_t1_-3PEr3chF0cX3rQBk02NsdGc1XIeN70XBBmroP6OILgeujrknuhlof-k4mYgXbfdyLOxzHc6JgN1GPJiourC8PvPSIWCFitVBEh5yeJAgzE0dMP43rrtdwtwV5L-yeL2eiAqj1fJXf4DM8xf_jh98m34fayMQ-OGfhVsNhxXEE0OHLlkjKQfGnL97PQCqcqCjlaZz7VrhbCeX3gh4ZbNqDcYyLeEzutqvPFD0oWIwHuvnRM3rGdPNnJ-E2oV4G7Ss2jolVh8Ix_tcEypvcJpC7GGpmVZf9c3y-Rg2KzXUm8720RTjHHNuWJzbA3qwPygYUxnRyRRYSbza07RwmgW3t9BRxjxL108LbtcrlSRW_090nOj2g01Dr4D0vZwfLcfAs8EC782t80KBkuZmpO95rMvZr5ZmDNZCR4';
+
+    document.getElementById('joinForm').addEventListener('submit', async e => {
       e.preventDefault();
       const name  = document.getElementById('formName').value.trim();
       const email = emailInput.value.trim();
@@ -1860,11 +1862,30 @@
         return;
       }
 
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        await fetch('https://connect.mailerlite.com/api/subscribers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + MAILERLITE_API_KEY
+          },
+          body: JSON.stringify({
+            email,
+            fields: { name },
+            groups: []
+          })
+        });
+      } catch (err) {
+        console.error('MailerLite error:', err);
+      }
+
       posthog.capture('waitlist_signup', { name, email, mode: currentMode });
 
       submitBtn.textContent = '✓ You\'re in!';
       submitBtn.classList.add('is-done');
-      submitBtn.disabled = true;
     });
   </script>
 
