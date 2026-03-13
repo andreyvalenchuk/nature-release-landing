@@ -857,6 +857,35 @@
       margin-top: 18px;
     }
 
+    .join__lang {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--grey);
+      border-radius: 100px;
+      padding: 4px;
+      width: fit-content;
+    }
+
+    .join__lang-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: none;
+      background: none;
+      color: var(--light-grey);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .join__lang-btn.is-active {
+      background: var(--white);
+      color: var(--black);
+    }
+
     /* ── FOOTER ────────────────────────────────────────── */
     footer {
       background: var(--dark-grey);
@@ -1676,6 +1705,10 @@
           <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required>
           <input class="join__input" type="email" id="formEmail" placeholder="Your email address" autocomplete="email" required>
           <p class="join__error" id="emailError">Please enter a valid email address</p>
+          <div class="join__lang" role="group" aria-label="Choose language">
+            <button type="button" class="join__lang-btn is-active" data-lang="EN">EN</button>
+            <button type="button" class="join__lang-btn" data-lang="RU">RU</button>
+          </div>
           <button class="join__submit" type="submit" id="joinSubmit">Get the sleep guide →</button>
         </form>
 
@@ -1824,6 +1857,17 @@
       });
     });
 
+    // ── Language toggle ─────────────────────────────────
+    let currentLang = 'EN';
+
+    document.querySelectorAll('.join__lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.join__lang-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        currentLang = btn.dataset.lang;
+      });
+    });
+
     // ── Mobile nav ─────────────────────────────────────
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav  = document.getElementById('mobileNav');
@@ -1894,7 +1938,7 @@
         await fetch(SUBSCRIBE_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email })
+          body: JSON.stringify({ name, email, lang: currentLang })
         });
       } catch (err) {
         console.error('Subscribe error:', err);

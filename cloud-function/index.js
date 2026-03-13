@@ -20,10 +20,16 @@ module.exports.handler = async function (event) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { name, email } = body;
+  const { name, email, lang } = body;
   if (!email) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Email is required' }) };
   }
+
+  const GROUP_IDS = {
+    EN: '181794795567449718',
+    RU: '181842220750473165',
+  };
+  const groupId = GROUP_IDS[lang] || GROUP_IDS.EN;
 
   const apiKey = process.env.MAILERLITE_API_KEY;
 
@@ -36,7 +42,7 @@ module.exports.handler = async function (event) {
     body: JSON.stringify({
       email,
       fields: { name },
-      groups: ['181794795567449718'],
+      groups: [groupId],
     }),
   });
 
