@@ -2217,6 +2217,24 @@
 
       submitBtn.textContent = '✓ You\'re in!';
       submitBtn.classList.add('is-done');
+
+      setTimeout(() => {
+        submitBtn.textContent = 'Share with a friend →';
+        submitBtn.classList.remove('is-done');
+        submitBtn.disabled = false;
+        submitBtn.onclick = async (ev) => {
+          ev.preventDefault();
+          const shareUrl = 'https://naturerelease.com';
+          const shareTitle = 'Nature Release — track your biology';
+          if (navigator.share) {
+            try { await navigator.share({ title: shareTitle, url: shareUrl }); } catch (_) {}
+          } else {
+            await navigator.clipboard.writeText(shareUrl);
+            submitBtn.textContent = 'Link copied!';
+            setTimeout(() => { submitBtn.textContent = 'Share with a friend →'; }, 2500);
+          }
+        };
+      }, 2000);
     });
   </script>
 
