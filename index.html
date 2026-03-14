@@ -2020,6 +2020,12 @@
       const langLabel = document.querySelector('.header__lang-label');
       if (langLabel) langLabel.textContent = lang;
 
+      // Sync form language picker with site language
+      currentLang = lang;
+      document.querySelectorAll('.join__lang-btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.lang === lang);
+      });
+
       localStorage.setItem('nr-lang', lang);
     }
 
