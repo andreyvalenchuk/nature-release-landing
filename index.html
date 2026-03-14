@@ -862,6 +862,10 @@
       opacity: 1;
       cursor: default;
     }
+    .join__submit.is-share {
+      background: #FF1FB4;
+      color: var(--white);
+    }
 
     .join__note {
       width: 540px;
@@ -2221,6 +2225,7 @@
       setTimeout(() => {
         submitBtn.textContent = 'Share with a friend →';
         submitBtn.classList.remove('is-done');
+        submitBtn.classList.add('is-share');
         submitBtn.disabled = false;
         submitBtn.onclick = async (ev) => {
           ev.preventDefault();
