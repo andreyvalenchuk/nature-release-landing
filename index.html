@@ -867,7 +867,10 @@
       font-size: 13px;
       color: var(--light-grey);
       margin-top: 18px;
+      line-height: 1.6;
     }
+    .join__note a { color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); transition: color 0.2s; }
+    .join__note a:hover { color: var(--white); }
 
     .join__lang {
       display: flex;
@@ -1726,7 +1729,7 @@
           <button class="join__submit" type="submit" id="joinSubmit">Get the sleep guide →</button>
         </form>
 
-        <p class="join__note" data-i18n="join-note">No spam. Just science. Unsubscribe anytime.</p>
+        <p class="join__note" data-i18n="join-note">No spam. Just science. Unsubscribe anytime. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="data-processing-consent.html">Data Processing Consent</a>.</p>
       </div>
     </div>
   </section>
@@ -1777,8 +1780,9 @@
       <div class="footer__bottom">
         <span class="footer__copy" data-i18n="footer-copy">© 2026 Nature Release. All rights reserved.</span>
         <div class="footer__legal">
-          <a href="#" data-i18n="footer-privacy">Privacy Policy</a>
-          <a href="#" data-i18n="footer-terms">Terms of Service</a>
+          <a href="privacy-policy.html" data-i18n="footer-privacy">Privacy Policy</a>
+          <a href="terms-of-service.html" data-i18n="footer-terms">Terms of Service</a>
+          <a href="data-processing-consent.html" data-i18n="footer-consent">Data Processing Consent</a>
         </div>
       </div>
     </div>
@@ -1884,7 +1888,7 @@
         'form-name-ph': 'Your first name',
         'form-email-ph': 'Your email address',
         'form-email-error': 'Please enter a valid email address',
-        'join-note': 'No spam. Just science. Unsubscribe anytime.',
+        'join-note': 'No spam. Just science. Unsubscribe anytime. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="data-processing-consent.html">Data Processing Consent</a>.',
         'footer-tagline': 'Track. Experiment. Evolve.',
         'footer-nav-pains': 'Pains',
         'footer-nav-concept': 'Concept',
@@ -1894,6 +1898,7 @@
         'footer-copy': '© 2026 Nature Release. All rights reserved.',
         'footer-privacy': 'Privacy Policy',
         'footer-terms': 'Terms of Service',
+        'footer-consent': 'Data Processing Consent',
         'submit-guide': 'Get the sleep guide →',
         'submit-waitlist': 'Join the waitlist →',
       },
@@ -1982,7 +1987,7 @@
         'form-name-ph': 'Твоё имя',
         'form-email-ph': 'Твой email',
         'form-email-error': 'Введи корректный email',
-        'join-note': 'Без спама. Только наука. Отписаться можно в любой момент.',
+        'join-note': 'Без спама. Только наука. Отписаться можно в любой момент. Отправляя форму, вы соглашаетесь с <a href="privacy-policy.html">Политикой конфиденциальности</a> и <a href="data-processing-consent.html">Согласием на обработку данных</a>.',
         'footer-tagline': 'Отслеживай. Экспериментируй. Развивайся.',
         'footer-nav-pains': 'Боли',
         'footer-nav-concept': 'Концепция',
@@ -1992,6 +1997,7 @@
         'footer-copy': '© 2026 Nature Release. Все права защищены.',
         'footer-privacy': 'Политика конфиденциальности',
         'footer-terms': 'Условия использования',
+        'footer-consent': 'Согласие на обработку данных',
         'submit-guide': 'Получить гайд →',
         'submit-waitlist': 'В лист ожидания →',
       }

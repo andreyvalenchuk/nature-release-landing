@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature Release — Terms of Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #101010; --dark-grey: #181818; --grey: #2f2f2f; --light-grey: #888; --white: #ffffff; --purple: #b286fd; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    .l-header { position: sticky; top: 0; z-index: 100; background: rgba(16,16,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--grey); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .l-header__left { display: flex; align-items: center; gap: 24px; }
+    .l-logo { font-size: 16px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+    .l-back { font-size: 13px; font-weight: 500; color: var(--light-grey); text-decoration: none; transition: color 0.2s; }
+    .l-back:hover { color: var(--white); }
+    .l-lang { display: flex; align-items: center; gap: 4px; height: 34px; padding: 0 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); background: transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s; font-family: 'Inter', sans-serif; }
+    .l-lang:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
+    .l-lang svg { opacity: 0.7; } .l-lang:hover svg { opacity: 1; }
+    .l-lang-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); margin-left: 4px; }
+    .l-main { max-width: 820px; margin: 0 auto; padding: 64px 40px 96px; }
+    .l-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); margin-bottom: 16px; }
+    .l-title { font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--white); margin-bottom: 16px; }
+    .l-updated { font-size: 13px; color: var(--light-grey); margin-bottom: 32px; }
+    .l-intro { font-size: 16px; line-height: 1.7; color: var(--light-grey); padding-bottom: 48px; border-bottom: 1px solid var(--grey); }
+    .l-sections { margin-top: 48px; display: flex; flex-direction: column; gap: 8px; }
+    .l-section { background: var(--dark-grey); border: 1px solid var(--grey); border-radius: 16px; padding: 28px 32px; }
+    .l-section-num { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+    .l-section-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; }
+    .l-section-body { font-size: 15px; line-height: 1.75; color: #aaaaaa; }
+    .l-section-body p { margin-bottom: 12px; }
+    .l-section-body p:last-child { margin-bottom: 0; }
+    .l-section-body ul { list-style: none; margin: 8px 0 12px; display: flex; flex-direction: column; gap: 6px; }
+    .l-section-body ul li::before { content: "→"; color: var(--purple); font-weight: 700; margin-right: 8px; }
+    .l-section-body strong { color: var(--white); font-weight: 600; }
+    .l-section-body a { color: var(--purple); text-decoration: none; border-bottom: 1px solid rgba(178,134,253,0.3); }
+    .l-footer { border-top: 1px solid var(--grey); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .l-footer-copy { font-size: 13px; color: var(--light-grey); }
+    .l-footer-links { display: flex; gap: 24px; }
+    .l-footer-links a { font-size: 13px; color: var(--light-grey); text-decoration: none; transition: color 0.2s; }
+    .l-footer-links a:hover { color: var(--white); }
+    .l-footer-links a.is-current { color: var(--purple); }
+    @media (max-width: 640px) {
+      .l-header { padding: 14px 20px; }
+      .l-main { padding: 40px 20px 64px; }
+      .l-title { font-size: 32px; }
+      .l-section { padding: 20px; }
+      .l-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="l-header__left">
+    <a href="index.html" class="l-logo">Nature Release</a>
+    <a href="index.html" class="l-back" id="backLink">← Back</a>
+  </div>
+  <button class="l-lang" id="langToggle" aria-label="Change language">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 2C9.43223 4.69615 8 8.27674 8 12C8 15.7233 9.43223 19.3038 12 22C14.5678 19.3038 16 15.7233 16 12C16 8.27674 14.5678 4.69615 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 12H22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="l-lang-label" id="langLabel">EN</span>
+  </button>
+</header>
+
+<main class="l-main">
+  <div class="l-label" id="docLabel"></div>
+  <h1 class="l-title" id="docTitle"></h1>
+  <p class="l-updated" id="docUpdated"></p>
+  <p class="l-intro" id="docIntro"></p>
+  <div class="l-sections" id="docSections"></div>
+</main>
+
+<footer class="l-footer">
+  <span class="l-footer-copy" id="footerCopy"></span>
+  <div class="l-footer-links">
+    <a href="privacy-policy.html" id="linkPrivacy"></a>
+    <a href="terms-of-service.html" id="linkTerms" class="is-current"></a>
+    <a href="data-processing-consent.html" id="linkConsent"></a>
+  </div>
+</footer>
+
+<script>
+  const content = {
+    EN: {
+      label: 'Legal',
+      title: 'Terms of Service',
+      updated: 'Last updated: March 14, 2026',
+      intro: 'These Terms of Service ("Terms") govern your access to and use of naturerelease.com, the platform, mobile applications, and related services (collectively, the "Service") provided by Nature Release. By accessing or using the Service, you confirm that you have read, understood, and agree to be bound by these Terms.',
+      sections: [
+        {
+          num: '1', title: 'IMPORTANT MEDICAL DISCLAIMER',
+          html: '<p><strong>Nature Release is not a medical organisation and does not provide medical services.</strong></p><p>Nature Release provides a self-monitoring tool, including health data analysis, lifestyle recommendations, and health prevention information.</p><p>The Service is intended only for persons aged 18 and over.</p><p>Any recommendations or insights provided through the Service:</p><ul><li>Are purely informational and advisory in nature</li><li>Do not constitute medical advice, diagnosis, or treatment</li><li>Do not replace consultation with a licensed healthcare professional</li></ul><p>By using the Service, you acknowledge that:</p><ul><li>Medical decisions should be made in consultation with licensed doctors</li><li>If your health deteriorates, you must seek medical care</li><li>In emergencies, you must immediately contact emergency medical services</li></ul>'
+        },
+        {
+          num: '2', title: 'SERVICE DESCRIPTION',
+          html: '<p>Nature Release is a digital platform designed to collect, aggregate, and analyse a user\'s personal data related to their lifestyle (including, but not limited to, sleep, nutrition, physical activity, social interactions, and work patterns).</p><p>The platform processes data locally on the user\'s device and provides analytical insights to help users identify individual patterns and correlations between their daily actions and subjective wellbeing.</p><p>The Service may allow users to:</p><ul><li>Aggregate personal data including sleep, nutrition, activity, social interactions, wearables, and lab results</li><li>Maintain a structured observation diary with subjective wellbeing, mood, and other parameters</li><li>Process data locally using algorithms to identify individual correlations and patterns</li><li>Access visualised analysis results in the Laboratory module</li><li>Create or access personal experimental protocols and anonymised data from other users in the Forum module</li></ul>'
+        },
+        {
+          num: '3', title: 'INTEGRATIONS AND THIRD-PARTY DEVICES',
+          html: '<p>The Service may integrate with third-party apps and wearable devices, including but not limited to Apple Health, Google Fit / Health Connect, Oura, Whoop, and Garmin.</p><p><strong>Third-party data disclaimer:</strong></p><ul><li>Nature Release does not control third-party devices or applications and does not guarantee the accuracy, completeness, or reliability of data transmitted by them</li><li>Users acknowledge that sensor inaccuracies, device malfunctions, or third-party API failures may affect analytics quality</li><li>Nature Release is not liable for errors caused by third-party hardware or services</li></ul>'
+        },
+        {
+          num: '4', title: 'USER REQUIREMENTS',
+          html: '<p>To use the Service you must:</p><ul><li>Be at least 18 years old</li><li>Have full legal capacity</li><li>Provide accurate and truthful information</li></ul>'
+        },
+        {
+          num: '5', title: 'USER RESPONSIBILITIES',
+          html: '<p>Users are responsible for the accuracy of information provided and the security of their credentials.</p><p>Users agree to independently evaluate Service recommendations and consult doctors.</p><p>Unauthorised access to the Service or use for unlawful purposes is prohibited.</p>'
+        },
+        {
+          num: '6', title: 'PERSONAL AND MEDICAL DATA',
+          html: '<p>Processing of personal, medical, biometric, and genetic data is carried out in accordance with the Service\'s Privacy Policy. By using the Service, you give explicit consent to the processing of special categories of data.</p>'
+        },
+        {
+          num: '7', title: 'INTELLECTUAL PROPERTY',
+          html: '<p>All materials (software, algorithms, models, design, trademarks) are the intellectual property of Nature Release or its licensors. Users are granted a limited licence for personal, non-commercial use.</p>'
+        },
+        {
+          num: '8', title: 'LIMITATION OF LIABILITY',
+          html: '<p>To the maximum extent permitted by law, Nature Release is not liable for:</p><ul><li>Decisions made by users without consulting a doctor</li><li>Actions of third parties (medical institutions)</li><li>Consequences of ignoring recommendations to seek medical care</li><li>Technical failures beyond Nature Release\'s reasonable control</li></ul><p>Nature Release\'s aggregate liability shall not exceed the amount paid by the user for the Service in the preceding 12 months.</p>'
+        },
+        {
+          num: '9', title: 'SERVICE AVAILABILITY AND DEVELOPMENT',
+          html: '<p>We strive to ensure the Service operates without interruption and our algorithms are as accurate as possible. However, given the complexity of the technology and reliance on third-party data providers, the Service is provided on an "as available" basis. We continuously improve our analytical models but cannot guarantee the complete absence of technical errors or uninterrupted 24/7 availability.</p>'
+        },
+        {
+          num: '10', title: 'SERVICE CHANGES',
+          html: '<p>Nature Release reserves the right to modify or discontinue any part of the Service at any time.</p>'
+        },
+        {
+          num: '11', title: 'TERMINATION',
+          html: '<p>Nature Release may suspend access in the event of a breach of these Terms. Users may delete their account at any time.</p>'
+        },
+        {
+          num: '12', title: 'FORCE MAJEURE',
+          html: '<p>Nature Release is not liable for delays or failures caused by events beyond its control (natural disasters, internet or infrastructure outages).</p>'
+        },
+        {
+          num: '13', title: 'CHANGES TO TERMS',
+          html: '<p>Nature Release may update these Terms. Continued use of the Service after changes constitutes your acceptance of the revised version.</p>'
+        },
+        {
+          num: '14', title: 'CONTACT',
+          html: '<p>Questions about the Service: <a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p>'
+        }
+      ],
+      back: '← Back',
+      copy: '© 2026 Nature Release. All rights reserved.',
+      linkPrivacy: 'Privacy Policy',
+      linkTerms: 'Terms of Service',
+      linkConsent: 'Data Processing Consent'
+    },
+    RU: {
+      label: 'Юридическое',
+      title: 'Условия использования',
+      updated: 'Дата последнего обновления: 14.03.2026',
+      intro: 'Настоящие Условия предоставления услуг («Условия») регулируют доступ и использование веб-сайта naturerelease.com, платформы, мобильных приложений и связанных сервисов (далее совместно — «Сервис»), предоставляемых Nature Release. Получая доступ к Сервису или используя его, вы подтверждаете, что ознакомились, поняли и соглашаетесь соблюдать настоящие Условия.',
+      sections: [
+        {
+          num: '1', title: 'ВАЖНОЕ МЕДИЦИНСКОЕ ПРЕДУПРЕЖДЕНИЕ',
+          html: '<p><strong>Nature Release не является медицинской организацией и не оказывает медицинские услуги.</strong></p><p>Nature Release предоставляет инструмент для самонаблюдения, включая анализ данных о здоровье, рекомендации по образу жизни и информацию о профилактике здоровья.</p><p>Сервис предназначен только для лиц старше 18 лет.</p><p>Любые рекомендации или идеи, предоставляемые через Сервис:</p><ul><li>Носят исключительно информационный и консультативный характер</li><li>Не являются медицинской консультацией, диагнозом или лечением</li><li>Не заменяют консультацию лицензированного медицинского специалиста</li></ul><p>Используя Сервис, вы подтверждаете, что:</p><ul><li>Медицинские решения должны приниматься по согласованию с лицензированными врачами</li><li>При ухудшении состояния здоровья вам необходимо обратиться за медицинской помощью</li><li>В экстренных ситуациях вы должны немедленно связаться со службами экстренной медицинской помощи</li></ul>'
+        },
+        {
+          num: '2', title: 'ОПИСАНИЕ СЕРВИСА',
+          html: '<p>Nature Release — это цифровая платформа, предназначенная для сбора, агрегации и анализа персональных данных пользователя, связанных с его образом жизни (включая, но не ограничиваясь, данными о сне, питании, физической активности, социальных взаимодействиях и рабочих паттернах).</p><p>Платформа обрабатывает данные локально на устройстве пользователя и предоставляет информационно-аналитические материалы, направленные на помощь пользователю в выявлении индивидуальных закономерностей и взаимосвязей.</p><p>Сервис может позволять пользователям:</p><ul><li>Агрегировать персональные данные, включая сон, питание, активность, социальные взаимодействия, носимые устройства и результаты анализов</li><li>Вести структурированный дневник наблюдений с субъективными оценками самочувствия и настроения</li><li>Обрабатывать данные локально с помощью алгоритмов для выявления индивидуальных паттернов</li><li>Получать доступ к визуализированным результатам анализа в модуле «Лаборатория»</li><li>Формировать персональные экспериментальные протоколы и просматривать обезличенные данные других пользователей в модуле «Форум»</li></ul>'
+        },
+        {
+          num: '3', title: 'ИНТЕГРАЦИИ И СТОРОННИЕ УСТРОЙСТВА',
+          html: '<p>Сервис может интегрироваться со сторонними приложениями и носимыми устройствами, включая Apple Health, Google Fit / Health Connect, Oura, Whoop, Garmin и другие.</p><p><strong>Отказ от ответственности за сторонние данные:</strong></p><ul><li>Nature Release не контролирует сторонние устройства и не гарантирует точность данных, передаваемых ими</li><li>Пользователи признают, что неточность датчиков или сбои API могут повлиять на качество аналитики</li><li>Nature Release не несет ответственности за ошибки, вызванные сторонним оборудованием</li></ul>'
+        },
+        {
+          num: '4', title: 'ТРЕБОВАНИЯ К ПОЛЬЗОВАТЕЛЮ',
+          html: '<p>Для использования Сервиса вы должны:</p><ul><li>Быть не моложе 18 лет</li><li>Обладать полной дееспособностью</li><li>Предоставлять точную и правдивую информацию</li></ul>'
+        },
+        {
+          num: '5', title: 'ОБЯЗАННОСТИ ПОЛЬЗОВАТЕЛЯ',
+          html: '<p>Пользователи несут ответственность за точность предоставляемой информации и безопасность учетных данных.</p><p>Пользователи соглашаются самостоятельно оценивать рекомендации Сервиса и консультироваться с врачами.</p><p>Запрещается несанкционированный доступ к Сервису или его использование в противоправных целях.</p>'
+        },
+        {
+          num: '6', title: 'ПЕРСОНАЛЬНЫЕ И МЕДИЦИНСКИЕ ДАННЫЕ',
+          html: '<p>Обработка данных (личных, медицинских, биометрических, генетических) осуществляется в соответствии с Политикой конфиденциальности Сервиса. Используя Сервис, вы даёте явное согласие на обработку специальных категорий данных.</p>'
+        },
+        {
+          num: '7', title: 'ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ',
+          html: '<p>Все материалы (ПО, алгоритмы, модели, дизайн, товарные знаки) являются интеллектуальной собственностью Nature Release или его лицензиаров. Пользователю предоставляется ограниченная лицензия на личное, некоммерческое использование.</p>'
+        },
+        {
+          num: '8', title: 'ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ',
+          html: '<p>В максимальной степени, допустимой законом, Nature Release не несет ответственности за:</p><ul><li>Решения пользователя, принятые без консультации с врачом</li><li>Действия третьих лиц (медицинских учреждений)</li><li>Последствия игнорирования рекомендаций обратиться за медицинской помощью</li><li>Технические сбои вне разумного контроля Nature Release</li></ul><p>Совокупная ответственность Nature Release не может превышать сумму, уплаченную пользователем за Сервис в течение последних 12 месяцев.</p>'
+        },
+        {
+          num: '9', title: 'РАЗВИТИЕ И ДОСТУПНОСТЬ СЕРВИСА',
+          html: '<p>Мы стремимся к тому, чтобы Сервис работал бесперебойно, а наши алгоритмы были максимально точными. Однако, учитывая сложность технологий и зависимость от сторонних провайдеров данных, Сервис предоставляется по принципу «по мере доступности». Мы постоянно совершенствуем наши аналитические модели, но не можем гарантировать абсолютное отсутствие технических ошибок или непрерывную работу Сервиса в режиме 24/7.</p>'
+        },
+        {
+          num: '10', title: 'ИЗМЕНЕНИЯ СЕРВИСА',
+          html: '<p>Nature Release оставляет за собой право изменять или прекращать работу любой части Сервиса в любое время.</p>'
+        },
+        {
+          num: '11', title: 'ПРЕКРАЩЕНИЕ ИСПОЛЬЗОВАНИЯ',
+          html: '<p>Nature Release может приостановить доступ в случае нарушения Условий. Пользователь может удалить аккаунт в любое время.</p>'
+        },
+        {
+          num: '12', title: 'ФОРС-МАЖОР',
+          html: '<p>Nature Release не несет ответственности за задержки или сбои, вызванные событиями вне его контроля (стихийные бедствия, перебои в работе интернета или инфраструктуры).</p>'
+        },
+        {
+          num: '13', title: 'ИЗМЕНЕНИЯ УСЛОВИЙ',
+          html: '<p>Nature Release может обновлять настоящие Условия. Продолжение использования Сервиса после изменений означает ваше согласие с новой редакцией.</p>'
+        },
+        {
+          num: '14', title: 'КОНТАКТЫ',
+          html: '<p>По вопросам использования Сервиса: <a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p>'
+        }
+      ],
+      back: '← Назад',
+      copy: '© 2026 Nature Release. Все права защищены.',
+      linkPrivacy: 'Политика конфиденциальности',
+      linkTerms: 'Условия использования',
+      linkConsent: 'Согласие на обработку данных'
+    }
+  };
+
+  let lang = localStorage.getItem('nr-lang') || 'EN';
+
+  function render(l) {
+    lang = l;
+    const d = content[l];
+    document.documentElement.lang = l === 'RU' ? 'ru' : 'en';
+    document.title = 'Nature Release — ' + d.title;
+    document.getElementById('docLabel').textContent = d.label;
+    document.getElementById('docTitle').textContent = d.title;
+    document.getElementById('docUpdated').textContent = d.updated;
+    document.getElementById('docIntro').textContent = d.intro;
+    document.getElementById('backLink').textContent = d.back;
+    document.getElementById('langLabel').textContent = l;
+    document.getElementById('footerCopy').textContent = d.copy;
+    document.getElementById('linkPrivacy').textContent = d.linkPrivacy;
+    document.getElementById('linkTerms').textContent = d.linkTerms;
+    document.getElementById('linkConsent').textContent = d.linkConsent;
+
+    const container = document.getElementById('docSections');
+    container.innerHTML = d.sections.map(s => `
+      <div class="l-section">
+        <div class="l-section-num">${s.num}</div>
+        <div class="l-section-title">${s.title}</div>
+        <div class="l-section-body">${s.html}</div>
+      </div>`).join('');
+
+    localStorage.setItem('nr-lang', l);
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    render(lang === 'EN' ? 'RU' : 'EN');
+  });
+
+  render(lang);
+</script>
+</body>
+</html>

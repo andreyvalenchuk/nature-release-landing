@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature Release — Data Processing Consent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #101010; --dark-grey: #181818; --grey: #2f2f2f; --light-grey: #888; --white: #ffffff; --purple: #b286fd; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    .l-header { position: sticky; top: 0; z-index: 100; background: rgba(16,16,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--grey); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .l-header__left { display: flex; align-items: center; gap: 24px; }
+    .l-logo { font-size: 16px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+    .l-back { font-size: 13px; font-weight: 500; color: var(--light-grey); text-decoration: none; transition: color 0.2s; }
+    .l-back:hover { color: var(--white); }
+    .l-lang { display: flex; align-items: center; gap: 4px; height: 34px; padding: 0 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15); background: transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s; font-family: 'Inter', sans-serif; }
+    .l-lang:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
+    .l-lang svg { opacity: 0.7; } .l-lang:hover svg { opacity: 1; }
+    .l-lang-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.7); margin-left: 4px; }
+    .l-main { max-width: 820px; margin: 0 auto; padding: 64px 40px 96px; }
+    .l-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); margin-bottom: 16px; }
+    .l-title { font-size: 48px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--white); margin-bottom: 16px; }
+    .l-updated { font-size: 13px; color: var(--light-grey); margin-bottom: 32px; }
+    .l-intro { font-size: 16px; line-height: 1.7; color: var(--light-grey); padding-bottom: 48px; border-bottom: 1px solid var(--grey); }
+    .l-sections { margin-top: 48px; display: flex; flex-direction: column; gap: 8px; }
+    .l-section { background: var(--dark-grey); border: 1px solid var(--grey); border-radius: 16px; padding: 28px 32px; }
+    .l-section-num { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple); margin-bottom: 8px; }
+    .l-section-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 16px; letter-spacing: -0.01em; }
+    .l-section-body { font-size: 15px; line-height: 1.75; color: #aaaaaa; }
+    .l-section-body p { margin-bottom: 12px; }
+    .l-section-body p:last-child { margin-bottom: 0; }
+    .l-section-body ul { list-style: none; margin: 8px 0 12px; display: flex; flex-direction: column; gap: 6px; }
+    .l-section-body ul li::before { content: "→"; color: var(--purple); font-weight: 700; margin-right: 8px; }
+    .l-section-body strong { color: var(--white); font-weight: 600; }
+    .l-section-body a { color: var(--purple); text-decoration: none; border-bottom: 1px solid rgba(178,134,253,0.3); }
+    .l-sub { margin-top: 16px; }
+    .l-sub-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
+    .l-footer { border-top: 1px solid var(--grey); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .l-footer-copy { font-size: 13px; color: var(--light-grey); }
+    .l-footer-links { display: flex; gap: 24px; }
+    .l-footer-links a { font-size: 13px; color: var(--light-grey); text-decoration: none; transition: color 0.2s; }
+    .l-footer-links a:hover { color: var(--white); }
+    .l-footer-links a.is-current { color: var(--purple); }
+    @media (max-width: 640px) {
+      .l-header { padding: 14px 20px; }
+      .l-main { padding: 40px 20px 64px; }
+      .l-title { font-size: 32px; }
+      .l-section { padding: 20px; }
+      .l-footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="l-header">
+  <div class="l-header__left">
+    <a href="index.html" class="l-logo">Nature Release</a>
+    <a href="index.html" class="l-back" id="backLink">← Back</a>
+  </div>
+  <button class="l-lang" id="langToggle" aria-label="Change language">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 2C9.43223 4.69615 8 8.27674 8 12C8 15.7233 9.43223 19.3038 12 22C14.5678 19.3038 16 15.7233 16 12C16 8.27674 14.5678 4.69615 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 12H22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="l-lang-label" id="langLabel">EN</span>
+  </button>
+</header>
+
+<main class="l-main">
+  <div class="l-label" id="docLabel"></div>
+  <h1 class="l-title" id="docTitle"></h1>
+  <p class="l-updated" id="docUpdated"></p>
+  <p class="l-intro" id="docIntro"></p>
+  <div class="l-sections" id="docSections"></div>
+</main>
+
+<footer class="l-footer">
+  <span class="l-footer-copy" id="footerCopy"></span>
+  <div class="l-footer-links">
+    <a href="privacy-policy.html" id="linkPrivacy"></a>
+    <a href="terms-of-service.html" id="linkTerms"></a>
+    <a href="data-processing-consent.html" id="linkConsent" class="is-current"></a>
+  </div>
+</footer>
+
+<script>
+  const content = {
+    EN: {
+      label: 'Legal',
+      title: 'Data Processing Consent',
+      updated: 'Last updated: March 14, 2026',
+      intro: 'By using naturerelease.com, the mobile applications, the Nature Release platform, and related services (the "Service"), the user provides free, informed, and unambiguous consent to the processing of personal data under the terms set out in this document.',
+      sections: [
+        {
+          num: '1', title: 'DATA CONTROLLER',
+          html: '<p>The data controller is Nature Release ("the Controller"), a digital platform designed to collect, aggregate, and analyse personal data related to the user\'s lifestyle.</p><p>For data processing enquiries: <a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p>'
+        },
+        {
+          num: '2', title: 'PERSONAL DATA THAT MAY BE PROCESSED',
+          html: `
+            <div class="l-sub"><div class="l-sub-title">Identification Data</div><ul><li>First and last name</li><li>Contact details (email, phone)</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Technical Data</div><ul><li>IP address</li><li>Device and browser information</li><li>Cookies</li><li>Service usage data</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Health and Lifestyle Data</div><ul><li>Biometric indicators</li><li>Lab results</li><li>Medical indicators provided by the user</li><li>Sleep, physical activity, nutrition, and lifestyle data</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Genetic Data</div><p>If voluntarily provided by the user.</p></div>
+            <div class="l-sub"><div class="l-sub-title">Data from Third-Party Devices and Services</div><p>The user may, at their discretion, grant access to data from third-party services including Oura, Whoop, Apple Health, Google Health Connect, and other health monitoring apps and devices. Such data transfers are made solely with the user's consent.</p></div>`
+        },
+        {
+          num: '3', title: 'PURPOSES OF PROCESSING',
+          html: `<p>Nature Release processes personal data exclusively for the following purposes:</p>
+            <p><strong>3.1 Providing access to the Service</strong> — creating and maintaining a user account, enabling all Service features including Oracle, Diary, Laboratory, Insights, Protocols, and Forum.</p>
+            <p><strong>3.2 Local data analysis to identify individual patterns</strong> — processing user data using on-device algorithms to identify statistical correlations presented in the Laboratory and Insights modules.</p>
+            <p><strong>3.3 Generating experimental protocols</strong> — creating personalised Protocols to help users independently research the effect of various factors on their wellbeing.</p>
+            <p><strong>3.4 Personalising the user experience</strong> — adapting the interface, recommendations, and content based on user interaction analysis.</p>
+            <p><strong>3.5 Ensuring Service operation and security</strong> — technical support, monitoring, and prevention of outages; protecting accounts from unauthorised access.</p>
+            <p><strong>3.6 Improving the Service</strong> — analysing aggregated and anonymised data to refine algorithms and functionality. Only de-identified data is used for this purpose.</p>
+            <p><strong>3.7 Communicating with users</strong> — sending service-related notifications and, with separate consent, informational and educational materials.</p>
+            <p><strong>3.8 Fulfilling legal requirements</strong> — complying with applicable data protection and consumer rights legislation.</p>
+            <p><strong>Nature Release does NOT transfer or sell medical, biometric, or other sensitive user data to third parties for marketing or other commercial purposes unrelated to the direct operation of the Service.</strong></p>`
+        },
+        {
+          num: '4', title: 'PROCESSING OF SPECIAL CATEGORIES OF DATA',
+          html: '<p>The user provides explicit consent to the processing of special categories of personal data, including:</p><ul><li>Health data</li><li>Biometric data</li><li>Genetic information (if provided by the user)</li></ul><p>Such data is used exclusively to deliver Service features and generate personalised recommendations.</p>'
+        },
+        {
+          num: '5', title: 'DATA OPERATIONS',
+          html: '<p>The Controller may perform the following operations on personal data:</p><ul><li>Collection</li><li>Recording</li><li>Organisation</li><li>Storage</li><li>Updating</li><li>Use</li><li>Transfer to partners involved in providing the Service</li><li>Anonymisation</li><li>Erasure</li></ul><p>Processing may be carried out using automated systems and without them.</p>'
+        },
+        {
+          num: '6', title: 'THIRD-PARTY DATA TRANSFERS',
+          html: `<p>Nature Release aims to minimise the transfer of personal data to third parties. Core Service analytics run locally on the user's device.</p>
+            <p>Data transfers are permitted exclusively to:</p>
+            <p><strong>6.1 Technical service providers</strong> — a limited set of data (email, aggregated statistics) is transferred to companies providing hosting and technical support (Yandex Cloud, Firebase, MailerLite) under strict confidentiality terms.</p>
+            <p><strong>6.2 Analytics services</strong> — with the user's consent, anonymised app usage data may be shared to improve its operation.</p>
+            <p><strong>6.3 Government authorities</strong> — in cases expressly required by law.</p>
+            <p><strong>6.4 Corporate reorganisation</strong> — in the event of a merger or business sale, data may be transferred to the successor.</p>
+            <p><strong>Nature Release guarantees it does not sell or transfer users' medical, biometric, or genetic data to third parties for marketing or commercial purposes.</strong></p>`
+        },
+        {
+          num: '7', title: 'DATA RETENTION PERIOD',
+          html: '<p>Personal data is retained for as long as necessary to:</p><ul><li>Provide the Service</li><li>Fulfil legal obligations</li><li>Resolve potential disputes</li></ul><p>Upon withdrawal of consent, personal data is deleted from active databases within 30 calendar days.</p><p>Data in backup copies is deleted automatically in accordance with storage system refresh cycles.</p><p>Anonymised data does not allow identification of the user and may be used for analytical and research purposes.</p>'
+        },
+        {
+          num: '8', title: 'WITHDRAWAL OF CONSENT',
+          html: '<p>The user may withdraw consent to the processing of personal data at any time by sending a request to:</p><p><a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p><p>Withdrawal of consent may result in the inability to continue using the Service.</p>'
+        },
+        {
+          num: '9', title: 'CONFIRMATION OF CONSENT',
+          html: '<p>By using the Service, registering on the platform, or providing data through the website interface, the user:</p><ul><li>Confirms they have read this document</li><li>Expresses free, informed, and unambiguous consent to the processing of their personal data</li></ul>'
+        }
+      ],
+      back: '← Back',
+      copy: '© 2026 Nature Release. All rights reserved.',
+      linkPrivacy: 'Privacy Policy',
+      linkTerms: 'Terms of Service',
+      linkConsent: 'Data Processing Consent'
+    },
+    RU: {
+      label: 'Юридическое',
+      title: 'Согласие на обработку персональных данных',
+      updated: 'Дата последнего обновления: 14.03.2026',
+      intro: 'Используя сайт naturerelease.com, мобильные приложения, платформу Nature Release и связанные сервисы (далее — «Сервис»), пользователь предоставляет свободное, информированное и однозначное согласие на обработку персональных данных на условиях, изложенных в настоящем документе.',
+      sections: [
+        {
+          num: '1', title: 'ОПЕРАТОР ПЕРСОНАЛЬНЫХ ДАННЫХ',
+          html: '<p>Оператором персональных данных является Nature Release («Оператор»), предоставляющий цифровую платформу для сбора, агрегации и анализа персональных данных пользователя, связанных с его образом жизни.</p><p>По вопросам обработки персональных данных: <a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p>'
+        },
+        {
+          num: '2', title: 'ПЕРСОНАЛЬНЫЕ ДАННЫЕ, КОТОРЫЕ МОГУТ ОБРАБАТЫВАТЬСЯ',
+          html: `
+            <div class="l-sub"><div class="l-sub-title">Идентификационные данные</div><ul><li>Имя и фамилия</li><li>Контактные данные (email, телефон)</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Технические данные</div><ul><li>IP-адрес</li><li>Информация об устройстве и браузере</li><li>Файлы cookies</li><li>Данные об использовании Сервиса</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Данные о здоровье и образе жизни</div><ul><li>Биометрические показатели</li><li>Результаты лабораторных анализов</li><li>Медицинские показатели, предоставленные пользователем</li><li>Данные о сне, физической активности, питании и образе жизни</li></ul></div>
+            <div class="l-sub"><div class="l-sub-title">Генетические данные</div><p>Если такие данные добровольно предоставлены пользователем.</p></div>
+            <div class="l-sub"><div class="l-sub-title">Данные из сторонних устройств и сервисов</div><p>Пользователь может по своему усмотрению предоставить доступ к данным из сторонних сервисов: Oura, Whoop, Apple Health, Google Health Connect и других устройств. Передача осуществляется исключительно с согласия пользователя.</p></div>`
+        },
+        {
+          num: '3', title: 'ЦЕЛИ ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ',
+          html: `<p>Nature Release обрабатывает персональные данные исключительно в следующих целях:</p>
+            <p><strong>3.1</strong> Предоставление доступа к Сервису — создание и поддержка учётной записи, обеспечение функций Oracle, Diary, Laboratory, Insights, Protocols, Forum.</p>
+            <p><strong>3.2</strong> Локальный анализ данных для выявления паттернов — обработка данных алгоритмами на устройстве пользователя с целью выявления корреляций, представляемых в модулях Laboratory и Insights.</p>
+            <p><strong>3.3</strong> Формирование экспериментальных протоколов — генерация персональных Protocols для самостоятельного исследования влияния факторов на самочувствие.</p>
+            <p><strong>3.4</strong> Персонализация пользовательского опыта — адаптация интерфейса и рекомендаций под индивидуальные особенности пользователя.</p>
+            <p><strong>3.5</strong> Обеспечение функционирования и безопасности Сервиса — техническая поддержка, мониторинг, защита от несанкционированного доступа.</p>
+            <p><strong>3.6</strong> Улучшение Сервиса — анализ агрегированных обезличенных данных для совершенствования алгоритмов. Используются только данные, не позволяющие идентифицировать пользователя.</p>
+            <p><strong>3.7</strong> Информирование пользователей — уведомления об изменениях Сервиса, а также с отдельного согласия — образовательные материалы.</p>
+            <p><strong>3.8</strong> Исполнение требований законодательства — выполнение обязательств по применимому законодательству о персональных данных.</p>
+            <p><strong>Nature Release НЕ передаёт и НЕ продаёт медицинские, биометрические или иные чувствительные данные третьим лицам для маркетинга или коммерческих целей, не связанных с функционированием Сервиса.</strong></p>`
+        },
+        {
+          num: '4', title: 'ОБРАБОТКА СПЕЦИАЛЬНЫХ КАТЕГОРИЙ ДАННЫХ',
+          html: '<p>Пользователь предоставляет явное согласие на обработку специальных категорий персональных данных, включая:</p><ul><li>Данные о здоровье</li><li>Биометрические данные</li><li>Генетическую информацию (если предоставлена пользователем)</li></ul><p>Такие данные используются исключительно для предоставления функций Сервиса и формирования персонализированных рекомендаций.</p>'
+        },
+        {
+          num: '5', title: 'ДЕЙСТВИЯ С ПЕРСОНАЛЬНЫМИ ДАННЫМИ',
+          html: '<p>Оператор может осуществлять следующие действия с персональными данными:</p><ul><li>Сбор</li><li>Запись</li><li>Систематизацию</li><li>Хранение</li><li>Уточнение (обновление)</li><li>Использование</li><li>Передачу партнёрам, участвующим в предоставлении Сервиса</li><li>Обезличивание</li><li>Удаление</li></ul><p>Обработка может осуществляться как с использованием автоматизированных систем, так и без них.</p>'
+        },
+        {
+          num: '6', title: 'ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ',
+          html: `<p>Nature Release стремится к максимальному сокращению передачи персональных данных третьим лицам. Ключевая аналитика выполняется локально на устройстве пользователя.</p>
+            <p>Передача данных возможна исключительно:</p>
+            <p><strong>6.1</strong> Поставщикам технических услуг — ограниченный набор данных (email, агрегированная статистика) передаётся компаниям Яндекс Cloud, Firebase, MailerLite на условиях строгой конфиденциальности.</p>
+            <p><strong>6.2</strong> Аналитическим сервисам — с согласия пользователя могут передаваться обезличенные данные об использовании приложения.</p>
+            <p><strong>6.3</strong> По запросу государственных органов — в случаях, прямо предусмотренных законодательством.</p>
+            <p><strong>6.4</strong> При корпоративной реорганизации — в случае слияния или продажи бизнеса данные могут быть переданы правопреемнику.</p>
+            <p><strong>Nature Release гарантирует, что не продаёт и не передаёт медицинские, биометрические или генетические данные пользователей третьим лицам в маркетинговых или иных коммерческих целях.</strong></p>`
+        },
+        {
+          num: '7', title: 'СРОК ХРАНЕНИЯ ДАННЫХ',
+          html: '<p>Персональные данные хранятся в течение срока, необходимого для:</p><ul><li>Предоставления Сервиса</li><li>Выполнения юридических обязательств</li><li>Разрешения возможных споров</li></ul><p>При отзыве согласия персональные данные удаляются из активных баз данных в течение 30 календарных дней.</p><p>Данные в резервных копиях удаляются автоматически в соответствии с циклами обновления систем хранения.</p><p>Обезличенные данные не позволяют идентифицировать пользователя и могут использоваться в аналитических и исследовательских целях.</p>'
+        },
+        {
+          num: '8', title: 'ОТЗЫВ СОГЛАСИЯ',
+          html: '<p>Пользователь вправе в любой момент отозвать согласие на обработку персональных данных, направив запрос по адресу:</p><p><a href="mailto:team@naturerelease.com">team@naturerelease.com</a></p><p>Отзыв согласия может привести к невозможности дальнейшего использования Сервиса.</p>'
+        },
+        {
+          num: '9', title: 'ПОДТВЕРЖДЕНИЕ СОГЛАСИЯ',
+          html: '<p>Используя Сервис, регистрируясь на платформе или предоставляя данные через интерфейс сайта, пользователь:</p><ul><li>Подтверждает ознакомление с настоящим документом</li><li>Выражает свободное, информированное и однозначное согласие на обработку персональных данных</li></ul>'
+        }
+      ],
+      back: '← Назад',
+      copy: '© 2026 Nature Release. Все права защищены.',
+      linkPrivacy: 'Политика конфиденциальности',
+      linkTerms: 'Условия использования',
+      linkConsent: 'Согласие на обработку данных'
+    }
+  };
+
+  let lang = localStorage.getItem('nr-lang') || 'EN';
+
+  function render(l) {
+    lang = l;
+    const d = content[l];
+    document.documentElement.lang = l === 'RU' ? 'ru' : 'en';
+    document.title = 'Nature Release — ' + d.title;
+    document.getElementById('docLabel').textContent = d.label;
+    document.getElementById('docTitle').textContent = d.title;
+    document.getElementById('docUpdated').textContent = d.updated;
+    document.getElementById('docIntro').textContent = d.intro;
+    document.getElementById('backLink').textContent = d.back;
+    document.getElementById('langLabel').textContent = l;
+    document.getElementById('footerCopy').textContent = d.copy;
+    document.getElementById('linkPrivacy').textContent = d.linkPrivacy;
+    document.getElementById('linkTerms').textContent = d.linkTerms;
+    document.getElementById('linkConsent').textContent = d.linkConsent;
+
+    const container = document.getElementById('docSections');
+    container.innerHTML = d.sections.map(s => `
+      <div class="l-section">
+        <div class="l-section-num">${s.num}</div>
+        <div class="l-section-title">${s.title}</div>
+        <div class="l-section-body">${s.html}</div>
+      </div>`).join('');
+
+    localStorage.setItem('nr-lang', l);
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    render(lang === 'EN' ? 'RU' : 'EN');
+  });
+
+  render(lang);
+</script>
+</body>
+</html>
