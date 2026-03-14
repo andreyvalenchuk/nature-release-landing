@@ -131,6 +131,13 @@
     }
     .header__lang img { display: block; width: 18px; height: 18px; opacity: 0.7; }
     .header__lang:hover img { opacity: 1; }
+    .header__lang-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      margin-left: 4px;
+    }
 
     /* ── HERO ──────────────────────────────────────────── */
     .hero {
@@ -1299,9 +1306,9 @@
     <div class="header__inner">
       <a href="#" class="header__logo">Nature Release</a>
       <ul class="header__nav">
-        <li><a href="#pains">Pains</a></li>
-        <li><a href="#concept">Concept</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#pains" data-i18n="nav-pains">Pains</a></li>
+        <li><a href="#concept" data-i18n="nav-concept">Concept</a></li>
+        <li><a href="#faq" data-i18n="nav-faq">FAQ</a></li>
       </ul>
       <button class="header__lang" id="langToggle" aria-label="Change language">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1309,8 +1316,9 @@
           <path d="M12 2C9.43223 4.69615 8 8.27674 8 12C8 15.7233 9.43223 19.3038 12 22C14.5678 19.3038 16 15.7233 16 12C16 8.27674 14.5678 4.69615 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M2 12H22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+        <span class="header__lang-label">EN</span>
       </button>
-      <a href="#join" class="btn btn-white btn-sm header__cta-desktop" data-posthog="header_cta">Join waitlist</a>
+      <a href="#join" class="btn btn-white btn-sm header__cta-desktop" data-posthog="header_cta" data-i18n="header-cta">Join waitlist</a>
       <button class="header__hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1320,11 +1328,11 @@
   <!-- ══════════════════════════ MOBILE NAV ════ -->
   <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <nav class="mobile-nav__links">
-      <a href="#pains" class="mobile-nav__link">Pains</a>
-      <a href="#concept" class="mobile-nav__link">Concept</a>
-      <a href="#faq" class="mobile-nav__link">FAQ</a>
+      <a href="#pains" class="mobile-nav__link" data-i18n="nav-pains">Pains</a>
+      <a href="#concept" class="mobile-nav__link" data-i18n="nav-concept">Concept</a>
+      <a href="#faq" class="mobile-nav__link" data-i18n="nav-faq">FAQ</a>
     </nav>
-    <a href="#join" class="btn btn-white btn-md mobile-nav__cta" data-posthog="mobile_nav_cta">Join waitlist</a>
+    <a href="#join" class="btn btn-white btn-md mobile-nav__cta" data-posthog="mobile_nav_cta" data-i18n="mobile-cta">Join waitlist</a>
   </div>
 
   <!-- ════════════════════════════════ HERO ════ -->
@@ -1335,17 +1343,17 @@
         <div class="hero__text">
           <div class="hero__label">
             <span class="hero__label-dot"></span>
-            Sleep · Energy · Focus
+            <span data-i18n="hero-label">Sleep · Energy · Focus</span>
           </div>
-          <h1 class="hero__h1">Wake up knowing<br>how you'll <em>feel.</em></h1>
-          <p class="hero__sub">
+          <h1 class="hero__h1" data-i18n="hero-h1">Wake up knowing<br>how you'll <em>feel.</em></h1>
+          <p class="hero__sub" data-i18n="hero-sub">
             Stop guessing why you're tired, anxious, or unfocused.
             Nature Release connects the dots between how you live and how you feel —
             so you can finally take control.
           </p>
           <div class="hero__actions">
-            <a href="#join" class="btn btn-white btn-md" data-posthog="hero_join">Join the waitlist</a>
-            <a href="#concept" class="btn btn-ghost btn-md">See how it works</a>
+            <a href="#join" class="btn btn-white btn-md" data-posthog="hero_join" data-i18n="hero-btn-join">Join the waitlist</a>
+            <a href="#concept" class="btn btn-ghost btn-md" data-i18n="hero-btn-how">See how it works</a>
           </div>
         </div>
 
@@ -1366,25 +1374,25 @@
   <section class="chapter" id="pains">
     <div class="container">
       <div class="chapter__inner">
-        <div class="section-label">The problem</div>
-        <h2 class="chapter__h2">You've probably noticed this.</h2>
+        <div class="section-label" data-i18n="pains-label">The problem</div>
+        <h2 class="chapter__h2" data-i18n="pains-h2">You've probably noticed this.</h2>
         <div class="chapter__content">
           <div class="chapter__body">
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="pains-p1">
               You wake up after 8 hours of sleep — and you're already exhausted.
               You snap at your loved ones, then blame yourself.
               You don't understand why you have no energy again.
             </p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="pains-p2">
               You waste hours procrastinating. Your most important work gets done on Sunday evening in a panic.
               You know you could perform better — but your brain just won't turn on.
             </p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="pains-p3">
               You've tried all the tips. You bought a smartwatch, downloaded apps, tracked your sleep.
               You have data — but no understanding. Nothing ever really changes.
             </p>
           </div>
-          <p class="chapter__kicker">Sound familiar? Keep going — we'll show you why.</p>
+          <p class="chapter__kicker" data-i18n="pains-kicker">Sound familiar? Keep going — we'll show you why.</p>
         </div>
       </div>
     </div>
@@ -1394,23 +1402,23 @@
   <section class="chapter">
     <div class="container">
       <div class="chapter__inner">
-        <div class="section-label">The root cause</div>
-        <h2 class="chapter__h2">The real problem isn't you.<br>It's the gap.</h2>
+        <div class="section-label" data-i18n="gap-label">The root cause</div>
+        <h2 class="chapter__h2" data-i18n="gap-h2">The real problem isn't you.<br>It's the gap.</h2>
         <div class="chapter__content">
           <div class="chapter__body">
-            <p class="chapter__p">Your body speaks a language. You just don't understand it yet.</p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="gap-p1">Your body speaks a language. You just don't understand it yet.</p>
+            <p class="chapter__p" data-i18n="gap-p2">
               You have a sleep score, but no idea why it's low.<br>
               You track your meals, but can't connect them to your energy.<br>
               You feel stressed, but can't find the trigger.
             </p>
-            <p class="chapter__p">The data is there. The connection is missing.</p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="gap-p3">The data is there. The connection is missing.</p>
+            <p class="chapter__p" data-i18n="gap-p4">
               That gap — between what you do and how you feel —
               is where your energy, focus, and peace of mind disappear.
             </p>
           </div>
-          <p class="chapter__kicker">There's a way out. Here's how.</p>
+          <p class="chapter__kicker" data-i18n="gap-kicker">There's a way out. Here's how.</p>
         </div>
       </div>
     </div>
@@ -1420,23 +1428,23 @@
   <section class="chapter">
     <div class="container">
       <div class="chapter__inner">
-        <div class="section-label">The solution</div>
-        <h2 class="chapter__h2">Nature Release<br>is the translator.</h2>
+        <div class="section-label" data-i18n="trans-label">The solution</div>
+        <h2 class="chapter__h2" data-i18n="trans-h2">Nature Release<br>is the translator.</h2>
         <div class="chapter__content">
           <div class="chapter__body">
-            <p class="chapter__p">We don't just collect your data. We connect it.</p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="trans-p1">We don't just collect your data. We connect it.</p>
+            <p class="chapter__p" data-i18n="trans-p2">
               Your sleep, your food, your activity, your social life, your work —
               we look at all of it. Not as separate numbers, but as one living system.
             </p>
-            <p class="chapter__p">Then we show you the patterns:</p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="trans-p3">Then we show you the patterns:</p>
+            <p class="chapter__p" data-i18n="trans-p4">
               → Why you crashed at 3 PM (it was lunch).<br>
               → Why you snapped at your partner (it was that meeting).<br>
               → Why you couldn't focus (it was last night's sleep).
             </p>
           </div>
-          <p class="chapter__kicker">No more guessing. Just understanding.</p>
+          <p class="chapter__kicker" data-i18n="trans-kicker">No more guessing. Just understanding.</p>
         </div>
       </div>
     </div>
@@ -1446,28 +1454,28 @@
   <section class="chapter" id="clarity">
     <div class="container">
       <div class="chapter__inner">
-        <div class="section-label">Before &amp; after</div>
-        <h2 class="chapter__h2">From chaos to clarity.</h2>
+        <div class="section-label" data-i18n="clarity-label">Before &amp; after</div>
+        <h2 class="chapter__h2" data-i18n="clarity-h2">From chaos to clarity.</h2>
         <div class="chapter__content">
           <div class="chapter__cols">
             <div>
-              <div class="chapter__col-title">Before:</div>
+              <div class="chapter__col-title" data-i18n="clarity-before-title">Before:</div>
               <ul class="chapter__list">
-                <li>You wake up tired and don't know why.</li>
-                <li>You try random advice that never works.</li>
-                <li>You feel like your body is working against you.</li>
+                <li data-i18n="clarity-before-1">You wake up tired and don't know why.</li>
+                <li data-i18n="clarity-before-2">You try random advice that never works.</li>
+                <li data-i18n="clarity-before-3">You feel like your body is working against you.</li>
               </ul>
             </div>
             <div>
-              <div class="chapter__col-title">After:</div>
+              <div class="chapter__col-title" data-i18n="clarity-after-title">After:</div>
               <ul class="chapter__list">
-                <li>You wake up and know exactly how much energy you'll have.</li>
-                <li>You understand what helps — and what hurts — your body.</li>
-                <li>You finally feel in control.</li>
+                <li data-i18n="clarity-after-1">You wake up and know exactly how much energy you'll have.</li>
+                <li data-i18n="clarity-after-2">You understand what helps — and what hurts — your body.</li>
+                <li data-i18n="clarity-after-3">You finally feel in control.</li>
               </ul>
             </div>
           </div>
-          <p class="chapter__kicker">The lottery is over. You just know.</p>
+          <p class="chapter__kicker" data-i18n="clarity-kicker">The lottery is over. You just know.</p>
         </div>
       </div>
     </div>
@@ -1478,14 +1486,14 @@
     <div class="container">
       <div class="cards__header">
         <div>
-          <div class="section-label">What's inside</div>
-          <h2 class="cards__h2">A system,<br>not another tracker.</h2>
+          <div class="section-label" data-i18n="cards-label">What's inside</div>
+          <h2 class="cards__h2" data-i18n="cards-h2">A system,<br>not another tracker.</h2>
         </div>
         <div class="cards__hint">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
           </svg>
-          Drag to explore
+          <span data-i18n="cards-hint">Drag to explore</span>
         </div>
       </div>
     </div>
@@ -1497,9 +1505,9 @@
         <img class="card__img" src="assets/images/Diary.png" alt="Diary">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">Daily logging</div>
+          <div class="card__tag" data-i18n="diary-tag">Daily logging</div>
           <div class="card__name">Diary</div>
-          <div class="card__desc">Numbers without context are just numbers. Diary is where you tell the story behind them. Your context. Your voice. Your why.</div>
+          <div class="card__desc" data-i18n="diary-desc">Numbers without context are just numbers. Diary is where you tell the story behind them. Your context. Your voice. Your why.</div>
         </div>
       </div>
 
@@ -1507,9 +1515,9 @@
         <img class="card__img" src="assets/images/Oracle.png" alt="Oracle">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">AI insights</div>
+          <div class="card__tag" data-i18n="oracle-tag">AI insights</div>
           <div class="card__name">Oracle</div>
-          <div class="card__desc">Your calendar, Telegram, wearables, notes. We read them (privately, on your device). You don't log — you just live.</div>
+          <div class="card__desc" data-i18n="oracle-desc">Your calendar, Telegram, wearables, notes. We read them (privately, on your device). You don't log — you just live.</div>
         </div>
       </div>
 
@@ -1517,9 +1525,9 @@
         <img class="card__img" src="assets/images/Laboratory.png" alt="Laboratory">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">Personal science</div>
+          <div class="card__tag" data-i18n="lab-tag">Personal science</div>
           <div class="card__name">Laboratory</div>
-          <div class="card__desc">Connect the dots between what you did and how you felt. You become the scientist of your own body.</div>
+          <div class="card__desc" data-i18n="lab-desc">Connect the dots between what you did and how you felt. You become the scientist of your own body.</div>
         </div>
       </div>
 
@@ -1527,9 +1535,9 @@
         <img class="card__img" src="assets/images/Insights.png" alt="Insights">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">Pattern recognition</div>
+          <div class="card__tag" data-i18n="insights-tag">Pattern recognition</div>
           <div class="card__name">Insights</div>
-          <div class="card__desc">See what actually works for you — not generic advice. Backed by data, not vibes. We don't show charts, but patterns.</div>
+          <div class="card__desc" data-i18n="insights-desc">See what actually works for you — not generic advice. Backed by data, not vibes. We don't show charts, but patterns.</div>
         </div>
       </div>
 
@@ -1537,9 +1545,9 @@
         <img class="card__img" src="assets/images/Protocols.png" alt="Protocols">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">Proven routines</div>
+          <div class="card__tag" data-i18n="protocols-tag">Proven routines</div>
           <div class="card__name">Protocols</div>
-          <div class="card__desc">A big trip coming? A chronic pain? NR builds you a step-by-step daily protocol. Micro-experiments, macro-results.</div>
+          <div class="card__desc" data-i18n="protocols-desc">A big trip coming? A chronic pain? NR builds you a step-by-step daily protocol. Micro-experiments, macro-results.</div>
         </div>
       </div>
 
@@ -1547,9 +1555,9 @@
         <img class="card__img" src="assets/images/Forum.png" alt="Forum">
         <div class="card__grad"></div>
         <div class="card__body">
-          <div class="card__tag">Community</div>
+          <div class="card__tag" data-i18n="forum-tag">Community</div>
           <div class="card__name">Forum</div>
-          <div class="card__desc">Share your insights anonymously. Join collective experiments. See what works for people like you. Your level grows as you contribute.</div>
+          <div class="card__desc" data-i18n="forum-desc">Share your insights anonymously. Join collective experiments. See what works for people like you. Your level grows as you contribute.</div>
         </div>
       </div>
 
@@ -1561,25 +1569,25 @@
   <section class="chapter">
     <div class="container">
       <div class="chapter__inner">
-        <div class="section-label">What you get</div>
-        <h2 class="chapter__h2">You get one thing: agency.</h2>
+        <div class="section-label" data-i18n="agency-label">What you get</div>
+        <h2 class="chapter__h2" data-i18n="agency-h2">You get one thing: agency.</h2>
         <div class="chapter__content">
           <div class="chapter__body">
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="agency-p1">
               Not a magic pill. Not a 30-day challenge.
               Just the ability to understand your own body and make decisions that actually work for you.
             </p>
-            <p class="chapter__p">
+            <p class="chapter__p" data-i18n="agency-p2">
               You'll know:<br>
               → What to eat, when to move, who to see, when to rest.<br>
               → Why you feel the way you feel.<br>
               → What to do about it.
             </p>
-            <p class="chapter__p" style="font-weight:600; font-style:italic;">
+            <p class="chapter__p" style="font-weight:600; font-style:italic;" data-i18n="agency-p3">
               Be healthy tomorrow. And then every day.
             </p>
           </div>
-          <p class="chapter__kicker">Ready to stop guessing?</p>
+          <p class="chapter__kicker" data-i18n="agency-kicker">Ready to stop guessing?</p>
         </div>
       </div>
     </div>
@@ -1591,15 +1599,15 @@
       <div class="faq__inner">
 
         <div>
-          <div class="section-label">Questions</div>
-          <h2 class="faq__h2">Frequently<br>asked</h2>
+          <div class="section-label" data-i18n="faq-label">Questions</div>
+          <h2 class="faq__h2" data-i18n="faq-h2">Frequently<br>asked</h2>
         </div>
 
         <div class="faq__list">
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              What is the free sleep guide?
+              <span data-i18n="faq-q1">What is the free sleep guide?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1607,13 +1615,13 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">The sleep guide is a science-backed PDF built from aggregated data across thousands of personal sleep experiments. It covers the 7 highest-impact interventions that consistently improve sleep quality — with specific implementation steps you can start tonight. No purchase required.</div>
+              <div class="faq__a-inner" data-i18n="faq-a1">The sleep guide is a science-backed PDF built from aggregated data across thousands of personal sleep experiments. It covers the 7 highest-impact interventions that consistently improve sleep quality — with specific implementation steps you can start tonight. No purchase required.</div>
             </div>
           </div>
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              When will the app be available?
+              <span data-i18n="faq-q2">When will the app be available?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1621,13 +1629,13 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">We're currently in private beta and rolling out access in waves. Join the waitlist to get in early — waitlist members receive priority access, founding member pricing, and the ability to directly shape what we build next.</div>
+              <div class="faq__a-inner" data-i18n="faq-a2">We're currently in private beta and rolling out access in waves. Join the waitlist to get in early — waitlist members receive priority access, founding member pricing, and the ability to directly shape what we build next.</div>
             </div>
           </div>
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              How is this different from Apple Health or MyFitnessPal?
+              <span data-i18n="faq-q3">How is this different from Apple Health or MyFitnessPal?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1635,13 +1643,13 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">Those apps track. Nature Release experiments. We go beyond logging to help you design controlled tests, identify cause-and-effect relationships in your own data, and build a personal knowledge base about your biology. It's the difference between a spreadsheet and a lab notebook with a built-in scientist.</div>
+              <div class="faq__a-inner" data-i18n="faq-a3">Those apps track. Nature Release experiments. We go beyond logging to help you design controlled tests, identify cause-and-effect relationships in your own data, and build a personal knowledge base about your biology. It's the difference between a spreadsheet and a lab notebook with a built-in scientist.</div>
             </div>
           </div>
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              How do the experiments work?
+              <span data-i18n="faq-q4">How do the experiments work?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1649,13 +1657,13 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">You form a hypothesis — for example, "If I eat after 20:00, do I wake up exhausted?" — choose your variables, set a duration, and track your data. Nature Release analyzes the results, visualizes the correlation, and tells you whether the effect was statistically significant.</div>
+              <div class="faq__a-inner" data-i18n="faq-a4">You form a hypothesis — for example, "If I eat after 20:00, do I wake up exhausted?" — choose your variables, set a duration, and track your data. Nature Release analyzes the results, visualizes the correlation, and tells you whether the effect was statistically significant.</div>
             </div>
           </div>
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              Is my data private?
+              <span data-i18n="faq-q5">Is my data private?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1663,13 +1671,13 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">Yes. Your personal data is encrypted, never sold, and never used to train AI models without your explicit consent. You can export or delete your data at any time. Your biology is yours.</div>
+              <div class="faq__a-inner" data-i18n="faq-a5">Yes. Your personal data is encrypted, never sold, and never used to train AI models without your explicit consent. You can export or delete your data at any time. Your biology is yours.</div>
             </div>
           </div>
 
           <div class="faq__item">
             <button class="faq__q" aria-expanded="false">
-              Is it free?
+              <span data-i18n="faq-q6">Is it free?</span>
               <span class="faq__icon">
                 <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
                   <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -1677,7 +1685,7 @@
               </span>
             </button>
             <div class="faq__a">
-              <div class="faq__a-inner">The sleep guide is completely free. The app will have a free tier for basic logging and a premium subscription for advanced experiments, AI insights, and the full Oracle. Founding members from the waitlist will receive a permanent discount on premium.</div>
+              <div class="faq__a-inner" data-i18n="faq-a6">The sleep guide is completely free. The app will have a free tier for basic logging and a premium subscription for advanced experiments, AI insights, and the full Oracle. Founding members from the waitlist will receive a permanent discount on premium.</div>
             </div>
           </div>
 
@@ -1690,22 +1698,22 @@
   <section class="join" id="join">
     <div class="container">
       <div class="join__inner">
-        <div class="section-label">Get access</div>
-        <h2 class="join__h2">Stop guessing.<br>Start knowing.</h2>
-        <p class="join__sub">
+        <div class="section-label" data-i18n="join-label">Get access</div>
+        <h2 class="join__h2" data-i18n="join-h2">Stop guessing.<br>Start knowing.</h2>
+        <p class="join__sub" data-i18n="join-sub">
           We're launching soon. First access goes to people who actually want to understand themselves —
           not just try another app. Leave your email and get early access + a free guide.
         </p>
 
         <div class="join__toggle" role="group" aria-label="Choose access type">
-          <button class="join__mode is-active" data-mode="guide">Sleep guide</button>
-          <button class="join__mode" data-mode="waitlist">Join waitlist</button>
+          <button class="join__mode is-active" data-mode="guide" data-i18n="join-mode-guide">Sleep guide</button>
+          <button class="join__mode" data-mode="waitlist" data-i18n="join-mode-waitlist">Join waitlist</button>
         </div>
 
         <form class="join__form" id="joinForm" novalidate>
-          <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required>
-          <input class="join__input" type="email" id="formEmail" placeholder="Your email address" autocomplete="email" required>
-          <p class="join__error" id="emailError">Please enter a valid email address</p>
+          <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required data-i18n-ph="form-name-ph">
+          <input class="join__input" type="email" id="formEmail" placeholder="Your email address" autocomplete="email" required data-i18n-ph="form-email-ph">
+          <p class="join__error" id="emailError" data-i18n="form-email-error">Please enter a valid email address</p>
           <div class="join__lang" role="group" aria-label="Choose language">
             <button type="button" class="join__lang-btn is-active" data-lang="EN">Continue in English</button>
             <button type="button" class="join__lang-btn" data-lang="RU">Продолжить на русском</button>
@@ -1713,7 +1721,7 @@
           <button class="join__submit" type="submit" id="joinSubmit">Get the sleep guide →</button>
         </form>
 
-        <p class="join__note">No spam. Just science. Unsubscribe anytime.</p>
+        <p class="join__note" data-i18n="join-note">No spam. Just science. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -1725,18 +1733,18 @@
 
         <div>
           <a href="#" class="footer__logo">Nature Release</a>
-          <p class="footer__tagline">Track. Experiment. Evolve.</p>
+          <p class="footer__tagline" data-i18n="footer-tagline">Track. Experiment. Evolve.</p>
         </div>
 
         <nav class="footer__nav">
-          <a href="#pains">Pains</a>
-          <a href="#concept">Concept</a>
-          <a href="#faq">FAQ</a>
-          <a href="#join">Join the waitlist</a>
+          <a href="#pains" data-i18n="footer-nav-pains">Pains</a>
+          <a href="#concept" data-i18n="footer-nav-concept">Concept</a>
+          <a href="#faq" data-i18n="footer-nav-faq">FAQ</a>
+          <a href="#join" data-i18n="footer-nav-join">Join the waitlist</a>
         </nav>
 
         <div>
-          <div class="footer__social-label">Follow us</div>
+          <div class="footer__social-label" data-i18n="footer-social-label">Follow us</div>
           <div class="footer__social">
             <a href="#" class="social-btn" aria-label="Instagram">
               <img src="assets/icons/instagram.svg" alt="Instagram">
@@ -1762,10 +1770,10 @@
       </div>
 
       <div class="footer__bottom">
-        <span class="footer__copy">© 2026 Nature Release. All rights reserved.</span>
+        <span class="footer__copy" data-i18n="footer-copy">© 2026 Nature Release. All rights reserved.</span>
         <div class="footer__legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#" data-i18n="footer-privacy">Privacy Policy</a>
+          <a href="#" data-i18n="footer-terms">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1784,6 +1792,237 @@
     }
   </script>
   <script>
+    // ── i18n ───────────────────────────────────────────
+    const translations = {
+      EN: {
+        'nav-pains': 'Pains',
+        'nav-concept': 'Concept',
+        'nav-faq': 'FAQ',
+        'header-cta': 'Join waitlist',
+        'mobile-cta': 'Join waitlist',
+        'hero-label': 'Sleep · Energy · Focus',
+        'hero-h1': 'Wake up knowing<br>how you\'ll <em>feel.</em>',
+        'hero-sub': 'Stop guessing why you\'re tired, anxious, or unfocused. Nature Release connects the dots between how you live and how you feel — so you can finally take control.',
+        'hero-btn-join': 'Join the waitlist',
+        'hero-btn-how': 'See how it works',
+        'pains-label': 'The problem',
+        'pains-h2': 'You\'ve probably noticed this.',
+        'pains-p1': 'You wake up after 8 hours of sleep — and you\'re already exhausted. You snap at your loved ones, then blame yourself. You don\'t understand why you have no energy again.',
+        'pains-p2': 'You waste hours procrastinating. Your most important work gets done on Sunday evening in a panic. You know you could perform better — but your brain just won\'t turn on.',
+        'pains-p3': 'You\'ve tried all the tips. You bought a smartwatch, downloaded apps, tracked your sleep. You have data — but no understanding. Nothing ever really changes.',
+        'pains-kicker': 'Sound familiar? Keep going — we\'ll show you why.',
+        'gap-label': 'The root cause',
+        'gap-h2': 'The real problem isn\'t you.<br>It\'s the gap.',
+        'gap-p1': 'Your body speaks a language. You just don\'t understand it yet.',
+        'gap-p2': 'You have a sleep score, but no idea why it\'s low.<br>You track your meals, but can\'t connect them to your energy.<br>You feel stressed, but can\'t find the trigger.',
+        'gap-p3': 'The data is there. The connection is missing.',
+        'gap-p4': 'That gap — between what you do and how you feel — is where your energy, focus, and peace of mind disappear.',
+        'gap-kicker': 'There\'s a way out. Here\'s how.',
+        'trans-label': 'The solution',
+        'trans-h2': 'Nature Release<br>is the translator.',
+        'trans-p1': 'We don\'t just collect your data. We connect it.',
+        'trans-p2': 'Your sleep, your food, your activity, your social life, your work — we look at all of it. Not as separate numbers, but as one living system.',
+        'trans-p3': 'Then we show you the patterns:',
+        'trans-p4': '→ Why you crashed at 3 PM (it was lunch).<br>→ Why you snapped at your partner (it was that meeting).<br>→ Why you couldn\'t focus (it was last night\'s sleep).',
+        'trans-kicker': 'No more guessing. Just understanding.',
+        'clarity-label': 'Before &amp; after',
+        'clarity-h2': 'From chaos to clarity.',
+        'clarity-before-title': 'Before:',
+        'clarity-after-title': 'After:',
+        'clarity-before-1': 'You wake up tired and don\'t know why.',
+        'clarity-before-2': 'You try random advice that never works.',
+        'clarity-before-3': 'You feel like your body is working against you.',
+        'clarity-after-1': 'You wake up and know exactly how much energy you\'ll have.',
+        'clarity-after-2': 'You understand what helps — and what hurts — your body.',
+        'clarity-after-3': 'You finally feel in control.',
+        'clarity-kicker': 'The lottery is over. You just know.',
+        'cards-label': 'What\'s inside',
+        'cards-h2': 'A system,<br>not another tracker.',
+        'cards-hint': 'Drag to explore',
+        'diary-tag': 'Daily logging',
+        'diary-desc': 'Numbers without context are just numbers. Diary is where you tell the story behind them. Your context. Your voice. Your why.',
+        'oracle-tag': 'AI insights',
+        'oracle-desc': 'Your calendar, Telegram, wearables, notes. We read them (privately, on your device). You don\'t log — you just live.',
+        'lab-tag': 'Personal science',
+        'lab-desc': 'Connect the dots between what you did and how you felt. You become the scientist of your own body.',
+        'insights-tag': 'Pattern recognition',
+        'insights-desc': 'See what actually works for you — not generic advice. Backed by data, not vibes. We don\'t show charts, but patterns.',
+        'protocols-tag': 'Proven routines',
+        'protocols-desc': 'A big trip coming? A chronic pain? NR builds you a step-by-step daily protocol. Micro-experiments, macro-results.',
+        'forum-tag': 'Community',
+        'forum-desc': 'Share your insights anonymously. Join collective experiments. See what works for people like you. Your level grows as you contribute.',
+        'agency-label': 'What you get',
+        'agency-h2': 'You get one thing: agency.',
+        'agency-p1': 'Not a magic pill. Not a 30-day challenge. Just the ability to understand your own body and make decisions that actually work for you.',
+        'agency-p2': 'You\'ll know:<br>→ What to eat, when to move, who to see, when to rest.<br>→ Why you feel the way you feel.<br>→ What to do about it.',
+        'agency-p3': '<em>Be healthy tomorrow. And then every day.</em>',
+        'agency-kicker': 'Ready to stop guessing?',
+        'faq-label': 'Questions',
+        'faq-h2': 'Frequently<br>asked',
+        'faq-q1': 'What is the free sleep guide?',
+        'faq-a1': 'The sleep guide is a science-backed PDF built from aggregated data across thousands of personal sleep experiments. It covers the 7 highest-impact interventions that consistently improve sleep quality — with specific implementation steps you can start tonight. No purchase required.',
+        'faq-q2': 'When will the app be available?',
+        'faq-a2': 'We\'re currently in private beta and rolling out access in waves. Join the waitlist to get in early — waitlist members receive priority access, founding member pricing, and the ability to directly shape what we build next.',
+        'faq-q3': 'How is this different from Apple Health or MyFitnessPal?',
+        'faq-a3': 'Those apps track. Nature Release experiments. We go beyond logging to help you design controlled tests, identify cause-and-effect relationships in your own data, and build a personal knowledge base about your biology. It\'s the difference between a spreadsheet and a lab notebook with a built-in scientist.',
+        'faq-q4': 'How do the experiments work?',
+        'faq-a4': 'You form a hypothesis — for example, "If I eat after 20:00, do I wake up exhausted?" — choose your variables, set a duration, and track your data. Nature Release analyzes the results, visualizes the correlation, and tells you whether the effect was statistically significant.',
+        'faq-q5': 'Is my data private?',
+        'faq-a5': 'Yes. Your personal data is encrypted, never sold, and never used to train AI models without your explicit consent. You can export or delete your data at any time. Your biology is yours.',
+        'faq-q6': 'Is it free?',
+        'faq-a6': 'The sleep guide is completely free. The app will have a free tier for basic logging and a premium subscription for advanced experiments, AI insights, and the full Oracle. Founding members from the waitlist will receive a permanent discount on premium.',
+        'join-label': 'Get access',
+        'join-h2': 'Stop guessing.<br>Start knowing.',
+        'join-sub': 'We\'re launching soon. First access goes to people who actually want to understand themselves — not just try another app. Leave your email and get early access + a free guide.',
+        'join-mode-guide': 'Sleep guide',
+        'join-mode-waitlist': 'Join waitlist',
+        'form-name-ph': 'Your first name',
+        'form-email-ph': 'Your email address',
+        'form-email-error': 'Please enter a valid email address',
+        'join-note': 'No spam. Just science. Unsubscribe anytime.',
+        'footer-tagline': 'Track. Experiment. Evolve.',
+        'footer-nav-pains': 'Pains',
+        'footer-nav-concept': 'Concept',
+        'footer-nav-faq': 'FAQ',
+        'footer-nav-join': 'Join the waitlist',
+        'footer-social-label': 'Follow us',
+        'footer-copy': '© 2026 Nature Release. All rights reserved.',
+        'footer-privacy': 'Privacy Policy',
+        'footer-terms': 'Terms of Service',
+        'submit-guide': 'Get the sleep guide →',
+        'submit-waitlist': 'Join the waitlist →',
+      },
+      RU: {
+        'nav-pains': 'Боли',
+        'nav-concept': 'Концепция',
+        'nav-faq': 'FAQ',
+        'header-cta': 'В лист ожидания',
+        'mobile-cta': 'В лист ожидания',
+        'hero-label': 'Сон · Энергия · Фокус',
+        'hero-h1': 'Просыпайся и знай,<br>сколько сил у тебя <em>сегодня.</em>',
+        'hero-sub': 'Хватит гадать, почему ты снова разбит, злишься или не можешь собраться. Nature Release соединяет твои данные в одну картину — и показывает, что на самом деле влияет на твоё состояние.',
+        'hero-btn-join': 'В лист ожидания',
+        'hero-btn-how': 'Как это работает?',
+        'pains-label': 'Проблема',
+        'pains-h2': 'Узнаёшь себя?',
+        'pains-p1': 'Ты просыпаешься после 8 часов сна — и уже без сил. Срываешься на близких, потом винишь себя. Не понимаешь, почему энергия снова упала.',
+        'pains-p2': 'Часами прокрастинируешь, а важные дела делаешь в воскресенье вечером в истерике. Чувствуешь, что можешь лучше — но мозг не включается.',
+        'pains-p3': 'Ты перепробовал все советы из интернета, купил часы, скачал трекеры. Данные есть — понимания нет. Ничего не меняется.',
+        'pains-kicker': 'Узнал себя? Листай дальше — покажем, в чём дело',
+        'gap-label': 'Настоящая причина',
+        'gap-h2': 'Проблема не в тебе.<br>Проблема в разрыве.',
+        'gap-p1': 'Твоё тело говорит на языке, которого ты не понимаешь.',
+        'gap-p2': 'У тебя есть оценка сна, но ты не знаешь, почему она низкая.<br>Ты записываешь еду, но не видишь связи с энергией.<br>Ты чувствуешь стресс, но не можешь найти триггер.',
+        'gap-p3': 'Данные есть. Связи — нет.',
+        'gap-p4': 'Именно в этом разрыве — между тем, что ты делаешь, и тем, как ты себя чувствуешь — исчезают твои силы, фокус и спокойствие.',
+        'gap-kicker': 'Из этого есть выход. Вот как.',
+        'trans-label': 'Решение',
+        'trans-h2': 'Nature Release —<br>это переводчик.',
+        'trans-p1': 'Мы не просто собираем твои данные. Мы соединяем их.',
+        'trans-p2': 'Сон, еда, активность, общение, работа — мы смотрим на всё вместе. Как на живую систему, а не на набор цифр.',
+        'trans-p3': 'И показываем тебе паттерны:',
+        'trans-p4': '→ Почему ты вырубился в 16:00 (это был обед).<br>→ Почему сорвался на партнёра (это была та встреча).<br>→ Почему не мог сфокусироваться (это был вчерашний сон).',
+        'trans-kicker': 'Никаких догадок. Только понимание.',
+        'clarity-label': 'До и после',
+        'clarity-h2': 'От хаоса — к ясности.',
+        'clarity-before-title': 'Было:',
+        'clarity-after-title': 'Стало:',
+        'clarity-before-1': 'Ты просыпаешься разбитым и не знаешь почему.',
+        'clarity-before-2': 'Пробуешь случайные советы — ничего не работает.',
+        'clarity-before-3': 'Чувствуешь, что тело живёт своей жизнью.',
+        'clarity-after-1': 'Ты просыпаешься и примерно знаешь, сколько у тебя сил.',
+        'clarity-after-2': 'Понимаешь, что тебе помогает, а что мешает.',
+        'clarity-after-3': 'Наконец чувствуешь контроль.',
+        'clarity-kicker': 'Лотерея закончилась. Ты просто знаешь.',
+        'cards-label': 'Что внутри',
+        'cards-h2': 'Система,<br>а не очередной трекер.',
+        'cards-hint': 'Листать',
+        'diary-tag': 'Ежедневный дневник',
+        'diary-desc': 'Цифры без контекста — просто цифры. Diary добавляет «почему»: настроение, мысли, мелочи.',
+        'oracle-tag': 'AI-инсайты',
+        'oracle-desc': 'Твои календари, сообщения, часы. Мы читаем их локально и приватно. Ты просто живёшь — мы слушаем.',
+        'lab-tag': 'Личная наука',
+        'lab-desc': 'Соединяй действия и самочувствие: «Когда я ем углеводы в обед, в 16:00 меня вырубает». Ты становишься исследователем своего тела.',
+        'insights-tag': 'Поиск паттернов',
+        'insights-desc': 'Увидь, что работает именно для тебя. Не общие советы, а твои данные.',
+        'protocols-tag': 'Готовые протоколы',
+        'protocols-desc': 'Командировка, стресс, важная встреча — NR собирает протокол на день. Каждый шаг приближает к цели.',
+        'forum-tag': 'Сообщество',
+        'forum-desc': 'Делись инсайтами, участвуй в исследованиях, смотри, что работает у других.',
+        'agency-label': 'Что ты получаешь',
+        'agency-h2': 'Ты получаешь одно: контроль.',
+        'agency-p1': 'Никакой магии. Никаких 30-дневных челленджей. Просто способность понимать своё тело и принимать решения, которые работают именно для тебя.',
+        'agency-p2': 'Ты будешь знать:<br>→ Что есть, когда двигаться, с кем общаться, когда отдыхать.<br>→ Почему ты чувствуешь то, что чувствуешь.<br>→ Что с этим делать.',
+        'agency-p3': '<em>Be healthy tomorrow. And then everyday.</em>',
+        'agency-kicker': 'Готов перестать гадать?',
+        'faq-label': 'Вопросы',
+        'faq-h2': 'Часто<br>задают',
+        'faq-q1': 'Что такое бесплатный гайд по сну?',
+        'faq-a1': 'Гайд — это PDF на основе научных данных, собранных из тысяч личных экспериментов со сном. Он охватывает 7 наиболее эффективных вмешательств, которые стабильно улучшают качество сна — с конкретными шагами, которые можно начать сегодня ночью. Ничего покупать не нужно.',
+        'faq-q2': 'Когда будет доступно приложение?',
+        'faq-a2': 'Мы сейчас в закрытой бете и открываем доступ волнами. Присоединись к листу ожидания, чтобы попасть пораньше — участники получают приоритетный доступ, цену для основателей и возможность напрямую влиять на то, что мы строим.',
+        'faq-q3': 'Чем это отличается от Apple Health или MyFitnessPal?',
+        'faq-a3': 'Те приложения трекают. Nature Release экспериментирует. Мы идём дальше логгинга — помогаем проектировать контролируемые тесты, находить причинно-следственные связи в твоих данных и строить персональную базу знаний о своей биологии. Это как разница между таблицей и лабораторным журналом со встроенным учёным.',
+        'faq-q4': 'Как работают эксперименты?',
+        'faq-a4': 'Ты формулируешь гипотезу — например, «Если я ем после 20:00, просыпаюсь ли я разбитым?» — выбираешь переменные, задаёшь длительность и отслеживаешь данные. Nature Release анализирует результаты, визуализирует корреляцию и говорит, является ли эффект статистически значимым.',
+        'faq-q5': 'Мои данные в безопасности?',
+        'faq-a5': 'Да. Твои личные данные зашифрованы, никогда не продаются и не используются для обучения AI-моделей без твоего явного согласия. Ты можешь экспортировать или удалить свои данные в любой момент. Твоя биология — это твоё.',
+        'faq-q6': 'Это бесплатно?',
+        'faq-a6': 'Гайд по сну полностью бесплатный. В приложении будет бесплатный уровень для базового логгинга и платная подписка для продвинутых экспериментов, AI-инсайтов и полного Oracle. Участники листа ожидания получат постоянную скидку на премиум.',
+        'join-label': 'Получить доступ',
+        'join-h2': 'Хватит гадать.<br>Начни понимать.',
+        'join-sub': 'Мы запускаемся скоро. Первый доступ получат те, кому действительно важно разобраться в себе — а не просто попробовать очередное приложение. Оставь почту. Получи ранний доступ и бесплатный гайд.',
+        'join-mode-guide': 'Гайд по сну',
+        'join-mode-waitlist': 'В лист ожидания',
+        'form-name-ph': 'Твоё имя',
+        'form-email-ph': 'Твой email',
+        'form-email-error': 'Введи корректный email',
+        'join-note': 'Без спама. Только наука. Отписаться можно в любой момент.',
+        'footer-tagline': 'Отслеживай. Экспериментируй. Развивайся.',
+        'footer-nav-pains': 'Боли',
+        'footer-nav-concept': 'Концепция',
+        'footer-nav-faq': 'FAQ',
+        'footer-nav-join': 'В лист ожидания',
+        'footer-social-label': 'Следи за нами',
+        'footer-copy': '© 2026 Nature Release. Все права защищены.',
+        'footer-privacy': 'Политика конфиденциальности',
+        'footer-terms': 'Условия использования',
+        'submit-guide': 'Получить гайд →',
+        'submit-waitlist': 'В лист ожидания →',
+      }
+    };
+
+    let currentSiteLang = localStorage.getItem('nr-lang') || 'EN';
+
+    function applyLanguage(lang) {
+      currentSiteLang = lang;
+      document.documentElement.lang = lang === 'RU' ? 'ru' : 'en';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key] !== undefined) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.dataset.i18nPh;
+        if (translations[lang][key] !== undefined) {
+          el.placeholder = translations[lang][key];
+        }
+      });
+
+      // Update submit button
+      const submitKey = currentMode === 'guide' ? 'submit-guide' : 'submit-waitlist';
+      submitBtn.textContent = translations[lang][submitKey];
+
+      // Update lang indicator in header
+      const langLabel = document.querySelector('.header__lang-label');
+      if (langLabel) langLabel.textContent = lang;
+
+      localStorage.setItem('nr-lang', lang);
+    }
+
     // ── PostHog ────────────────────────────────────────
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     posthog.init('YOUR_POSTHOG_KEY', { api_host: 'https://app.posthog.com' });
@@ -1851,9 +2090,7 @@
         document.querySelectorAll('.join__mode').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         currentMode = btn.dataset.mode;
-        submitBtn.textContent = currentMode === 'guide'
-          ? 'Get the sleep guide →'
-          : 'Join the waitlist →';
+        submitBtn.textContent = translations[currentSiteLang][currentMode === 'guide' ? 'submit-guide' : 'submit-waitlist'];
         posthog.capture('form_mode_selected', { mode: currentMode });
       });
     });
@@ -1868,6 +2105,14 @@
         currentLang = btn.dataset.lang;
       });
     });
+
+    // ── Site language toggle ───────────────────────────
+    document.getElementById('langToggle').addEventListener('click', () => {
+      applyLanguage(currentSiteLang === 'EN' ? 'RU' : 'EN');
+    });
+
+    // Apply saved language on load
+    applyLanguage(currentSiteLang);
 
     // ── Mobile nav ─────────────────────────────────────
     const menuToggle = document.getElementById('menuToggle');
