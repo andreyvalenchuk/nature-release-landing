@@ -782,33 +782,6 @@
       margin-bottom: 56px;
     }
 
-    .join__toggle {
-      display: flex;
-      background: var(--dark-grey);
-      border: 1px solid var(--grey);
-      border-radius: 100px;
-      padding: 5px;
-      margin-bottom: 36px;
-    }
-
-    .join__mode {
-      padding: 12px 32px;
-      border-radius: 100px;
-      border: none;
-      background: none;
-      color: var(--light-grey);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.25s, color 0.25s;
-    }
-
-    .join__mode.is-active {
-      background: var(--white);
-      color: var(--black);
-    }
-
     .join__form {
       display: flex;
       flex-direction: column;
@@ -1313,7 +1286,6 @@
       .join { padding: 56px 0; }
       .join__h2 { font-size: 36px; }
       .join__sub { font-size: 15px; margin-bottom: 36px; }
-      .join__mode { padding: 10px 18px; font-size: 13px; }
       .join__input { padding: 16px 20px; font-size: 15px; }
       .join__submit { padding: 16px; font-size: 15px; }
 
@@ -1729,15 +1701,7 @@
       <div class="join__inner">
         <div class="section-label" data-i18n="join-label">Get access</div>
         <h2 class="join__h2" data-i18n="join-h2">Stop guessing.<br>Start knowing.</h2>
-        <p class="join__sub" data-i18n="join-sub">
-          We're launching soon. First access goes to people who actually want to understand themselves —
-          not just try another app. Leave your email and get early access + a free guide.
-        </p>
-
-        <div class="join__toggle" role="group" aria-label="Choose access type">
-          <button class="join__mode is-active" data-mode="guide" data-i18n="join-mode-guide">Sleep guide</button>
-          <button class="join__mode" data-mode="waitlist" data-i18n="join-mode-waitlist">Join waitlist</button>
-        </div>
+        <p class="join__sub" data-i18n="join-sub">Leave your email — get early access and a free sleep guide.</p>
 
         <form class="join__form" id="joinForm" novalidate>
           <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required data-i18n-ph="form-name-ph">
@@ -1748,7 +1712,7 @@
             <button type="button" class="join__lang-btn is-active" data-lang="EN">Continue in English</button>
             <button type="button" class="join__lang-btn" data-lang="RU">Продолжить на русском</button>
           </div>
-          <button class="join__submit" type="submit" id="joinSubmit">Get the sleep guide →</button>
+          <button class="join__submit" type="submit" id="joinSubmit" data-i18n="submit-btn">Get early access + free guide →</button>
         </form>
 
         <p class="join__note" data-i18n="join-note">No spam. Just science. Unsubscribe anytime. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="data-processing-consent.html">Data Processing Consent</a>.</p>
@@ -1898,9 +1862,7 @@
         'faq-a6': 'The sleep guide is completely free. The app will have a free tier for basic logging and a premium subscription for advanced experiments, AI insights, and the full Oracle. Founding members from the waitlist will receive a permanent discount on premium.',
         'join-label': 'Get access',
         'join-h2': 'Stop guessing.<br>Start knowing.',
-        'join-sub': 'We\'re launching soon. First access goes to people who actually want to understand themselves — not just try another app. Leave your email and get early access + a free guide.',
-        'join-mode-guide': 'Sleep guide',
-        'join-mode-waitlist': 'Join waitlist',
+        'join-sub': 'Leave your email — get early access and a free sleep guide.',
         'form-name-ph': 'Your first name',
         'form-email-ph': 'Your email address',
         'form-email-error': 'Please enter a valid email address',
@@ -1915,8 +1877,7 @@
         'footer-privacy': 'Privacy Policy',
         'footer-terms': 'Terms of Service',
         'footer-consent': 'Data Processing Consent',
-        'submit-guide': 'Get the sleep guide →',
-        'submit-waitlist': 'Join the waitlist →',
+        'submit-btn': 'Get early access + free guide →',
       },
       RU: {
         'nav-pains': 'Боли',
@@ -1997,9 +1958,7 @@
         'faq-a6': 'Гайд по сну полностью бесплатный. В приложении будет бесплатный уровень для базового логгинга и платная подписка для продвинутых экспериментов, AI-инсайтов и полного Oracle. Участники листа ожидания получат постоянную скидку на премиум.',
         'join-label': 'Получить доступ',
         'join-h2': 'Хватит гадать.<br>Начни понимать.',
-        'join-sub': 'Мы запускаемся скоро. Первый доступ получат те, кому действительно важно разобраться в себе — а не просто попробовать очередное приложение. Оставь почту. Получи ранний доступ и бесплатный гайд.',
-        'join-mode-guide': 'Гайд по сну',
-        'join-mode-waitlist': 'В лист ожидания',
+        'join-sub': 'Оставь почту — получи ранний доступ и бесплатный гайд по сну.',
         'form-name-ph': 'Твоё имя',
         'form-email-ph': 'Твой email',
         'form-email-error': 'Введи корректный email',
@@ -2014,8 +1973,7 @@
         'footer-privacy': 'Политика конфиденциальности',
         'footer-terms': 'Условия использования',
         'footer-consent': 'Согласие на обработку данных',
-        'submit-guide': 'Получить гайд →',
-        'submit-waitlist': 'В лист ожидания →',
+        'submit-btn': 'Получить ранний доступ + гайд →',
       }
     };
 
@@ -2040,8 +1998,7 @@
       });
 
       // Update submit button
-      const submitKey = currentMode === 'guide' ? 'submit-guide' : 'submit-waitlist';
-      submitBtn.textContent = translations[lang][submitKey];
+      submitBtn.textContent = translations[lang]['submit-btn'];
 
       // Update lang indicator in header
       const langLabel = document.querySelector('.header__lang-label');
@@ -2114,19 +2071,7 @@
       });
     });
 
-    // ── Form mode toggle ───────────────────────────────
-    let currentMode = 'guide';
     const submitBtn = document.getElementById('joinSubmit');
-
-    document.querySelectorAll('.join__mode').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.join__mode').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-        currentMode = btn.dataset.mode;
-        submitBtn.textContent = translations[currentSiteLang][currentMode === 'guide' ? 'submit-guide' : 'submit-waitlist'];
-        posthog.capture('form_mode_selected', { mode: currentMode });
-      });
-    });
 
     // ── Language toggle ─────────────────────────────────
     let currentLang = 'EN';
@@ -2290,7 +2235,7 @@
         console.error('MailerLite error:', err);
       }
 
-      posthog.capture('waitlist_signup', { name, email, mode: currentMode });
+      posthog.capture('waitlist_signup', { name, email });
 
       submitBtn.textContent = '✓ You\'re in!';
       submitBtn.classList.add('is-done');
