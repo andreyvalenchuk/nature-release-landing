@@ -839,6 +839,19 @@
       display: none;
     }
     .join__error.is-visible { display: block; }
+    .join__suggestion {
+      font-size: 13px;
+      color: #e8a020;
+      margin-top: -4px;
+      text-align: left;
+      display: none;
+    }
+    .join__suggestion.is-visible { display: block; }
+    .join__suggestion button {
+      background: none; border: none; padding: 0;
+      color: #e8a020; font-size: 13px; font-family: inherit;
+      cursor: pointer; text-decoration: underline;
+    }
 
     .join__submit {
       width: 100%;
@@ -1729,6 +1742,7 @@
           <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required data-i18n-ph="form-name-ph">
           <input class="join__input" type="email" id="formEmail" placeholder="Your email address" autocomplete="email" required data-i18n-ph="form-email-ph">
           <p class="join__error" id="emailError" data-i18n="form-email-error">Please enter a valid email address</p>
+          <p class="join__suggestion" id="emailSuggestion"></p>
           <div class="join__lang" role="group" aria-label="Choose language">
             <button type="button" class="join__lang-btn is-active" data-lang="EN">Continue in English</button>
             <button type="button" class="join__lang-btn" data-lang="RU">Продолжить на русском</button>
@@ -2155,28 +2169,86 @@
     });
 
     // ── Email validation ───────────────────────────────
-    const emailInput = document.getElementById('formEmail');
-    const emailError = document.getElementById('emailError');
+    const emailInput      = document.getElementById('formEmail');
+    const emailError      = document.getElementById('emailError');
+    const emailSuggestion = document.getElementById('emailSuggestion');
 
-    function isValidEmail(val) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    // Known TLD typos → correct TLD
+    const TLD_TYPOS = {
+      con:'com', cmo:'com', ocm:'com', xom:'com', vom:'com',
+      cpm:'com', copm:'com', comm:'com', ccom:'com',
+      ney:'net', ner:'net', nrt:'net',
+      ogr:'org', rog:'org',
+    };
+    // Known domain typos → correct domain
+    const DOMAIN_TYPOS = {
+      'gmai.com':'gmail.com', 'gmial.com':'gmail.com', 'gmal.com':'gmail.com',
+      'gnail.com':'gmail.com', 'gamil.com':'gmail.com', 'gmail.co':'gmail.com',
+      'gmail.cm':'gmail.com', 'yaho.com':'yahoo.com', 'yahooo.com':'yahoo.com',
+      'yahho.com':'yahoo.com', 'hotmai.com':'hotmail.com', 'hotmal.com':'hotmail.com',
+      'hotmial.com':'hotmail.com', 'outlok.com':'outlook.com', 'outook.com':'outlook.com',
+      'iclod.com':'icloud.com', 'icloude.com':'icloud.com',
+    };
+
+    // Returns { valid: bool, suggestion: string|null }
+    function emailCheck(val) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) return { valid: false, suggestion: null };
+      const at     = val.indexOf('@');
+      const local  = val.slice(0, at);
+      const domain = val.slice(at + 1).toLowerCase();
+      const dot    = domain.lastIndexOf('.');
+      const tld    = domain.slice(dot + 1);
+      const sld    = domain.slice(0, dot);
+      if (TLD_TYPOS[tld])      return { valid: false, suggestion: local + '@' + sld + '.' + TLD_TYPOS[tld] };
+      if (DOMAIN_TYPOS[domain]) return { valid: true,  suggestion: local + '@' + DOMAIN_TYPOS[domain] };
+      return { valid: true, suggestion: null };
+    }
+
+    function isValidEmail(val) { return emailCheck(val).valid; }
+
+    function showEmailSuggestion(suggested) {
+      const label = currentSiteLang === 'RU' ? 'Вы имели в виду' : 'Did you mean';
+      emailSuggestion.innerHTML = `${label} <button type="button" id="emailSuggestBtn">${suggested}</button>?`;
+      emailSuggestion.classList.add('is-visible');
+      document.getElementById('emailSuggestBtn').addEventListener('click', () => {
+        emailInput.value = suggested;
+        emailInput.classList.remove('is-error');
+        emailError.classList.remove('is-visible');
+        emailSuggestion.classList.remove('is-visible');
+      });
+    }
+
+    function clearEmailState() {
+      emailInput.classList.remove('is-error');
+      emailError.classList.remove('is-visible');
+      emailSuggestion.classList.remove('is-visible');
     }
 
     emailInput.addEventListener('blur', () => {
       const val = emailInput.value.trim();
-      if (val && !isValidEmail(val)) {
+      if (!val) { clearEmailState(); return; }
+      const { valid, suggestion } = emailCheck(val);
+      if (!valid) {
         emailInput.classList.add('is-error');
         emailError.classList.add('is-visible');
+        if (suggestion) showEmailSuggestion(suggestion);
+        else emailSuggestion.classList.remove('is-visible');
       } else {
         emailInput.classList.remove('is-error');
         emailError.classList.remove('is-visible');
+        if (suggestion) showEmailSuggestion(suggestion);
+        else emailSuggestion.classList.remove('is-visible');
       }
     });
 
     emailInput.addEventListener('input', () => {
-      if (emailInput.classList.contains('is-error') && isValidEmail(emailInput.value.trim())) {
+      const val = emailInput.value.trim();
+      if (emailInput.classList.contains('is-error') && isValidEmail(val)) {
         emailInput.classList.remove('is-error');
         emailError.classList.remove('is-visible');
+      }
+      if (emailSuggestion.classList.contains('is-visible') && !emailCheck(val).suggestion) {
+        emailSuggestion.classList.remove('is-visible');
       }
     });
 
