@@ -864,6 +864,13 @@
     }
     .join__note a { color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); transition: color 0.2s; }
     .join__note a:hover { color: var(--white); }
+    .join__email-hint {
+      font-size: 12px;
+      color: var(--light-grey);
+      margin-top: -14px;
+      margin-bottom: 4px;
+      opacity: 0.75;
+    }
 
     .join__lang {
       display: flex;
@@ -1713,6 +1720,7 @@
         <form class="join__form" id="joinForm" novalidate>
           <input class="join__input" type="text" id="formName" placeholder="Your first name" autocomplete="given-name" required data-i18n-ph="form-name-ph">
           <input class="join__input" type="email" id="formEmail" placeholder="Your email address" autocomplete="email" required data-i18n-ph="form-email-ph">
+          <p class="join__email-hint" data-i18n="form-email-hint">The guide will be sent to this address</p>
           <p class="join__error" id="emailError" data-i18n="form-email-error">Please enter a valid email address</p>
           <p class="join__suggestion" id="emailSuggestion"></p>
           <div class="join__lang" role="group" aria-label="Choose language">
@@ -1873,6 +1881,7 @@
         'form-name-ph': 'Your first name',
         'form-email-ph': 'Your email address',
         'form-email-error': 'Please enter a valid email address',
+        'form-email-hint': 'The guide will be sent to this address',
         'join-note': 'No spam. Just science. Unsubscribe anytime. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="data-processing-consent.html">Data Processing Consent</a>.',
         'footer-tagline': 'Track. Experiment. Evolve.',
         'footer-nav-pains': 'Pains',
@@ -1969,6 +1978,7 @@
         'form-name-ph': 'Твоё имя',
         'form-email-ph': 'Твой email',
         'form-email-error': 'Введи корректный email',
+        'form-email-hint': 'Гайд придёт на этот адрес',
         'join-note': 'Без спама. Только наука. Отписаться можно в любой момент. Отправляя форму, вы соглашаетесь с <a href="privacy-policy.html">Политикой конфиденциальности</a> и <a href="data-processing-consent.html">Согласием на обработку данных</a>.',
         'footer-tagline': 'Отслеживай. Экспериментируй. Развивайся.',
         'footer-nav-pains': 'Боли',
