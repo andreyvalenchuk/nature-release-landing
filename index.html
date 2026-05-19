@@ -2214,9 +2214,7 @@
     });
 
     // ── Form submit ────────────────────────────────────
-    const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDA0ZThiY2RiYjA0MzNhZWMzZjBjYWRiYTc3MzcwNzg3MWJkZWI4NzY0YzYzOTliZDE5OGEwNjY5YWVmNTJmZDcxOGYxNjVhYWJkOTNhOTQiLCJpYXQiOjE3NzM0MjMwMTMuODc2NjM0LCJuYmYiOjE3NzM0MjMwMTMuODc2NjM2LCJleHAiOjQ5MjkwOTY2MTMuODY5ODI0LCJzdWIiOiIyMjA2MTA5Iiwic2NvcGVzIjpbXX0.HlbY_OzopKdbHVPp-Ju2sL3m7WP4fdfo8x3RhUQl5DqnzNGQx3oNsDsSgy38DZKEWA46U0HDFwhbVXOl8GtddxEj6uO00EBRYC6UScfH8c9z4LUzAh4gUU0cAI3QvFe_7bT0x7RHJX3FUTBfo9FzBMHcqRxjN5Hq187Ay7CktIU75g9_YrMIbLJESNSV_QARBm8zsVhAEtCnx_fMBOR8FJuAkRFE0WEJqNFjgvKKhjTEN2pOI7mHORvQ2sEeB_y7txt4RZ5cgWEBKL3bZbnGtbxXB-Sa6JhVxOCFjFT2zqfHlyBMEVnb_5HyLkZtv9hlpwMgQMtIeoqAWJm1_9KAI9hJWwSfWD54I_41dHDItvd_AQ2Z1dPvOgEEu5viw-YJWO_jSCQgN7ygvp4ot6PXZlW59h6YLmje8xYh4SZ3YYVxPEabmNQG5vr2I8ro1y857STzYNzsfp5MEYuQM8zvAlumWTMiUOxV5H6QLBfBIWYRmTJtv0gWLyiQb1LxViaqqba9K-HS4lrho0IPP6uMucwOwfay-IJRsWc2wuKkP4mkXzn6iF2hPq4HoEXSr9e1ra_8_yN2PLii1RFLskFjq5hpJ_xzJ00Elj6gbOAz5wAw-SbWGm58UvqP0saV_kjoT43vu4ljf9D_tE0EtwoUiYnDITN68SMzWi_7CoDBkvY';
-
-    const GROUP_IDS = { EN: '181794795567449718', RU: '181842220750473165' };
+    const SUBSCRIBE_ENDPOINT = 'https://functions.yandexcloud.net/d4edek57r5llnvobius0';
 
     document.getElementById('joinForm').addEventListener('submit', async e => {
       e.preventDefault();
@@ -2230,24 +2228,35 @@
         return;
       }
 
+      const defaultSubmitText = submitBtn.textContent;
       submitBtn.textContent = 'Sending…';
       submitBtn.disabled = true;
 
       try {
-        await fetch('https://connect.mailerlite.com/api/subscribers', {
+        if (SUBSCRIBE_ENDPOINT.includes('REPLACE_WITH_FUNCTION_ID')) {
+          throw new Error('Subscribe endpoint is not configured');
+        }
+
+        const response = await fetch(SUBSCRIBE_ENDPOINT, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + MAILERLITE_API_KEY
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             email,
-            fields: { name },
-            groups: [GROUP_IDS[currentLang] || GROUP_IDS.EN]
+            name,
+            lang: currentLang
           })
         });
+
+        if (!response.ok) {
+          throw new Error('Subscribe request failed: ' + response.status);
+        }
       } catch (err) {
         console.error('MailerLite error:', err);
+        submitBtn.textContent = defaultSubmitText;
+        submitBtn.disabled = false;
+        return;
       }
 
       posthog.capture('waitlist_signup', { name, email });

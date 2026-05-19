@@ -34,6 +34,14 @@ module.exports.handler = async function (event) {
   const groupId = GROUP_IDS[lang] || GROUP_IDS.EN;
 
   const apiKey = process.env.MAILERLITE_API_KEY;
+  if (!apiKey) {
+    console.error('MAILERLITE_API_KEY is not configured');
+    return {
+      statusCode: 500,
+      headers: CORS,
+      body: JSON.stringify({ error: 'MailerLite API key is not configured' }),
+    };
+  }
 
   const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',
