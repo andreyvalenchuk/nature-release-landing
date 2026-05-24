@@ -1306,13 +1306,6 @@
       .mobile-nav__link { font-size: 34px; }
     }
   </style>
-  <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_WM0omWFIpKNTbXgDSdJPtAB3L8pIxlAm5d0fQmgT8uk', {
-        api_host: 'https://us.i.posthog.com',
-        defaults: '2026-01-30'
-    })
-  </script>
 </head>
 <body>
 
@@ -1333,7 +1326,7 @@
         </svg>
         <span class="header__lang-label">EN</span>
       </button>
-      <a href="#join" class="btn btn-white btn-sm header__cta-desktop" data-posthog="header_cta" data-i18n="header-cta">Join waitlist</a>
+      <a href="#join" class="btn btn-white btn-sm header__cta-desktop" data-analytics-cta="header_cta" data-i18n="header-cta">Join waitlist</a>
       <button class="header__hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1347,7 +1340,7 @@
       <a href="#concept" class="mobile-nav__link" data-i18n="nav-concept">Concept</a>
       <a href="#faq" class="mobile-nav__link" data-i18n="nav-faq">FAQ</a>
     </nav>
-    <a href="#join" class="btn btn-white btn-md mobile-nav__cta" data-posthog="mobile_nav_cta" data-i18n="mobile-cta">Join waitlist</a>
+    <a href="#join" class="btn btn-white btn-md mobile-nav__cta" data-analytics-cta="mobile_nav_cta" data-i18n="mobile-cta">Join waitlist</a>
   </div>
 
   <!-- ════════════════════════════════ HERO ════ -->
@@ -1367,7 +1360,7 @@
             so you can finally take control.
           </p>
           <div class="hero__actions">
-            <a href="#join" class="btn btn-white btn-md" data-posthog="hero_join" data-i18n="hero-btn-join">Join the waitlist</a>
+            <a href="#join" class="btn btn-white btn-md" data-analytics-cta="hero_join" data-i18n="hero-btn-join">Join the waitlist</a>
             <a href="#concept" class="btn btn-ghost btn-md" data-i18n="hero-btn-how">See how it works</a>
           </div>
         </div>
@@ -2030,15 +2023,134 @@
       localStorage.setItem('nr-lang', lang);
     }
 
-    // ── PostHog ────────────────────────────────────────
-    posthog.capture('$pageview');
+    // First-party analytics
+    const SUBSCRIBE_ENDPOINT = 'https://functions.yandexcloud.net/d4edek57r5llnvobius0';
+    const SUPABASE_URL = 'https://cdexegroosuxrxkceuwx.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_96d1xVbpmVMEZItiLXQlqg_JjCTYqGR';
 
-    // CTA tracking
-    document.querySelectorAll('[data-posthog]').forEach(el => {
+    const nrAnalytics = (() => {
+      const storageKey = 'nr-landing-anonymous-session-id';
+      const tabKey = 'nr-landing-client-session-id';
+      const now = Date.now();
+      let clickCount = 0;
+      let maxScrollDepth = 0;
+      let engagementSent = false;
+
+      function createId(prefix) {
+        if (window.crypto && crypto.randomUUID) {
+          return `${prefix}_${crypto.randomUUID()}`;
+        }
+
+        return `${prefix}_${now}_${Math.random().toString(36).slice(2)}`;
+      }
+
+      function getStoredId(storage, key, prefix) {
+        let value = storage.getItem(key);
+        if (!value) {
+          value = createId(prefix);
+          storage.setItem(key, value);
+        }
+        return value;
+      }
+
+      const anonymousSessionId = getStoredId(localStorage, storageKey, 'landing_anon');
+      const clientSessionId = getStoredId(sessionStorage, tabKey, 'landing_client');
+      const startedAt = performance.now();
+
+      function readUtm() {
+        const params = new URLSearchParams(window.location.search);
+        const allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'ref', 'referral'];
+        return allowed.reduce((utm, key) => {
+          const value = params.get(key);
+          if (value) utm[key] = value.slice(0, 160);
+          return utm;
+        }, {});
+      }
+
+      function commonPayload(eventName, properties = {}) {
+        return {
+          event_name: eventName,
+          anonymous_session_id: anonymousSessionId,
+          client_session_id: clientSessionId,
+          landing_url: `${window.location.origin}${window.location.pathname}`,
+          landing_path: window.location.pathname,
+          referrer: document.referrer,
+          utm: readUtm(),
+          properties: {
+            source: 'landing',
+            page: window.location.pathname,
+            lang: currentSiteLang,
+            viewport_width: window.innerWidth,
+            viewport_height: window.innerHeight,
+            ...properties,
+          },
+        };
+      }
+
+      function postJson(payload, useBeacon = false) {
+        const body = JSON.stringify(payload);
+        const analyticsEndpoint = `${SUPABASE_URL}/rest/v1/rpc/track_event`;
+        const headers = {
+          'Content-Type': 'application/json',
+          'Accept-Profile': 'analytics',
+          'Content-Profile': 'analytics',
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        };
+
+        fetch(analyticsEndpoint, {
+          method: 'POST',
+          headers,
+          body,
+          keepalive: useBeacon,
+        }).catch(err => {
+          console.warn('NR analytics failed:', err);
+        });
+      }
+
+      function track(eventName, properties = {}, options = {}) {
+        postJson(commonPayload(eventName, properties), options.beacon === true);
+      }
+
+      function updateScrollDepth() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollable <= 0) {
+          maxScrollDepth = 1;
+          return;
+        }
+
+        const depth = Math.min(1, Math.max(0, window.scrollY / scrollable));
+        maxScrollDepth = Math.max(maxScrollDepth, depth);
+      }
+
+      function sendEngagementSummary() {
+        if (engagementSent) return;
+        engagementSent = true;
+        updateScrollDepth();
+        track('landing_engagement_summary', {
+          duration_ms: Math.round(performance.now() - startedAt),
+          max_scroll_depth: Number(maxScrollDepth.toFixed(3)),
+          click_count: clickCount,
+        }, { beacon: true });
+      }
+
+      window.addEventListener('scroll', updateScrollDepth, { passive: true });
+      document.addEventListener('click', () => { clickCount += 1; }, { capture: true });
+      window.addEventListener('pagehide', sendEngagementSummary);
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          sendEngagementSummary();
+        }
+      });
+
+      return { track };
+    })();
+
+    nrAnalytics.track('landing_page_viewed');
+
+    document.querySelectorAll('[data-analytics-cta]').forEach(el => {
       el.addEventListener('click', () => {
-        const loc = el.dataset.posthog;
-        posthog.capture('cta_click', { location: loc });
-        posthog.capture(loc);
+        nrAnalytics.track('landing_cta_clicked', { cta_location: el.dataset.analyticsCta });
       });
     });
 
@@ -2081,7 +2193,8 @@
         if (!isOpen) {
           item.classList.add('is-open');
           btn.setAttribute('aria-expanded', 'true');
-          posthog.capture('faq_opened', { question: btn.childNodes[0].textContent.trim() });
+          const questionId = btn.closest('.faq__item')?.dataset.faqId || btn.dataset.i18n || 'unknown';
+          nrAnalytics.track('landing_faq_opened', { faq_question_id: questionId });
         }
       });
     });
@@ -2214,8 +2327,6 @@
     });
 
     // ── Form submit ────────────────────────────────────
-    const SUBSCRIBE_ENDPOINT = 'https://functions.yandexcloud.net/d4edek57r5llnvobius0';
-
     document.getElementById('joinForm').addEventListener('submit', async e => {
       e.preventDefault();
       const name  = document.getElementById('formName').value.trim();
@@ -2259,7 +2370,7 @@
         return;
       }
 
-      posthog.capture('waitlist_signup', { name, email });
+      nrAnalytics.track('waitlist_signup_succeeded');
 
       submitBtn.textContent = '✓ You\'re in!';
       submitBtn.classList.add('is-done');
@@ -2274,9 +2385,13 @@
           const shareUrl = 'https://naturerelease.com';
           const shareTitle = 'Nature Release — track your biology';
           if (navigator.share) {
-            try { await navigator.share({ title: shareTitle, url: shareUrl }); } catch (_) {}
+            try {
+              await navigator.share({ title: shareTitle, url: shareUrl });
+              nrAnalytics.track('share_clicked', { share_method: 'native' });
+            } catch (_) {}
           } else {
             await navigator.clipboard.writeText(shareUrl);
+            nrAnalytics.track('share_link_copied', { share_method: 'clipboard' });
             submitBtn.textContent = 'Link copied!';
             setTimeout(() => { submitBtn.textContent = 'Share with a friend →'; }, 2500);
           }
