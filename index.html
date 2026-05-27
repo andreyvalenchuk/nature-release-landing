@@ -1874,6 +1874,8 @@
         'form-name-ph': 'Your first name',
         'form-email-ph': 'Your email address',
         'form-email-error': 'Please enter a valid email address',
+        'form-required-error': 'Please enter your name and email address',
+        'form-submit-error': 'Could not submit the form. Please try again in a minute.',
         'form-email-hint': 'The guide will be sent to this address',
         'join-note': 'No spam. Just science. Unsubscribe anytime. By submitting, you agree to our <a href="privacy-policy.html">Privacy Policy</a> and <a href="data-processing-consent.html">Data Processing Consent</a>.',
         'footer-tagline': 'Track. Experiment. Evolve.',
@@ -1971,6 +1973,8 @@
         'form-name-ph': 'Твоё имя',
         'form-email-ph': 'Твой email',
         'form-email-error': 'Введи корректный email',
+        'form-required-error': 'Введи имя и email',
+        'form-submit-error': 'Не удалось отправить форму. Попробуй ещё раз через минуту.',
         'form-email-hint': 'Гайд придёт на этот адрес',
         'join-note': 'Без спама. Только наука. Отписаться можно в любой момент. Отправляя форму, вы соглашаетесь с <a href="privacy-policy.html">Политикой конфиденциальности</a> и <a href="data-processing-consent.html">Согласием на обработку данных</a>.',
         'footer-tagline': 'Отслеживай. Экспериментируй. Развивайся.',
@@ -2275,6 +2279,7 @@
     });
 
     // ── Email validation ───────────────────────────────
+    const nameInput       = document.getElementById('formName');
     const emailInput      = document.getElementById('formEmail');
     const emailError      = document.getElementById('emailError');
     const emailSuggestion = document.getElementById('emailSuggestion');
@@ -2312,6 +2317,11 @@
 
     function isValidEmail(val) { return emailCheck(val).valid; }
 
+    function showFormError(message) {
+      emailError.textContent = message;
+      emailError.classList.add('is-visible');
+    }
+
     function showEmailSuggestion(suggested) {
       const label = currentSiteLang === 'RU' ? 'Вы имели в виду' : 'Did you mean';
       emailSuggestion.innerHTML = `${label} <button type="button" id="emailSuggestBtn">${suggested}</button>?`;
@@ -2325,10 +2335,18 @@
     }
 
     function clearEmailState() {
+      nameInput.classList.remove('is-error');
       emailInput.classList.remove('is-error');
       emailError.classList.remove('is-visible');
       emailSuggestion.classList.remove('is-visible');
     }
+
+    nameInput.addEventListener('input', () => {
+      nameInput.classList.remove('is-error');
+      if (!emailInput.classList.contains('is-error')) {
+        emailError.classList.remove('is-visible');
+      }
+    });
 
     emailInput.addEventListener('blur', () => {
       const val = emailInput.value.trim();
@@ -2361,12 +2379,21 @@
     // ── Form submit ────────────────────────────────────
     document.getElementById('joinForm').addEventListener('submit', async e => {
       e.preventDefault();
-      const name  = document.getElementById('formName').value.trim();
+      const name  = nameInput.value.trim();
       const email = emailInput.value.trim();
-      if (!name || !email) return;
+      clearEmailState();
+
+      if (!name || !email) {
+        if (!name) nameInput.classList.add('is-error');
+        if (!email) emailInput.classList.add('is-error');
+        showFormError(translations[currentSiteLang]['form-required-error']);
+        (name ? emailInput : nameInput).focus();
+        return;
+      }
+
       if (!isValidEmail(email)) {
         emailInput.classList.add('is-error');
-        emailError.classList.add('is-visible');
+        showFormError(translations[currentSiteLang]['form-email-error']);
         emailInput.focus();
         return;
       }
@@ -2374,6 +2401,16 @@
       const defaultSubmitText = submitBtn.textContent;
       submitBtn.textContent = 'Sending…';
       submitBtn.disabled = true;
+
+      try {
+        await recordWaitlistSignup({ email, name, lang: currentLang });
+      } catch (err) {
+        console.error('NR waitlist signup record failed:', err);
+        showFormError(translations[currentSiteLang]['form-submit-error']);
+        submitBtn.textContent = defaultSubmitText;
+        submitBtn.disabled = false;
+        return;
+      }
 
       try {
         if (SUBSCRIBE_ENDPOINT.includes('REPLACE_WITH_FUNCTION_ID')) {
@@ -2396,16 +2433,7 @@
           throw new Error('Subscribe request failed: ' + response.status);
         }
       } catch (err) {
-        console.error('MailerLite error:', err);
-        submitBtn.textContent = defaultSubmitText;
-        submitBtn.disabled = false;
-        return;
-      }
-
-      try {
-        await recordWaitlistSignup({ email, name, lang: currentLang });
-      } catch (err) {
-        console.warn('NR waitlist signup record failed:', err);
+        console.warn('MailerLite sync failed:', err);
       }
 
       nrAnalytics.track('waitlist_signup_succeeded');
