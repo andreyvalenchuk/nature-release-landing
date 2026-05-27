@@ -2112,6 +2112,17 @@
         postJson(commonPayload(eventName, properties), options.beacon === true);
       }
 
+      function getWaitlistContext() {
+        return {
+          input_anonymous_session_id: anonymousSessionId,
+          input_client_session_id: clientSessionId,
+          input_landing_url: `${window.location.origin}${window.location.pathname}`,
+          input_landing_path: window.location.pathname,
+          input_referrer: document.referrer,
+          input_utm: readUtm(),
+        };
+      }
+
       function updateScrollDepth() {
         const scrollable = document.documentElement.scrollHeight - window.innerHeight;
         if (scrollable <= 0) {
@@ -2143,8 +2154,29 @@
         }
       });
 
-      return { track };
+      return { track, getWaitlistContext };
     })();
+
+    async function recordWaitlistSignup({ email, name, lang }) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/record_landing_waitlist_signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          input_email: email,
+          input_name: name,
+          input_lang: lang,
+          ...nrAnalytics.getWaitlistContext(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Waitlist signup record failed: ' + response.status);
+      }
+    }
 
     nrAnalytics.track('landing_page_viewed');
 
@@ -2368,6 +2400,12 @@
         submitBtn.textContent = defaultSubmitText;
         submitBtn.disabled = false;
         return;
+      }
+
+      try {
+        await recordWaitlistSignup({ email, name, lang: currentLang });
+      } catch (err) {
+        console.warn('NR waitlist signup record failed:', err);
       }
 
       nrAnalytics.track('waitlist_signup_succeeded');
