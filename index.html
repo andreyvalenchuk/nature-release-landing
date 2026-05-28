@@ -2028,9 +2028,9 @@
     }
 
     // First-party analytics
-    const SUBSCRIBE_ENDPOINT = 'https://functions.yandexcloud.net/d4edek57r5llnvobius0';
     const SUPABASE_URL = 'https://cdexegroosuxrxkceuwx.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_96d1xVbpmVMEZItiLXQlqg_JjCTYqGR';
+    const SUBSCRIBE_ENDPOINT = `${SUPABASE_URL}/functions/v1/mailerlite-proxy`;
 
     const nrAnalytics = (() => {
       const storageKey = 'nr-landing-anonymous-session-id';
@@ -2413,10 +2413,6 @@
       }
 
       try {
-        if (SUBSCRIBE_ENDPOINT.includes('REPLACE_WITH_FUNCTION_ID')) {
-          throw new Error('Subscribe endpoint is not configured');
-        }
-
         const response = await fetch(SUBSCRIBE_ENDPOINT, {
           method: 'POST',
           headers: {
