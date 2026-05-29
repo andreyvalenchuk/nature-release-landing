@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <meta property="og:title" content="Nature Release — Find your patterns">
+  <meta property="og:description" content="A living map of your state across time.">
+  <meta property="og:image" content="https://naturerelease.com/assets/images/thumbnail.png">
+  <meta property="og:url" content="https://naturerelease.com/new/">
+  <meta property="og:type" content="website">
+  <title>Nature Release — Find your patterns</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #101010;
+      --dark-grey: #181818;
+      --grey: #2f2f2f;
+      --light-grey: #888;
+      --white: #fff;
+      --purple: #b286fd;
+      --mint: #7ee0b8;
+      --amber: #f2c56b;
+      --rose: #ff8f9f;
+      --blue: #8fb8ff;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--black);
+      color: var(--white);
+      font-family: Inter, sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1820px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 34px;
+      border: 0;
+      border-radius: 100px;
+      font: 600 16px/1 Inter, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { opacity: 0.86; transform: translateY(-1px); }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .header {
+      position: fixed;
+      top: 25px;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px;
+      background: rgba(24,24,24,0.76);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      pointer-events: auto;
+    }
+
+    .header__logo {
+      padding-left: 16px;
+      color: var(--white);
+      font-size: 17px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .header__nav {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+    }
+
+    .header__nav a {
+      color: rgba(255,255,255,0.58);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .header__nav a:hover { color: var(--white); }
+
+    .header__cta {
+      min-height: 42px;
+      padding: 0 24px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 142px 0 90px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.7fr);
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      color: var(--light-grey);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 22px rgba(126,224,184,0.6);
+    }
+
+    h1 {
+      max-width: 980px;
+      font-size: clamp(58px, 8.1vw, 148px);
+      line-height: 0.88;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1 em {
+      color: var(--purple);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero__copy {
+      max-width: 680px;
+      margin-top: 34px;
+      color: rgba(255,255,255,0.7);
+      font-size: 22px;
+      line-height: 1.45;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 42px;
+      flex-wrap: wrap;
+    }
+
+    .state-toy {
+      position: relative;
+      min-height: 620px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+        var(--dark-grey);
+      overflow: hidden;
+    }
+
+    .state-toy__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.28;
+      filter: saturate(0.85) contrast(1.05);
+    }
+
+    .state-toy__canvas {
+      position: absolute;
+      inset: 26px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .state-cell {
+      min-height: 62px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.055);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.22s, background 0.22s, border-color 0.22s;
+    }
+
+    .state-cell:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(255,255,255,0.26);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .state-cell--focus { background: rgba(126,224,184,0.24); }
+    .state-cell--heavy { background: rgba(255,143,159,0.18); }
+    .state-cell--spark { background: rgba(242,197,107,0.24); }
+    .state-cell--quiet { background: rgba(143,184,255,0.18); }
+
+    .state-note {
+      position: absolute;
+      left: 36px;
+      right: 36px;
+      bottom: 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 20px;
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(16,16,16,0.68);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .state-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .state-note span {
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .state-note__score {
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      border-radius: 26px;
+      color: var(--black);
+      background: var(--mint);
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section--soft {
+      background: #151515;
+    }
+
+    .section__head {
+      max-width: 920px;
+      margin-bottom: 56px;
+    }
+
+    .section__label {
+      margin-bottom: 22px;
+      color: var(--light-grey);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(42px, 5.5vw, 98px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-top: 26px;
+      color: rgba(255,255,255,0.68);
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric-tile {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      background: var(--dark-grey);
+    }
+
+    .metric-tile span {
+      color: var(--light-grey);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric-tile strong {
+      font-size: clamp(27px, 3vw, 46px);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .metric-tile--question {
+      grid-column: span 2;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .metric-tile--question span { color: rgba(0,0,0,0.55); }
+
+    .hypothesis {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 0.6fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rule {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.78);
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .rule i {
+      width: 14px;
+      height: 14px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--purple);
+    }
+
+    .map-panel {
+      position: sticky;
+      top: 130px;
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      background: var(--dark-grey);
+    }
+
+    .map-panel__title {
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mini-map {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      aspect-ratio: 1;
+    }
+
+    .mini-map span {
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .mini-map span:nth-child(3n) { background: rgba(126,224,184,0.35); }
+    .mini-map span:nth-child(5n) { background: rgba(242,197,107,0.3); }
+    .mini-map span:nth-child(7n) { background: rgba(255,143,159,0.27); }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .compare__side {
+      padding: 34px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      background: var(--dark-grey);
+    }
+
+    .compare__side h3 {
+      margin-bottom: 28px;
+      font-size: 28px;
+    }
+
+    .compare__side p {
+      color: rgba(255,255,255,0.66);
+      font-size: 20px;
+      line-height: 1.55;
+    }
+
+    .compare__side--bright {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .compare__side--bright p { color: rgba(0,0,0,0.68); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .step {
+      min-height: 250px;
+      padding: 26px;
+      background: var(--black);
+    }
+
+    .step span {
+      display: block;
+      margin-bottom: 70px;
+      color: var(--light-grey);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 24px;
+    }
+
+    .step p {
+      color: rgba(255,255,255,0.62);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .knowing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .why-card {
+      min-height: 220px;
+      padding: 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--dark-grey);
+      font-size: 23px;
+      line-height: 1.25;
+    }
+
+    .why-card:nth-child(2) { background: rgba(126,224,184,0.13); }
+    .why-card:nth-child(4) { background: rgba(242,197,107,0.13); }
+    .why-card:nth-child(6) { background: rgba(143,184,255,0.13); }
+
+    .join {
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+      padding: 110px 0;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .join__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      gap: 60px;
+      align-items: center;
+    }
+
+    .join .section__label,
+    .join .lead { color: rgba(0,0,0,0.62); }
+
+    .join__form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .join__input {
+      width: 100%;
+      padding: 20px 22px;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 8px;
+      background: #f3f3f3;
+      color: var(--black);
+      font: 500 16px/1 Inter, sans-serif;
+      outline: none;
+    }
+
+    .join__input:focus { border-color: rgba(0,0,0,0.35); }
+
+    .join__button {
+      width: 100%;
+      min-height: 62px;
+      border-radius: 8px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .join__message {
+      min-height: 20px;
+      color: rgba(0,0,0,0.62);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .footer {
+      padding: 38px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.46);
+      font-size: 14px;
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    @media (max-width: 1180px) {
+      .hero__inner,
+      .hypothesis,
+      .join__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .state-toy { min-height: 540px; }
+      .problem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metric-tile--question { grid-column: span 2; }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .knowing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .map-panel { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .container { padding: 0 20px; }
+      .header { top: 14px; }
+      .header__inner { width: calc(100% - 28px); justify-content: space-between; gap: 12px; }
+      .header__nav { display: none; }
+      .header__logo { padding-left: 8px; }
+      .header__cta { padding: 0 18px; }
+      .hero { padding: 112px 0 70px; }
+      h1 { font-size: clamp(52px, 15vw, 82px); }
+      h2 { font-size: clamp(39px, 12vw, 62px); }
+      .hero__copy,
+      .lead,
+      .rule,
+      .compare__side p { font-size: 18px; }
+      .hero__actions { align-items: stretch; flex-direction: column; }
+      .btn { width: 100%; }
+      .state-toy { min-height: 430px; border-radius: 24px; }
+      .state-toy__canvas { inset: 16px; gap: 8px; }
+      .state-cell { min-height: 44px; border-radius: 14px; }
+      .state-note {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        grid-template-columns: 1fr;
+        padding: 18px;
+        border-radius: 18px;
+      }
+      .state-note__score { width: 64px; height: 64px; border-radius: 18px; font-size: 22px; }
+      .section { padding: 74px 0; }
+      .problem-grid,
+      .compare,
+      .steps,
+      .knowing-grid { grid-template-columns: 1fr; }
+      .metric-tile--question { grid-column: auto; }
+      .step { min-height: 210px; }
+      .step span { margin-bottom: 44px; }
+      .join { padding: 82px 0; }
+      .footer__inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" aria-label="Main navigation">
+    <div class="header__inner">
+      <a class="header__logo" href="/">Nature Release</a>
+      <ul class="header__nav">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#map">Map</a></li>
+        <li><a href="#first-step">Early access</a></li>
+      </ul>
+      <a class="btn header__cta" href="#first-step">Start</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero__inner">
+          <div>
+            <div class="eyebrow">Personal state map</div>
+            <h1>You are not the same person <em>every day.</em></h1>
+            <p class="hero__copy">Some days you feel focused, calm and capable. Some days you wake up exhausted, distracted or irritated for reasons you cannot explain.</p>
+            <div class="hero__actions">
+              <a class="btn" href="#first-step">Start finding your patterns</a>
+              <a class="btn btn--ghost" href="#problem">See the question</a>
+            </div>
+          </div>
+
+          <div class="state-toy" aria-label="Toy state map preview">
+            <img class="state-toy__image" src="/assets/images/hero-image-2.png" alt="">
+            <div class="state-toy__canvas" aria-hidden="true">
+              <span class="state-cell state-cell--focus"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--spark"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--quiet"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--heavy"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--focus"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--spark"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--heavy"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--quiet"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--focus"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--spark"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--heavy"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--quiet"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--focus"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--spark"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--quiet"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--heavy"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--focus"></span>
+              <span class="state-cell"></span>
+              <span class="state-cell state-cell--spark"></span>
+            </div>
+            <div class="state-note">
+              <div>
+                <strong>Tuesday looked random.</strong>
+                <span>After three weeks, it starts looking like a repeatable pattern.</span>
+              </div>
+              <div class="state-note__score">72</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="problem">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__label">The problem</div>
+          <h2>We measure everything. We still ask the same question.</h2>
+          <p class="lead">Steps. Sleep. Calories. Heart rate. Screen time. The problem is not a lack of data. The problem is a lack of interpretation.</p>
+        </div>
+        <div class="problem-grid">
+          <div class="metric-tile"><span>Tracked</span><strong>Steps</strong></div>
+          <div class="metric-tile"><span>Tracked</span><strong>Sleep</strong></div>
+          <div class="metric-tile"><span>Tracked</span><strong>Heart</strong></div>
+          <div class="metric-tile"><span>Tracked</span><strong>Screen</strong></div>
+          <div class="metric-tile metric-tile--question"><span>Still unknown</span><strong>Why do I feel like a different person today?</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="map">
+      <div class="container">
+        <div class="hypothesis">
+          <div>
+            <div class="section__label">The hypothesis</div>
+            <h2>Your state is not random.</h2>
+            <div class="stack">
+              <div class="rule"><i></i><p>Sleep influences focus.</p></div>
+              <div class="rule"><i></i><p>Stress influences recovery.</p></div>
+              <div class="rule"><i></i><p>Work influences motivation.</p></div>
+              <div class="rule"><i></i><p>Social interactions influence energy.</p></div>
+              <div class="rule"><i></i><p>Small events accumulate into patterns.</p></div>
+            </div>
+          </div>
+          <aside class="map-panel" aria-label="State map preview">
+            <div class="map-panel__title">Pattern layer</div>
+            <div class="mini-map" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__label">A different way to look at yourself</div>
+          <h2>Compare yourself to yourself. Across time.</h2>
+        </div>
+        <div class="compare">
+          <div class="compare__side">
+            <h3>Not against others.</h3>
+            <p>Most systems teach you to compare yourself to more followers, more productivity, more discipline, more success.</p>
+          </div>
+          <div class="compare__side compare__side--bright">
+            <h3>Across your own timeline.</h3>
+            <p>Observe what repeatedly helps you function well. Observe what repeatedly pushes you off course.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__label">What Nature Release does</div>
+          <h2>A living map of your own state.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><span>01</span><strong>Capture events</strong><p>Save the moments that might matter later.</p></div>
+          <div class="step"><span>02</span><strong>Observe context</strong><p>Keep the weather around your state, not only the score.</p></div>
+          <div class="step"><span>03</span><strong>Discover patterns</strong><p>Let isolated dots become visible trajectories.</p></div>
+          <div class="step"><span>04</span><strong>Test explanations</strong><p>Turn a hunch into a small personal experiment.</p></div>
+          <div class="step"><span>05</span><strong>Notice change</strong><p>See which versions of you keep returning.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section__head">
+          <div class="section__label">Imagine knowing</div>
+          <h2>The reasons behind recurring versions of you.</h2>
+        </div>
+        <div class="knowing-grid">
+          <div class="why-card">Why motivation appears at night and disappears in the morning.</div>
+          <div class="why-card">Why some weeks feel effortless while others feel heavy.</div>
+          <div class="why-card">Why focus collapses after specific days.</div>
+          <div class="why-card">Why recovery works sometimes and fails other times.</div>
+          <div class="why-card">Why certain versions of yourself keep returning.</div>
+          <div class="why-card">Why the result is loud, but the pattern is quiet.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="first-step">
+      <div class="container">
+        <div class="join__grid">
+          <div>
+            <div class="section__label">The first step</div>
+            <h2>What about your state do you wish finally made sense?</h2>
+            <p class="lead">The answer may already be hiding in patterns you cannot see yet.</p>
+          </div>
+          <form class="join__form" id="demoForm" novalidate>
+            <input class="join__input" type="text" name="name" placeholder="Your first name" autocomplete="off">
+            <input class="join__input" type="email" name="email" placeholder="Your email address" autocomplete="off">
+            <button class="btn join__button" type="submit">Start your state map</button>
+            <p class="join__message" id="demoMessage">Early access available.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span>© 2026 Nature Release</span>
+        <span><a href="/privacy-policy.html">Privacy</a> · <a href="/terms-of-service.html">Terms</a> · <a href="/data-processing-consent.html">Consent</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('demoForm').addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('demoMessage').textContent = 'Prototype only. No email was sent.';
+    });
+  </script>
+</body>
+</html>
