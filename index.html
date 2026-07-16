@@ -2031,6 +2031,7 @@
     const SUPABASE_URL = 'https://cdexegroosuxrxkceuwx.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_96d1xVbpmVMEZItiLXQlqg_JjCTYqGR';
     const SUBSCRIBE_ENDPOINT = `${SUPABASE_URL}/functions/v1/mailerlite-proxy`;
+    const ANALYTICS_ENDPOINT = `${SUPABASE_URL}/functions/v1/capture-analytics-event`;
 
     const nrAnalytics = (() => {
       const storageKey = 'nr-landing-anonymous-session-id';
@@ -2093,20 +2094,21 @@
 
       function postJson(payload, useBeacon = false) {
         const body = JSON.stringify(payload);
-        const analyticsEndpoint = `${SUPABASE_URL}/rest/v1/rpc/track_event`;
         const headers = {
           'Content-Type': 'application/json',
-          'Accept-Profile': 'analytics',
-          'Content-Profile': 'analytics',
           apikey: SUPABASE_ANON_KEY,
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         };
 
-        fetch(analyticsEndpoint, {
+        fetch(ANALYTICS_ENDPOINT, {
           method: 'POST',
           headers,
           body,
           keepalive: useBeacon,
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error(`Analytics request failed: ${response.status}`);
+          }
         }).catch(err => {
           console.warn('NR analytics failed:', err);
         });
