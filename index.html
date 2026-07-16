@@ -2058,8 +2058,23 @@
         return value;
       }
 
+      function getCookie(name) {
+        const prefix = `${encodeURIComponent(name)}=`;
+        return document.cookie.split(';').map(value => value.trim()).find(value => value.startsWith(prefix))?.slice(prefix.length) || null;
+      }
+
+      function getOrCreateVisitorId() {
+        const existingVisitorId = getCookie('nr_visitor_id');
+        if (existingVisitorId) return decodeURIComponent(existingVisitorId);
+
+        const visitorId = createId('nr_visitor');
+        document.cookie = `nr_visitor_id=${encodeURIComponent(visitorId)}; Path=/; Domain=naturerelease.com; Max-Age=31536000; SameSite=Lax; Secure`;
+        return visitorId;
+      }
+
       const anonymousSessionId = getStoredId(localStorage, storageKey, 'landing_anon');
       const clientSessionId = getStoredId(sessionStorage, tabKey, 'landing_client');
+      const visitorId = getOrCreateVisitorId();
       const startedAt = performance.now();
 
       function readUtm() {
@@ -2077,6 +2092,7 @@
           event_name: eventName,
           anonymous_session_id: anonymousSessionId,
           client_session_id: clientSessionId,
+          visitor_id: visitorId,
           landing_url: `${window.location.origin}${window.location.pathname}`,
           landing_path: window.location.pathname,
           referrer: document.referrer,
