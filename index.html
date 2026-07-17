@@ -2065,10 +2065,14 @@
 
       function getOrCreateVisitorId() {
         const existingVisitorId = getCookie('nr_visitor_id');
-        if (existingVisitorId) return decodeURIComponent(existingVisitorId);
+        if (existingVisitorId) {
+          const visitorId = decodeURIComponent(existingVisitorId);
+          document.cookie = `nr_visitor_id=${encodeURIComponent(visitorId)}; Path=/; Domain=naturerelease.com; Max-Age=34560000; SameSite=Lax; Secure`;
+          return visitorId;
+        }
 
         const visitorId = createId('nr_visitor');
-        document.cookie = `nr_visitor_id=${encodeURIComponent(visitorId)}; Path=/; Domain=naturerelease.com; Max-Age=31536000; SameSite=Lax; Secure`;
+        document.cookie = `nr_visitor_id=${encodeURIComponent(visitorId)}; Path=/; Domain=naturerelease.com; Max-Age=34560000; SameSite=Lax; Secure`;
         return visitorId;
       }
 
