@@ -18,6 +18,8 @@
     .header__left { display: flex; align-items: center; gap: 24px; }
     .logo { color: var(--white); text-decoration: none; font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
     .back { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; }
+    .language-toggle { height: 34px; padding: 0 13px; border: 1px solid rgba(255,255,255,.18); border-radius: 100px; background: transparent; color: rgba(255,255,255,.78); cursor: pointer; font: 600 11px Inter, sans-serif; letter-spacing: .08em; transition: border-color .2s, background .2s; }
+    .language-toggle:hover { border-color: rgba(255,255,255,.42); background: rgba(255,255,255,.06); }
     .back:hover, .toc a:hover, .footer a:hover { color: var(--white); }
     .document { width: min(1120px, calc(100% - 80px)); margin: 0 auto; padding: 72px 0 104px; display: grid; grid-template-columns: 190px minmax(0, 760px); justify-content: space-between; gap: 64px; }
     .toc { position: sticky; top: 88px; align-self: start; border-left: 1px solid var(--line); padding-left: 18px; }
@@ -42,6 +44,7 @@
     .footer__links { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer a { text-decoration: none; transition: color .2s; }
     .footer a.current { color: var(--purple); }
+    .lang-content[hidden] { display: none; }
     @media (max-width: 800px) { .document { grid-template-columns: 1fr; gap: 40px; } .toc { position: static; display: none; } }
     @media (max-width: 640px) { .header, .footer { padding-left: 20px; padding-right: 20px; } .document { width: min(100% - 40px, 760px); padding: 48px 0 64px; } .section { padding: 24px 20px 28px; } .lede { font-size: 16px; padding-bottom: 36px; margin-bottom: 36px; } .footer { align-items: flex-start; flex-direction: column; } .footer__links { gap: 14px 20px; } }
   </style>
@@ -50,11 +53,12 @@
   <header class="header">
     <div class="header__left">
       <a class="logo" href="../">Nature Release</a>
-      <a class="back" href="../">← Back</a>
+      <a class="back" href="../" id="backLink">← Back</a>
     </div>
+    <button class="language-toggle" id="languageToggle" type="button" aria-label="Switch to Russian" aria-pressed="false">RU</button>
   </header>
 
-  <main class="document">
+  <main class="document lang-content" data-language="en">
     <aside class="toc" aria-label="On this page">
       <div class="toc__label">On this page</div>
       <a href="#attention">Attention &amp; Behavioural Self-Engineering</a>
@@ -157,14 +161,147 @@
     </article>
   </main>
 
+  <main class="document lang-content" data-language="ru" hidden>
+    <aside class="toc" aria-label="Содержание">
+      <div class="toc__label">Содержание</div>
+      <a href="#ru-attention">Attention &amp; Behavioural Self-Engineering Methodology</a>
+      <a href="#ru-tonicity">Тоника</a>
+      <a href="#ru-nascwi">NASCW+I</a>
+      <a href="#ru-execution">Исполнение — конструирование</a>
+      <a href="#ru-discipline">Дисциплина, воля, энтузиазм</a>
+      <a href="#ru-model">Nature Release Concept</a>
+    </aside>
+
+    <article>
+      <div class="eyebrow">Методология</div>
+      <h1>Attention &amp; Behavioural Self-Engineering Methodology</h1>
+      <p class="lede">Методология для проектирования поведения, а не только его трекинга.</p>
+
+      <div class="sections">
+        <section class="section" id="ru-attention">
+          <div class="section__number">01</div>
+          <h2>Attention &amp; Behavioural Self-Engineering Methodology</h2>
+          <p>Предлагается пересмотреть существующие методологии, используемые в приложениях для продуктивности и фокуса, трекинга сна, физической активности, питания и других составляющих повседневного поведения человека.</p>
+          <p>Большинство таких методологий рассматривает объект наблюдения как конечную величину: сколько пользователь спал, сколько прошёл, что съел, сколько времени работал, сколько задач выполнил. Измерение заканчивается описанием произошедшего.</p>
+          <p>Нам не удалось обнаружить решений, рассматривающих события жизни пользователя как изменения архитектуры вероятностей последующей экспрессии поведения и строящих управление на уровне этой архитектуры.</p>
+          <p>Регистрация факта поведения не содержит механизма его возникновения, а следовательно не определяет, что именно необходимо изменить для систематического изменения этого поведения.</p>
+          <blockquote>Предлагаемый объект измерения — не само поведение, а архитектура вероятностей его экспрессии.</blockquote>
+        </section>
+
+        <section class="section" id="ru-tonicity">
+          <div class="section__number">02</div>
+          <h2>Тоника</h2>
+          <p>Человек в каждый момент существует в конкретной материальной конфигурации: определённом состоянии нервной системы и организма, конкретном помещении, времени суток, социальном окружении, информационной среде, наборе доступных объектов, обязательств, навыков и уже сформированных паттернов поведения.</p>
+          <p>Эта конфигурация не детерминирует следующее действие, но делает множество потенциально доступных действий неравновероятными.</p>
+          <p>Будем называть такую конфигурацию тоническим состоянием, а тоникой — характеристику соответствия текущего состояния архитектуры вероятностей тому поведению, экспрессия которого требуется.</p>
+          <p>Отсюда меняется смысл наблюдения.</p>
+          <p>Если пользователь собирался лечь в 23:00, но лёг в 02:14, интерес представляет не только отклонение +3:14.</p>
+          <p>Необходимо восстановить, какая последовательность событий сделала бодрствование до 02:14 более вероятным поведением, чем отход ко сну в 23:00.</p>
+          <p>Пользователь выпил кофе в 19:30. В 21:00 начал работать. В 22:40 получил сообщение. В 23:05 продолжал находиться за компьютером. Освещение оставалось ярким. Телефон находился рядом с кроватью.</p>
+          <p>Каждое такое событие интересно не само по себе, а как изменение последующей архитектуры вероятностей поведения.</p>
+          <p>Следовательно, событие жизни пользователя предлагается рассматривать как:</p>
+          <blockquote>изменение состояния пользователя или его среды, способное изменить распределение вероятностей последующей экспрессии поведения.</blockquote>
+        </section>
+
+        <section class="section" id="ru-nascwi">
+          <div class="section__number">03</div>
+          <h2>NASCW+I</h2>
+          <p>Nutrition, Activity, Sleep, Connections, Work/Study + Infrastructure — не шесть независимых объектов оптимизации и не шесть «здоровых привычек». Это система координат для регистрации событий, способных изменять архитектуру последующего поведения.</p>
+          <div class="statements"><div class="statement">Поесть — событие.</div><div class="statement">Пробежать пять километров — событие.</div><div class="statement">Поспать семь часов — событие.</div><div class="statement">Поссориться с человеком — событие.</div><div class="statement">Три часа программировать — событие.</div><div class="statement">Поставить будильник на другой конец комнаты — событие.</div></div>
+          <p>Nature Release интересует не принадлежность события категории сама по себе, а переход:</p>
+          <blockquote>событие → изменение состояния → изменение вероятностей последующего поведения → экспрессированное поведение.</blockquote>
+          <p>Отсюда возникает принципиальное отличие исполнения от конструирования.</p>
+        </section>
+
+        <section class="section" id="ru-execution">
+          <div class="section__number">04</div>
+          <h2>Исполнение — конструирование</h2>
+          <p>Исполнение — экспрессия поведения, являющегося непосредственной целью агента.</p>
+          <blockquote>Хочу бегать → побежал.</blockquote>
+          <p>Конструирование — экспрессия поведения, целью которого является изменение архитектуры вероятностей другого поведения.</p>
+          <blockquote>Хочу бегать утром → договорился бегать с братом → приготовил одежду → перестал есть поздно вечером → стабилизировал время сна → убрал необходимость принимать утром дополнительные решения → побежал.</blockquote>
+          <p>Следовательно, вместо постоянной попытки заставить пользователя исполнять желаемое поведение, Nature Release должен повышать вероятность того, что пользователь будет конструировать условия его последующей экспрессии.</p>
+          <p>Это self-engineering в буквальном смысле. Человек становится одновременно объектом и субъектом инженерного воздействия.</p>
+          <p>При этом конструирование само является поведением и поэтому не выводится за пределы модели. У него также существует собственная архитектура вероятностей. Nature Release становится одним из элементов этой архитектуры: средой, повышающей вероятность поведения по конструированию собственного тонического состояния.</p>
+          <p>Получается рекурсивная конструкция:</p>
+          <blockquote>NR → вероятность конструирования ↑ → изменение тонического состояния → вероятность желаемого поведения ↑ → экспрессия поведения → новые наблюдения → последующее конструирование.</blockquote>
+        </section>
+
+        <section class="section" id="ru-discipline">
+          <div class="section__number">05</div>
+          <h2>Дисциплина, воля, энтузиазм</h2>
+          <p>Дисциплина ничего не вызывает.</p>
+          <p>Дисциплина не является объяснением: «Он тренируется потому, что дисциплинированный».</p>
+          <p>Это тавтология, в которой наблюдаемое поведение объясняется названием этого же наблюдаемого поведения.</p>
+          <p>Дисциплина — ретроспективная степень соответствия фактически экспрессированного поведения предварительно заданному поведению за выбранный период.</p>
+          <blockquote>Планировал тренироваться 12 раз → тренировался 11 → высокая дисциплина относительно этого плана и периода.</blockquote>
+          <p>Почему получилось 11/12 — вопрос тоники. Поэтому дисциплина находится после поведения, а не перед ним.</p>
+          <p>И здесь же можно пока отказаться от необходимости вводить волю как самостоятельную причинную переменную.</p>
+          <p>Фраза: «Он сделал это благодаря силе воли» не содержит механизма.</p>
+          <p>Если наблюдаемое «волевое усилие» само является поведением, необходимо объяснить вероятность экспрессии уже этого поведения. Перенос объяснения ещё на один уровень словом «воля» проблему причинности не решает.</p>
+          <p>Поэтому до обнаружения самостоятельного механизма воля может оставаться неоперационализированным феноменом, а не переменной модели.</p>
+          <p>С энтузиазмом ситуация другая. Его пока можно зафиксировать феноменологически:</p>
+          <blockquote>Энтузиазм — кратковременное состояние повышенной субъективной привлекательности некоторой деятельности или её ожидаемого результата, сопровождающееся повышением вероятности немедленного начала соответствующего поведения и/или конструирования планов его продолжения.</blockquote>
+          <p>Причинность возникновения энтузиазма этим определением намеренно не объясняется. И это нормально. Сначала фиксируется существование воспроизводимого феномена. Затем исследуются его предикторы.</p>
+          <p>Особенно интересен распад энтузиазма: вечером вероятность конструирования и исполнения высока, утром энтузиазм исчезает, однако созданная вечером архитектура может продолжать воздействовать на вероятность поведения.</p>
+          <p>Именно поэтому:</p>
+          <blockquote>Энтузиазм способен запустить конструирование. Тоника способна пережить энтузиазм.</blockquote>
+        </section>
+
+        <section class="section" id="ru-model">
+          <div class="section__number">06</div>
+          <h2>Nature Release Concept</h2>
+          <p>А центральная единица анализа NR тогда вообще не «привычка». Это переход вероятностей:</p>
+          <blockquote>Было состояние S₀, в котором наиболее вероятно B₀.<br><br>Пользователь хочет B₁.<br><br>Какие изменения ΔS необходимо внести, чтобы в состоянии S₁ = S₀ + ΔS поведение B₁ стало достаточно вероятным?</blockquote>
+          <p>После этого Nature Release наблюдает результат и корректирует собственную модель.</p>
+          <p>И получается практически HADI применительно к самому человеку:</p>
+          <blockquote>Observe → Hypothesize → Construct → Express → Measure → Update.</blockquote>
+          <p>Не:</p>
+          <blockquote>Track your life.<br><br>Build better habits.<br><br>Become disciplined.</blockquote>
+          <p>А:</p>
+          <blockquote>Observe what produces your behaviour. Construct what produces the behaviour you want.</blockquote>
+        </section>
+      </div>
+    </article>
+  </main>
+
   <footer class="footer">
-    <span class="footer__copy">© 2026 Nature Release. All rights reserved.</span>
+    <span class="footer__copy" id="footerCopy">© 2026 Nature Release. All rights reserved.</span>
     <div class="footer__links">
-      <a class="current" href="./">Methodology</a>
-      <a href="../privacy-policy.html">Privacy Policy</a>
-      <a href="../terms-of-service.html">Terms of Service</a>
-      <a href="../data-processing-consent.html">Data Processing Consent</a>
+      <a class="current" href="./" id="footerMethodology">Methodology</a>
+      <a href="../privacy-policy.html" id="footerPrivacy">Privacy Policy</a>
+      <a href="../terms-of-service.html" id="footerTerms">Terms of Service</a>
+      <a href="../data-processing-consent.html" id="footerConsent">Data Processing Consent</a>
     </div>
   </footer>
+  <script>
+    const languageToggle = document.getElementById('languageToggle');
+    const contentByLanguage = document.querySelectorAll('.lang-content');
+    const localized = {
+      en: { toggle: 'RU', toggleLabel: 'Switch to Russian', back: '← Back', title: 'Nature Release — Methodology', copy: '© 2026 Nature Release. All rights reserved.', methodology: 'Methodology', privacy: 'Privacy Policy', terms: 'Terms of Service', consent: 'Data Processing Consent' },
+      ru: { toggle: 'EN', toggleLabel: 'Switch to English', back: '← Назад', title: 'Nature Release — Методология', copy: '© 2026 Nature Release. Все права защищены.', methodology: 'Методология', privacy: 'Политика конфиденциальности', terms: 'Условия использования', consent: 'Согласие на обработку данных' }
+    };
+
+    function setLanguage(language) {
+      const text = localized[language];
+      document.documentElement.lang = language;
+      document.title = text.title;
+      contentByLanguage.forEach((content) => { content.hidden = content.dataset.language !== language; });
+      languageToggle.textContent = text.toggle;
+      languageToggle.setAttribute('aria-label', text.toggleLabel);
+      languageToggle.setAttribute('aria-pressed', String(language === 'ru'));
+      document.getElementById('backLink').textContent = text.back;
+      document.getElementById('footerCopy').textContent = text.copy;
+      document.getElementById('footerMethodology').textContent = text.methodology;
+      document.getElementById('footerPrivacy').textContent = text.privacy;
+      document.getElementById('footerTerms').textContent = text.terms;
+      document.getElementById('footerConsent').textContent = text.consent;
+      localStorage.setItem('methodology-language', language);
+    }
+
+    const savedLanguage = localStorage.getItem('methodology-language');
+    setLanguage(savedLanguage === 'ru' ? 'ru' : 'en');
+    languageToggle.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'ru' : 'en'));
+  </script>
 </body>
 </html>
