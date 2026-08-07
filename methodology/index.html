@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nature Release methodology for understanding and designing the conditions from which behaviour emerges.">
+  <title>Nature Release — Methodology</title>
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #101010; --dark: #181818; --line: #2f2f2f; --muted: #969696; --white: #fff; --purple: #b286fd; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+    .header { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 16px 40px; border-bottom: 1px solid var(--line); background: rgba(16,16,16,.88); backdrop-filter: blur(20px); }
+    .header__left { display: flex; align-items: center; gap: 24px; }
+    .logo { color: var(--white); text-decoration: none; font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+    .back { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; }
+    .back:hover, .toc a:hover, .footer a:hover { color: var(--white); }
+    .document { width: min(1120px, calc(100% - 80px)); margin: 0 auto; padding: 72px 0 104px; display: grid; grid-template-columns: 190px minmax(0, 760px); justify-content: space-between; gap: 64px; }
+    .toc { position: sticky; top: 88px; align-self: start; border-left: 1px solid var(--line); padding-left: 18px; }
+    .toc__label, .eyebrow, .section__number { color: var(--purple); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .toc__label { margin-bottom: 14px; }
+    .toc a { display: block; color: var(--muted); text-decoration: none; font-size: 12px; line-height: 1.45; margin: 10px 0; transition: color .2s; }
+    .eyebrow { margin-bottom: 18px; }
+    h1 { max-width: 700px; font-size: clamp(40px, 5vw, 60px); letter-spacing: -.045em; line-height: 1.04; }
+    .lede { max-width: 620px; margin: 22px 0 52px; padding-bottom: 48px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 18px; line-height: 1.65; }
+    .sections { display: grid; gap: 10px; }
+    .section { padding: 34px 36px 38px; border: 1px solid var(--line); border-radius: 16px; background: var(--dark); scroll-margin-top: 90px; }
+    .section__number { margin-bottom: 10px; }
+    h2 { margin-bottom: 22px; font-size: 21px; letter-spacing: -.02em; line-height: 1.25; }
+    p { color: #aaa; font-size: 15px; line-height: 1.78; margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+    .statements { display: grid; gap: 3px; margin: 18px 0; }
+    .statement { color: #aaa; font-size: 15px; line-height: 1.7; }
+    blockquote { margin: 20px 0; padding: 15px 18px; border-left: 2px solid var(--purple); background: rgba(178,134,253,.07); color: #e4dcf3; font-size: 15px; line-height: 1.68; }
+    blockquote:last-child { margin-bottom: 0; }
+    .footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 32px 40px; border-top: 1px solid var(--line); }
+    .footer__copy, .footer a { color: var(--muted); font-size: 13px; }
+    .footer__links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer a { text-decoration: none; transition: color .2s; }
+    .footer a.current { color: var(--purple); }
+    @media (max-width: 800px) { .document { grid-template-columns: 1fr; gap: 40px; } .toc { position: static; display: none; } }
+    @media (max-width: 640px) { .header, .footer { padding-left: 20px; padding-right: 20px; } .document { width: min(100% - 40px, 760px); padding: 48px 0 64px; } .section { padding: 24px 20px 28px; } .lede { font-size: 16px; padding-bottom: 36px; margin-bottom: 36px; } .footer { align-items: flex-start; flex-direction: column; } .footer__links { gap: 14px 20px; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header__left">
+      <a class="logo" href="../">Nature Release</a>
+      <a class="back" href="../">← Back</a>
+    </div>
+  </header>
+
+  <main class="document">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc__label">On this page</div>
+      <a href="#attention">Attention &amp; Behavioural Self-Engineering</a>
+      <a href="#tonicity">Tonicity</a>
+      <a href="#nascwi">NASCW+I</a>
+      <a href="#execution">Execution vs Construction</a>
+      <a href="#discipline">Discipline, Willpower, and Enthusiasm</a>
+      <a href="#model">The Nature Release Model</a>
+    </aside>
+
+    <article>
+      <div class="eyebrow">Methodology</div>
+      <h1>Attention &amp; Behavioural Self-Engineering</h1>
+      <p class="lede">A methodology for designing behaviour, not merely tracking it.</p>
+
+      <div class="sections">
+        <section class="section" id="attention">
+          <div class="section__number">01</div>
+          <h2>Attention &amp; Behavioural Self-Engineering</h2>
+          <p>Most products for productivity, sleep, fitness, nutrition, or habit formation share the same underlying assumption. They measure what has already happened.</p>
+          <div class="statements"><div class="statement">How long did you sleep?</div><div class="statement">How many steps did you take?</div><div class="statement">What did you eat?</div><div class="statement">How many hours did you work?</div><div class="statement">How many habits did you complete?</div></div>
+          <p>These measurements describe behaviour after it has been expressed. They rarely explain why that behaviour became the most probable outcome in the first place.</p>
+          <p>Nature Release proposes a different object of observation. Instead of measuring behaviour itself, we measure the evolving architecture of probabilities from which behaviour emerges.</p>
+          <blockquote>Behaviour is not the object. The conditions that make one behaviour more likely than another are.</blockquote>
+        </section>
+
+        <section class="section" id="tonicity">
+          <div class="section__number">02</div>
+          <h2>Tonicity</h2>
+          <p>At every moment, a person exists within a specific physical and cognitive configuration.</p>
+          <div class="statements"><div class="statement">Their nervous system.</div><div class="statement">Their physiological state.</div><div class="statement">The time of day.</div><div class="statement">The surrounding environment.</div><div class="statement">The people nearby.</div><div class="statement">Available tools.</div><div class="statement">Existing commitments.</div><div class="statement">Previously learned behavioural patterns.</div></div>
+          <p>None of these variables determines the next action. Together, however, they shape the probability distribution of all possible actions.</p>
+          <p>We refer to this configuration as a tonic state. Tonicity describes how well that state aligns with the behaviour the person wants to express.</p>
+          <p>This changes the purpose of observation. Suppose someone planned to go to bed at 11:00 PM but actually fell asleep at 2:14 AM. The interesting fact is not the delay of three hours.</p>
+          <p>The real question is: What sequence of events made staying awake more probable than going to sleep?</p>
+          <div class="statements"><div class="statement">Coffee at 7:30 PM.</div><div class="statement">Work beginning at 9:00 PM.</div><div class="statement">A message arriving at 10:40 PM.</div><div class="statement">Bright lighting.</div><div class="statement">The laptop still open.</div><div class="statement">The phone beside the bed.</div></div>
+          <p>None of these events matters in isolation. Each matters because it changed the probability of what happened next.</p>
+          <blockquote>Any change in a person or their environment that alters the probability distribution of future behaviour.</blockquote>
+        </section>
+
+        <section class="section" id="nascwi">
+          <div class="section__number">03</div>
+          <h2>NASCW+I</h2>
+          <p>Nutrition, Activity, Sleep, Connections, Work/Study, and Infrastructure are not six independent areas of optimisation. They are six coordinate systems for registering events that may reshape future behaviour.</p>
+          <div class="statements"><div class="statement">Eating is an event.</div><div class="statement">Running five kilometres is an event.</div><div class="statement">Sleeping seven hours is an event.</div><div class="statement">Arguing with someone is an event.</div><div class="statement">Programming for three hours is an event.</div><div class="statement">Placing your alarm clock across the room is an event.</div></div>
+          <p>Nature Release is interested not in the category itself, but in the transition:</p>
+          <blockquote>Event → State Change → Behaviour Probability Shift → Behaviour Expression</blockquote>
+        </section>
+
+        <section class="section" id="execution">
+          <div class="section__number">04</div>
+          <h2>Execution vs Construction</h2>
+          <p>This distinction follows naturally. Execution is expressing the behaviour you ultimately want.</p>
+          <blockquote>I want to run. → I run.</blockquote>
+          <p>Construction is expressing behaviour whose purpose is to increase the probability of another behaviour.</p>
+          <blockquote>I want to run tomorrow morning. → I arrange to run with a friend. → I prepare my clothes the night before. → I stop eating late. → I stabilise my sleep schedule. → I remove unnecessary morning decisions. → I run.</blockquote>
+          <p>Traditional productivity systems focus on execution. Nature Release focuses on increasing the probability that people will construct the conditions from which execution naturally follows.</p>
+          <p>This is self-engineering in the literal sense. A person becomes both the engineer and the system being engineered.</p>
+          <p>Construction itself is also behaviour. Therefore, it has its own probability architecture. Nature Release becomes part of that architecture by increasing the probability that users will continue engineering their own tonic state.</p>
+          <p>The resulting process is recursive:</p>
+          <blockquote>Nature Release → Construction becomes more probable → Tonic state changes → Desired behaviour becomes more probable → Behaviour is expressed → New observations → Better construction.</blockquote>
+        </section>
+
+        <section class="section" id="discipline">
+          <div class="section__number">05</div>
+          <h2>Discipline, Willpower, and Enthusiasm</h2>
+          <p>Discipline does not cause behaviour. Saying,</p>
+          <blockquote>“He trains because he is disciplined.”</blockquote>
+          <p>simply renames the behaviour instead of explaining it. In this framework, discipline is retrospective. It describes how closely actual behaviour matched intended behaviour over a defined period.</p>
+          <div class="statements"><div class="statement">Planned twelve workouts.</div><div class="statement">Completed eleven.</div></div>
+          <p>That represents high discipline relative to that plan. Why eleven happened instead of eight—or twelve—is a question of tonicity. Discipline comes after behaviour, not before it.</p>
+          <p>The same reasoning applies to willpower. Saying,</p>
+          <blockquote>“She succeeded because of willpower.”</blockquote>
+          <p>does not specify a mechanism. If an act of will is itself behaviour, then its own probability also requires explanation. Until an independent causal mechanism is identified, willpower remains a useful description of experience rather than an explanatory variable.</p>
+          <p>Enthusiasm, however, appears different. We define it phenomenologically as:</p>
+          <blockquote>A temporary state in which an activity or its expected outcome becomes unusually attractive, increasing the probability of immediately beginning that activity or constructing plans to continue it.</blockquote>
+          <p>This definition intentionally does not explain why enthusiasm arises. It simply recognises that the phenomenon exists. Its causes remain an open research question.</p>
+          <p>The most interesting moment is often its disappearance. Someone may enthusiastically redesign tomorrow while going to bed. By morning, the enthusiasm has vanished. Yet the environment they constructed the night before continues influencing behaviour.</p>
+          <p>This leads to an important distinction:</p>
+          <blockquote>Enthusiasm may initiate construction. Tonicity can outlast enthusiasm.</blockquote>
+        </section>
+
+        <section class="section" id="model">
+          <div class="section__number">06</div>
+          <h2>The Nature Release Model</h2>
+          <p>The central unit of analysis is not a habit. It is a transition between probability distributions.</p>
+          <blockquote>Current state S₀ makes behaviour B₀ the most probable outcome.<br><br>The user wants behaviour B₁ instead.<br><br>What changes (ΔS) are required so that, in state S₁ = S₀ + ΔS, behaviour B₁ becomes sufficiently probable?</blockquote>
+          <p>Nature Release observes the result, updates its model, and proposes the next intervention. The cycle resembles continuous experimentation:</p>
+          <blockquote>Observe → Hypothesise → Construct → Express → Measure → Update</blockquote>
+          <p>Not:</p>
+          <blockquote>Track your life.</blockquote>
+          <p>Not:</p>
+          <blockquote>Build better habits.</blockquote>
+          <p>Not:</p>
+          <blockquote>Become more disciplined.</blockquote>
+          <p>Instead:</p>
+          <blockquote>Observe what produces your behaviour. Construct what produces the behaviour you want.</blockquote>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__copy">© 2026 Nature Release. All rights reserved.</span>
+    <div class="footer__links">
+      <a class="current" href="./">Methodology</a>
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../terms-of-service.html">Terms of Service</a>
+      <a href="../data-processing-consent.html">Data Processing Consent</a>
+    </div>
+  </footer>
+</body>
+</html>
