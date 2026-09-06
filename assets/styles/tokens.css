@@ -1,0 +1,84 @@
+/* Nature Release design tokens — source: NatureRelease.tokens.json */
+:root {
+  --white: #FFFFFF;
+  --light-grey: #888888;
+  --grey: #2F2F2F;
+  --dark-grey: #181818;
+  --black: #070707;
+
+  --nutrition: #B1F042;
+  --activity: #FF5A1F;
+  --sleep: #B286FD;
+  --connection: #FF1FB4;
+  --workstudy: #1CA0FF;
+
+  /* Backwards-compatible aliases used by the existing landing. */
+  --purple: var(--sleep);
+  --mint: var(--nutrition);
+  --amber: var(--activity);
+  --rose: var(--connection);
+  --blue: var(--workstudy);
+
+  /* Derived opacity tokens. */
+  --black-12: rgb(from var(--black) r g b / .12);
+  --black-35: rgb(from var(--black) r g b / .35);
+  --black-45: rgb(from var(--black) r g b / .45);
+  --black-55: rgb(from var(--black) r g b / .55);
+  --black-62: rgb(from var(--black) r g b / .62);
+  --black-68: rgb(from var(--black) r g b / .68);
+  --black-75: rgb(from var(--black) r g b / .75);
+  --black-85: rgb(from var(--black) r g b / .85);
+  --black-88: rgb(from var(--black) r g b / .88);
+  --black-90: rgb(from var(--black) r g b / .9);
+  --dark-grey-68: rgb(from var(--dark-grey) r g b / .68);
+  --dark-grey-72: rgb(from var(--dark-grey) r g b / .72);
+  --dark-grey-76: rgb(from var(--dark-grey) r g b / .76);
+  --dark-grey-85: rgb(from var(--dark-grey) r g b / .85);
+  --dark-grey-88: rgb(from var(--dark-grey) r g b / .88);
+  --white-02: rgb(from var(--white) r g b / .02);
+  --white-04: rgb(from var(--white) r g b / .04);
+  --white-05: rgb(from var(--white) r g b / .05);
+  --white-055: rgb(from var(--white) r g b / .055);
+  --white-06: rgb(from var(--white) r g b / .06);
+  --white-08: rgb(from var(--white) r g b / .08);
+  --white-09: rgb(from var(--white) r g b / .09);
+  --white-10: rgb(from var(--white) r g b / .1);
+  --white-11: rgb(from var(--white) r g b / .11);
+  --white-12: rgb(from var(--white) r g b / .12);
+  --white-15: rgb(from var(--white) r g b / .15);
+  --white-18: rgb(from var(--white) r g b / .18);
+  --white-20: rgb(from var(--white) r g b / .2);
+  --white-22: rgb(from var(--white) r g b / .22);
+  --white-26: rgb(from var(--white) r g b / .26);
+  --white-28: rgb(from var(--white) r g b / .28);
+  --white-40: rgb(from var(--white) r g b / .4);
+  --white-42: rgb(from var(--white) r g b / .42);
+  --white-45: rgb(from var(--white) r g b / .45);
+  --white-46: rgb(from var(--white) r g b / .46);
+  --white-50: rgb(from var(--white) r g b / .5);
+  --white-55: rgb(from var(--white) r g b / .55);
+  --white-58: rgb(from var(--white) r g b / .58);
+  --white-60: rgb(from var(--white) r g b / .6);
+  --white-62: rgb(from var(--white) r g b / .62);
+  --white-65: rgb(from var(--white) r g b / .65);
+  --white-66: rgb(from var(--white) r g b / .66);
+  --white-68: rgb(from var(--white) r g b / .68);
+  --white-70: rgb(from var(--white) r g b / .7);
+  --white-72: rgb(from var(--white) r g b / .72);
+  --white-78: rgb(from var(--white) r g b / .78);
+  --white-85: rgb(from var(--white) r g b / .85);
+  --nutrition-13: rgb(from var(--nutrition) r g b / .13);
+  --nutrition-24: rgb(from var(--nutrition) r g b / .24);
+  --nutrition-35: rgb(from var(--nutrition) r g b / .35);
+  --nutrition-60: rgb(from var(--nutrition) r g b / .6);
+  --activity-13: rgb(from var(--activity) r g b / .13);
+  --activity-24: rgb(from var(--activity) r g b / .24);
+  --activity-30: rgb(from var(--activity) r g b / .3);
+  --sleep-07: rgb(from var(--sleep) r g b / .07);
+  --sleep-10: rgb(from var(--sleep) r g b / .1);
+  --sleep-30: rgb(from var(--sleep) r g b / .3);
+  --connection-18: rgb(from var(--connection) r g b / .18);
+  --connection-27: rgb(from var(--connection) r g b / .27);
+  --workstudy-13: rgb(from var(--workstudy) r g b / .13);
+  --workstudy-18: rgb(from var(--workstudy) r g b / .18);
+}
