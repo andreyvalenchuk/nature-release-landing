@@ -6,20 +6,21 @@
   <meta name="description" content="Nature Release methodology for understanding and designing the conditions from which behaviour emerges.">
   <title>Nature Release — Methodology</title>
   <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="stylesheet" href="../assets/styles/tokens.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --black: #101010; --dark: #181818; --line: #2f2f2f; --muted: #969696; --white: #fff; --purple: #b286fd; }
+    :root { --dark: var(--dark-grey); --line: var(--grey); --muted: var(--light-grey); }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
-    .header { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 16px 40px; border-bottom: 1px solid var(--line); background: rgba(16,16,16,.88); backdrop-filter: blur(20px); }
+    .header { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 16px 40px; border-bottom: 1px solid var(--line); background: var(--black-88); backdrop-filter: blur(20px); }
     .header__left { display: flex; align-items: center; gap: 24px; }
     .logo { color: var(--white); text-decoration: none; font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
     .back { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; }
-    .language-toggle { height: 34px; padding: 0 13px; border: 1px solid rgba(255,255,255,.18); border-radius: 100px; background: transparent; color: rgba(255,255,255,.78); cursor: pointer; font: 600 11px Inter, sans-serif; letter-spacing: .08em; transition: border-color .2s, background .2s; }
-    .language-toggle:hover { border-color: rgba(255,255,255,.42); background: rgba(255,255,255,.06); }
+    .language-toggle { height: 34px; padding: 0 13px; border: 1px solid var(--white-18); border-radius: 100px; background: transparent; color: var(--white-78); cursor: pointer; font: 600 11px Inter, sans-serif; letter-spacing: .08em; transition: border-color .2s, background .2s; }
+    .language-toggle:hover { border-color: var(--white-42); background: var(--white-06); }
     .back:hover, .toc a:hover, .footer a:hover { color: var(--white); }
     .document { width: min(1120px, calc(100% - 80px)); margin: 0 auto; padding: 72px 0 104px; display: grid; grid-template-columns: 190px minmax(0, 760px); justify-content: space-between; gap: 64px; }
     .toc { position: sticky; top: 88px; align-self: start; border-left: 1px solid var(--line); padding-left: 18px; }
@@ -33,11 +34,11 @@
     .section { padding: 34px 36px 38px; border: 1px solid var(--line); border-radius: 16px; background: var(--dark); scroll-margin-top: 90px; }
     .section__number { margin-bottom: 10px; }
     h2 { margin-bottom: 22px; font-size: 21px; letter-spacing: -.02em; line-height: 1.25; }
-    p { color: #aaa; font-size: 15px; line-height: 1.78; margin: 0 0 14px; }
+    p { color: var(--light-grey); font-size: 15px; line-height: 1.78; margin: 0 0 14px; }
     p:last-child { margin-bottom: 0; }
     .statements { display: grid; gap: 3px; margin: 18px 0; }
-    .statement { color: #aaa; font-size: 15px; line-height: 1.7; }
-    blockquote { margin: 20px 0; padding: 15px 18px; border-left: 2px solid var(--purple); background: rgba(178,134,253,.07); color: #e4dcf3; font-size: 15px; line-height: 1.68; }
+    .statement { color: var(--light-grey); font-size: 15px; line-height: 1.7; }
+    blockquote { margin: 20px 0; padding: 15px 18px; border-left: 2px solid var(--purple); background: var(--sleep-07); color: var(--white); font-size: 15px; line-height: 1.68; }
     blockquote:last-child { margin-bottom: 0; }
     .footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 32px 40px; border-top: 1px solid var(--line); }
     .footer__copy, .footer a { color: var(--muted); font-size: 13px; }
@@ -48,6 +49,7 @@
     @media (max-width: 800px) { .document { grid-template-columns: 1fr; gap: 40px; } .toc { position: static; display: none; } }
     @media (max-width: 640px) { .header, .footer { padding-left: 20px; padding-right: 20px; } .document { width: min(100% - 40px, 760px); padding: 48px 0 64px; } .section { padding: 24px 20px 28px; } .lede { font-size: 16px; padding-bottom: 36px; margin-bottom: 36px; } .footer { align-items: flex-start; flex-direction: column; } .footer__links { gap: 14px 20px; } }
   </style>
+  <link rel="stylesheet" href="../assets/styles/documents.css">
 </head>
 <body>
   <header class="header">
