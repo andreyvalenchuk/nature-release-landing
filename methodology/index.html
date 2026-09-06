@@ -276,6 +276,7 @@
       <a href="../data-processing-consent.html" id="footerConsent">Data Processing Consent</a>
     </div>
   </footer>
+  <script src="../assets/scripts/documents.js"></script>
   <script>
     const languageToggle = document.getElementById('languageToggle');
     const contentByLanguage = document.querySelectorAll('.lang-content');
@@ -301,6 +302,7 @@
       localStorage.setItem('methodology-language', language);
     }
 
+    NatureReleaseDocuments.initialiseAccordions();
     const savedLanguage = localStorage.getItem('methodology-language');
     setLanguage(savedLanguage === 'ru' ? 'ru' : 'en');
     languageToggle.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'ru' : 'en'));

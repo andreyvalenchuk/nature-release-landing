@@ -89,6 +89,7 @@
   </div>
 </footer>
 
+<script src="assets/scripts/documents.js"></script>
 <script>
   const content = {
     EN: {
@@ -259,6 +260,7 @@
         <div class="l-section-title">${s.title}</div>
         <div class="l-section-body">${s.html}</div>
       </div>`).join('');
+    NatureReleaseDocuments.initialiseAccordions(container);
 
     localStorage.setItem('nr-lang', l);
   }

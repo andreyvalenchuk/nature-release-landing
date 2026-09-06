@@ -5,6 +5,7 @@
   --grey: #2F2F2F;
   --dark-grey: #181818;
   --black: #070707;
+  --brand: #6BE4D4;
 
   --nutrition: #B1F042;
   --activity: #FF5A1F;
@@ -77,6 +78,9 @@
   --sleep-07: rgb(from var(--sleep) r g b / .07);
   --sleep-10: rgb(from var(--sleep) r g b / .1);
   --sleep-30: rgb(from var(--sleep) r g b / .3);
+  --brand-07: rgb(from var(--brand) r g b / .07);
+  --brand-10: rgb(from var(--brand) r g b / .1);
+  --brand-24: rgb(from var(--brand) r g b / .24);
   --connection-18: rgb(from var(--connection) r g b / .18);
   --connection-27: rgb(from var(--connection) r g b / .27);
   --workstudy-13: rgb(from var(--workstudy) r g b / .13);
