@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Nature Release — Speed</title>
+</head>
+<body>
+  <script>
+    fetch('../index.html', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('Unable to load the landing page.');
+        return response.text();
+      })
+      .then(page => {
+        const speedConfig = '<base href="../"><script>window.NatureReleaseHeroInterval=2500;<\/script>';
+        document.open();
+        document.write(page.replace('<head>', `<head>${speedConfig}`));
+        document.close();
+      })
+      .catch(() => {
+        document.body.textContent = 'Unable to load Nature Release.';
+      });
+  </script>
+</body>
+</html>
