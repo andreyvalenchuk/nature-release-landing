@@ -3,18 +3,25 @@ window.NatureReleaseDocuments = (() => {
     const toc = scope.querySelector('.toc, .l-toc');
     if (!toc) return;
 
-    toc._sectionObserver?.disconnect();
+    toc._onScroll && window.removeEventListener('scroll', toc._onScroll);
     const links = [...toc.querySelectorAll('a[href^="#"]')];
     const sections = links.map(link => ({ link, section: scope.querySelector(link.getAttribute('href')) })).filter(item => item.section);
-    const setActive = id => links.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`));
+    const setActive = id => links.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    const updateActiveSection = () => {
+      const anchor = window.innerHeight * 0.34;
+      const current = sections.filter(({ section }) => section.getBoundingClientRect().top <= anchor).at(-1) || sections[0];
+      if (current) setActive(current.section.id);
+    };
 
     links.forEach(link => link.addEventListener('click', () => setActive(link.getAttribute('href').slice(1))));
-    toc._sectionObserver = new IntersectionObserver(entries => {
-      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-      if (visible) setActive(visible.target.id);
-    }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
-    sections.forEach(({ section }) => toc._sectionObserver.observe(section));
-    if (sections[0]) setActive(sections[0].section.id);
+    toc._onScroll = updateActiveSection;
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
   }
 
   return { initialiseToc };

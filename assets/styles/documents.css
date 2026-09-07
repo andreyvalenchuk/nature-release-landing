@@ -106,3 +106,8 @@ a { color: inherit; }
 .l-toc a { color: var(--doc-quiet); font-size: 12px; line-height: 1.4; text-decoration: none; }
 @media (max-width: 980px) { .document .toc, .l-toc { display: none; } }
 @media (max-width: 640px) { .l-main, .document { width: min(100% - 40px, 1360px); } .document > article, .l-document-content { width: 100%; } .document .section, .l-section { padding: 28px 0; } }
+
+/* Keep the reading column mathematically centred; the index lives independently on the left. */
+.document > article, .l-document-content { width: min(780px, 100%); margin-right: auto; margin-left: auto; }
+.toc a, .l-toc a { display: block; color: var(--doc-quiet); opacity: .62; transition: color .32s ease, opacity .32s ease; }
+.toc a.is-active, .l-toc a.is-active { color: var(--doc-paper); opacity: 1; }
