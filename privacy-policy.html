@@ -83,11 +83,14 @@
 </header>
 
 <main class="l-main">
-  <div class="l-label" id="docLabel"></div>
-  <h1 class="l-title" id="docTitle"></h1>
-  <p class="l-updated" id="docUpdated"></p>
-  <p class="l-intro" id="docIntro"></p>
-  <div class="l-sections" id="docSections"></div>
+  <aside class="l-toc" aria-label="On this page"><div class="l-toc__label" id="tocLabel"></div><nav class="l-toc__links" id="tocLinks"></nav></aside>
+  <div class="l-document-content">
+    <div class="l-label" id="docLabel"></div>
+    <h1 class="l-title" id="docTitle"></h1>
+    <p class="l-updated" id="docUpdated"></p>
+    <p class="l-intro" id="docIntro"></p>
+    <div class="l-sections" id="docSections"></div>
+  </div>
 </main>
 
 <footer class="l-footer">
@@ -255,15 +258,17 @@
     document.getElementById('linkPrivacy').textContent = d.linkPrivacy;
     document.getElementById('linkTerms').textContent = d.linkTerms;
     document.getElementById('linkConsent').textContent = d.linkConsent;
+    document.getElementById('tocLabel').textContent = l === 'RU' ? 'На этой странице' : 'On this page';
+    document.getElementById('tocLinks').innerHTML = d.sections.map(s => `<a href="#section-${s.num}">${s.num}. ${s.title}</a>`).join('');
 
     const container = document.getElementById('docSections');
     container.innerHTML = d.sections.map(s => `
-      <div class="l-section">
+      <div class="l-section" id="section-${s.num}">
         <div class="l-section-num">${s.num}</div>
         <div class="l-section-title">${s.title}</div>
         <div class="l-section-body">${s.html}</div>
       </div>`).join('');
-    NatureReleaseDocuments.initialiseAccordions(container);
+    NatureReleaseDocuments.initialiseToc(document.querySelector('.l-main'));
 
     localStorage.setItem('nr-lang', l);
   }

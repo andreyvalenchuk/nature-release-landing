@@ -1,44 +1,21 @@
 window.NatureReleaseDocuments = (() => {
-  function initialiseAccordions(root = document) {
-    root.querySelectorAll('.section, .l-section').forEach(section => {
-      if (section.dataset.disclosureReady) return;
+  function initialiseToc(scope = document) {
+    const toc = scope.querySelector('.toc, .l-toc');
+    if (!toc) return;
 
-      const number = section.querySelector(':scope > .section__number, :scope > .l-section-num');
-      const title = section.querySelector(':scope > h2, :scope > .l-section-title');
-      if (!number || !title) return;
+    toc._sectionObserver?.disconnect();
+    const links = [...toc.querySelectorAll('a[href^="#"]')];
+    const sections = links.map(link => ({ link, section: scope.querySelector(link.getAttribute('href')) })).filter(item => item.section);
+    const setActive = id => links.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`));
 
-      const button = document.createElement('button');
-      const body = document.createElement('div');
-      const icon = document.createElement('span');
-      const siblings = [...section.children].filter(child => child !== number && child !== title);
-
-      button.type = 'button';
-      button.className = 'document-accordion__toggle';
-      button.setAttribute('aria-expanded', 'false');
-      number.classList.add('document-accordion__number');
-      title.classList.add('document-accordion__title');
-      icon.className = 'document-accordion__icon';
-      icon.setAttribute('aria-hidden', 'true');
-      icon.textContent = '+';
-      body.className = 'document-accordion__body';
-
-      button.append(number, title, icon);
-      body.append(...siblings);
-      section.replaceChildren(button, body);
-      section.dataset.disclosureReady = 'true';
-
-      button.addEventListener('click', () => {
-        const shouldOpen = !section.classList.contains('is-open');
-        const group = section.parentElement;
-        group.querySelectorAll(':scope > .section.is-open, :scope > .l-section.is-open').forEach(openSection => {
-          openSection.classList.remove('is-open');
-          openSection.querySelector('.document-accordion__toggle')?.setAttribute('aria-expanded', 'false');
-        });
-        section.classList.toggle('is-open', shouldOpen);
-        button.setAttribute('aria-expanded', String(shouldOpen));
-      });
-    });
+    links.forEach(link => link.addEventListener('click', () => setActive(link.getAttribute('href').slice(1))));
+    toc._sectionObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
+    sections.forEach(({ section }) => toc._sectionObserver.observe(section));
+    if (sections[0]) setActive(sections[0].section.id);
   }
 
-  return { initialiseAccordions };
+  return { initialiseToc };
 })();

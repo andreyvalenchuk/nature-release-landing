@@ -300,9 +300,9 @@
       document.getElementById('footerTerms').textContent = text.terms;
       document.getElementById('footerConsent').textContent = text.consent;
       localStorage.setItem('methodology-language', language);
+      NatureReleaseDocuments.initialiseToc(document.querySelector('.lang-content:not([hidden])'));
     }
 
-    NatureReleaseDocuments.initialiseAccordions();
     const savedLanguage = localStorage.getItem('methodology-language');
     setLanguage(savedLanguage === 'ru' ? 'ru' : 'en');
     languageToggle.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'ru' : 'en'));

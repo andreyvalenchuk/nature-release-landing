@@ -87,3 +87,22 @@ a { color: inherit; }
 .is-open > .document-accordion__body { max-height: 8000px; padding: 0 0 30px 80px; opacity: 1; }
 .document-accordion__body .l-section-body, .document-accordion__body > p, .document-accordion__body .statements, .document-accordion__body blockquote { max-width: 780px; }
 @media (max-width: 640px) { .l-section, .section { padding: 0; } .document-accordion__toggle { grid-template-columns: 46px minmax(0, 1fr) 24px; gap: 10px; padding: 20px 0; } .document-accordion__number { margin-top: 5px; } .document-accordion__title { font-size: 24px; } .is-open > .document-accordion__body { padding: 0 0 26px 56px; } }
+
+/* Reading layout: a quiet index never displaces the content column. */
+.document { display: block; position: relative; width: min(100% - 64px, 1360px); }
+.document > article { width: min(100%, 780px); margin: 0 auto; }
+.document .toc { position: fixed; top: 112px; left: max(32px, calc((100vw - 1360px) / 2)); width: 180px; }
+.toc a, .l-toc a { transition: color .28s ease; }
+.toc a.is-active, .l-toc a.is-active { color: var(--doc-paper); }
+.document .section, .l-section { padding: clamp(28px, 3vw, 42px) 0; border: 0; border-top: 1px solid var(--doc-line); background: transparent; }
+.document .section:last-child, .l-section:last-child { border-bottom: 1px solid var(--doc-line); }
+.document .section:hover, .l-section:hover { border-color: var(--doc-line); transform: none; }
+.document .section h2, .l-section-title { max-width: 760px; margin-bottom: 20px; }
+.l-main { position: relative; width: min(100% - 64px, 1200px); }
+.l-document-content { width: min(100%, 780px); margin: 0 auto; }
+.l-toc { position: fixed; top: 112px; left: max(32px, calc((100vw - 1200px) / 2)); width: 180px; padding-left: 14px; border-left: 1px solid var(--doc-line); }
+.l-toc__label { margin-bottom: 18px; color: var(--doc-signal); font: 500 11px/1.2 "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+.l-toc__links { display: grid; gap: 10px; }
+.l-toc a { color: var(--doc-quiet); font-size: 12px; line-height: 1.4; text-decoration: none; }
+@media (max-width: 980px) { .document .toc, .l-toc { display: none; } }
+@media (max-width: 640px) { .l-main, .document { width: min(100% - 40px, 1360px); } .document > article, .l-document-content { width: 100%; } .document .section, .l-section { padding: 28px 0; } }
