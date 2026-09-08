@@ -83,7 +83,9 @@
   --brand-07: rgb(from var(--brand) r g b / .07);
   --brand-10: rgb(from var(--brand) r g b / .1);
   --brand-24: rgb(from var(--brand) r g b / .24);
+  --signal-07: rgb(from var(--signal) r g b / .07);
   --signal-10: rgb(from var(--signal) r g b / .1);
+  --signal-30: rgb(from var(--signal) r g b / .3);
   --connection-18: rgb(from var(--connection) r g b / .18);
   --connection-27: rgb(from var(--connection) r g b / .27);
   --workstudy-13: rgb(from var(--workstudy) r g b / .13);
