@@ -1,5 +1,5 @@
 /* Shared editorial document surface for Nature Release. */
-:root { --doc-ink: var(--black); --doc-paper: var(--white); --doc-line: var(--grey); --doc-quiet: var(--light-grey); --doc-signal: var(--brand); }
+:root { --doc-ink: var(--black); --doc-paper: var(--white); --doc-line: var(--grey); --doc-quiet: var(--light-grey); --doc-signal: var(--signal); }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { min-width: 320px; margin: 0; overflow-x: hidden; background: var(--doc-ink); color: var(--doc-paper); font-family: Manrope, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
