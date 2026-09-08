@@ -9,7 +9,7 @@ a { color: inherit; }
 .header, .l-header { position: sticky; top: 0; z-index: 20; min-height: 72px; padding: 0 max(32px, calc((100vw - 1360px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--doc-line); background: var(--black-90); backdrop-filter: blur(18px); }
 .header__left, .l-header__left { display: flex; align-items: center; gap: 24px; min-width: 0; }
 .logo, .l-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--doc-paper); font: 700 13px/1 Manrope, Arial, sans-serif; letter-spacing: -.03em; text-decoration: none; white-space: nowrap; }
-.logo::before, .l-logo::before { width: 8px; height: 8px; border-radius: 50%; background: var(--doc-signal); box-shadow: 0 0 0 5px var(--signal-10); content: ''; }
+.logo::before, .l-logo::before { width: 18px; height: 10px; flex: none; border-radius: 0; background: center / contain no-repeat url('../icons/nature-release/vector-icon/signal.svg'); box-shadow: none; content: ''; }
 .back, .l-back { color: var(--doc-quiet); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .02em; text-decoration: none; white-space: nowrap; transition: color .2s ease; }
 .back:hover, .l-back:hover { color: var(--doc-signal); }
 .language-toggle, .l-lang { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 46px; height: 34px; padding: 0 12px; border: 1px solid var(--white-22); border-radius: 999px; background: transparent; color: var(--doc-paper); cursor: pointer; font: 500 11px/1 "DM Mono", monospace; letter-spacing: .06em; transition: border-color .2s ease, color .2s ease, background .2s ease; }
