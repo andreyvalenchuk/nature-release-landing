@@ -6,7 +6,8 @@
   --dark-grey: #181818;
   --black: #070707;
   --brand: #6BE4D4;
-  --signal: #7C5CFC;
+  --signal-value: #7C5CFC;
+  --signal: var(--signal-value);
 
   --nutrition: #B1F042;
   --activity: #FF5A1F;
