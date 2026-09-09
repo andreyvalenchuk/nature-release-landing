@@ -91,12 +91,17 @@
   </script>
   <script>
     (() => {
+      content.RU.signupCopy = 'Присоединяйся к листу ожидания. Исследуй архитектуру сна, пока ждёшь.';
       const renderWithLandingTitle = render;
       render = () => {
         renderWithLandingTitle();
-        if (lang === 'EN') document.title = 'Understand and build your behaviour.';
+        document.title = lang === 'RU'
+          ? 'Пойми и конструируй своё поведение.'
+          : 'Understand and build your behaviour.';
       };
-      if (lang === 'EN') document.title = 'Understand and build your behaviour.';
+      document.title = lang === 'RU'
+        ? 'Пойми и конструируй своё поведение.'
+        : 'Understand and build your behaviour.';
     })();
   </script>
 </body>
